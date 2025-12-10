@@ -57,8 +57,32 @@ ANCHOR_CLASSES = {
 }
 
 def split_into_sentences(text):
-    sentences = re.split(r'(?<=[.!?])\s+', text)
-    return [s.strip() for s in sentences if s.strip() and len(s.strip()) > 3]
+    """Split text into sentences and return both sentences and their character positions.
+    
+    Returns:
+        tuple: (sentences, positions) where sentences is a list of sentence strings,
+               and positions is a list of tuples (start, end) indicating character positions
+               in the original text.
+    """
+    sentences = []
+    positions = []
+    
+    # Split on sentence boundaries
+    split_sentences = re.split(r'(?<=[.!?])\s+', text)
+    
+    current_pos = 0
+    for sent in split_sentences:
+        stripped = sent.strip()
+        if stripped and len(stripped) > 3:
+            # Find the actual position in the original text
+            start = text.find(sent, current_pos)
+            if start != -1:
+                end = start + len(sent)
+                sentences.append(stripped)
+                positions.append((start, end))
+                current_pos = end
+    
+    return sentences, positions
 
 def get_sentence_token_positions(text, sentences, tokenizer):
     input_ids = tokenizer.encode(text, return_tensors="pt").to(device)
@@ -180,7 +204,7 @@ else:
             )
         full_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
         cot = full_text[len(problem):].strip() if full_text.startswith(problem) else full_text
-        sentences = split_into_sentences(cot)
+        sentences, sentence_positions = split_into_sentences(cot)
         
         if len(sentences) < 2:
             print(f"  ✗ Only {len(sentences)} sentences, skipping")
@@ -193,6 +217,7 @@ else:
             'problem': problem,
             'cot': cot,
             'sentences': sentences,
+            'sentence_positions': sentence_positions,
             'causal_matrix': causal_matrix
         }
         del output_ids, input_ids
@@ -328,12 +353,18 @@ else:
     for pid, anchors in tqdm(all_anchors.items(), desc="Extracting features"):
         data = all_data[pid]
         problem = data['problem']
-        sentences = data['sentences']
+        cot = data['cot']
+        sentence_positions = data['sentence_positions']
         causal_matrix = data['causal_matrix']
         
         for anchor in anchors:
             idx = anchor['idx']
-            text_before = problem + " " + " ".join(sentences[:idx])
+            # Use character positions to slice original text instead of reconstructing
+            if idx > 0:
+                end_pos = sentence_positions[idx - 1][1]
+                text_before = problem + " " + cot[:end_pos]
+            else:
+                text_before = problem
             hidden_state = get_hidden_state(text_before)
             outgoing_feature = np.sum(np.abs(causal_matrix[idx, :]))
             all_features.append({
