@@ -446,10 +446,14 @@ print("="*80)
 print("SAVING MODELS")
 print("="*80 + "\n")
 
-pickle.dump(clf_lr, open(f"{checkpoint_dir}/classifier_lr.pkl", 'wb'))
-pickle.dump(clf_mlp, open(f"{checkpoint_dir}/classifier_mlp.pkl", 'wb'))
-pickle.dump(scaler, open(f"{checkpoint_dir}/scaler.pkl", 'wb'))
-pickle.dump(class_to_idx, open(f"{checkpoint_dir}/class_to_idx.pkl", 'wb'))
+with open(f"{checkpoint_dir}/classifier_lr.pkl", 'wb') as f:
+    pickle.dump(clf_lr, f)
+with open(f"{checkpoint_dir}/classifier_mlp.pkl", 'wb') as f:
+    pickle.dump(clf_mlp, f)
+with open(f"{checkpoint_dir}/scaler.pkl", 'wb') as f:
+    pickle.dump(scaler, f)
+with open(f"{checkpoint_dir}/class_to_idx.pkl", 'wb') as f:
+    pickle.dump(class_to_idx, f)
 
 print(f" Models saved to {checkpoint_dir}/")
 print(f"  - classifier_lr.pkl")
