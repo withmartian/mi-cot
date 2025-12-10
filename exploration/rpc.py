@@ -199,7 +199,8 @@ else:
         torch.cuda.empty_cache()
         gc.collect()
 
-    pickle.dump(all_data, open(ckpt, 'wb'))
+    with open(ckpt, 'wb') as f:
+        pickle.dump(all_data, f)
     print(f"\n Saved causal data for {len(all_data)} problems\n")
 
 # DELETE TL MODEL & LOAD BASE MODEL FOR CLASSIFICATION
