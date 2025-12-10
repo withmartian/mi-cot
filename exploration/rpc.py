@@ -62,25 +62,42 @@ def split_into_sentences(text):
     Returns:
         tuple: (sentences, positions) where sentences is a list of sentence strings,
                and positions is a list of tuples (start, end) indicating character positions
-               in the original text.
+               in the original text (before stripping).
     """
     sentences = []
     positions = []
     
-    # Split on sentence boundaries
-    split_sentences = re.split(r'(?<=[.!?])\s+', text)
+    # Split on sentence boundaries, keeping track of positions
+    # Use re.split with capturing groups to preserve separators and calculate positions
+    parts = re.split(r'((?<=[.!?])\s+)', text)
     
     current_pos = 0
-    for sent in split_sentences:
-        stripped = sent.strip()
-        if stripped and len(stripped) > 3:
-            # Find the actual position in the original text
-            start = text.find(sent, current_pos)
-            if start != -1:
-                end = start + len(sent)
+    accumulated_text = ""
+    
+    for i, part in enumerate(parts):
+        # Even indices are sentence content, odd indices are separators
+        if i % 2 == 0:
+            accumulated_text = part
+        else:
+            # We have a complete sentence with its separator
+            stripped = accumulated_text.strip()
+            if stripped and len(stripped) > 3:
+                # Calculate actual positions in original text
+                start = current_pos
+                end = current_pos + len(accumulated_text)
                 sentences.append(stripped)
                 positions.append((start, end))
-                current_pos = end
+            current_pos += len(accumulated_text) + len(part)
+    
+    # Handle the last sentence (no separator after it)
+    if parts and len(parts) % 2 == 1:
+        accumulated_text = parts[-1]
+        stripped = accumulated_text.strip()
+        if stripped and len(stripped) > 3:
+            start = current_pos
+            end = current_pos + len(accumulated_text)
+            sentences.append(stripped)
+            positions.append((start, end))
     
     return sentences, positions
 
