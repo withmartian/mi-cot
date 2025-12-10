@@ -60,9 +60,16 @@ def split_into_sentences(text):
     """Split text into sentences and return both sentences and their character positions.
     
     Returns:
-        tuple: (sentences, positions) where sentences is a list of sentence strings,
-               and positions is a list of tuples (start, end) indicating character positions
-               in the original text (before stripping).
+        tuple: (sentences, positions) where:
+            - sentences: list of stripped sentence strings (for classification/display)
+            - positions: list of (start, end) tuples indicating character positions
+                        in the original text (unstripped, for accurate slicing that
+                        preserves formatting)
+    
+    Note: Positions track the unstripped sentence boundaries in the original text,
+          allowing us to slice the original text with preserved formatting. This is
+          intentionally different from the stripped sentences which are used for
+          classification and don't need the extra whitespace.
     """
     sentences = []
     positions = []
