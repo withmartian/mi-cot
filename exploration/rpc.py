@@ -16,7 +16,7 @@ import re
 import gc
 
 
-device = "cuda"
+device = "cuda" if torch.cuda.is_available() else "cpu"
 checkpoint_dir = "checkpoints_causal_anchors_full_500"
 os.makedirs(checkpoint_dir, exist_ok=True)
 dtype = torch.bfloat16
