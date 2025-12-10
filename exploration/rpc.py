@@ -254,7 +254,10 @@ for pid, data in all_data.items():
     classifications = [classify_sentence(s) for s in sentences]
     outgoing = np.sum(np.abs(causal_matrix), axis=1)
     importance = outgoing
-    threshold = np.percentile(importance[importance > 0], 50) if np.any(importance > 0) else 0
+    if np.any(importance > 0):
+        threshold = np.percentile(importance[importance > 0], 75)
+    else:
+        threshold = float('inf')  # No anchors will be selected if all importance values are zero
     
     anchors = []
     for idx, imp in enumerate(importance):
