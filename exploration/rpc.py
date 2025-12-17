@@ -199,7 +199,8 @@ else:
         torch.cuda.empty_cache()
         gc.collect()
 
-    pickle.dump(all_data, open(ckpt, 'wb'))
+    with open(ckpt, 'wb') as f:
+        pickle.dump(all_data, f)
     print(f"\n Saved causal data for {len(all_data)} problems\n")
 
 # DELETE TL MODEL & LOAD BASE MODEL FOR CLASSIFICATION
@@ -253,7 +254,10 @@ for pid, data in all_data.items():
     classifications = [classify_sentence(s) for s in sentences]
     outgoing = np.sum(np.abs(causal_matrix), axis=1)
     importance = outgoing
-    threshold = np.percentile(importance[importance > 0], 50) if np.any(importance > 0) else 0
+    if np.any(importance > 0):
+        threshold = np.percentile(importance[importance > 0], 75)
+    else:
+        threshold = float('inf')  # No anchors will be selected if all importance values are zero
     
     anchors = []
     for idx, imp in enumerate(importance):
@@ -446,10 +450,14 @@ print("="*80)
 print("SAVING MODELS")
 print("="*80 + "\n")
 
-pickle.dump(clf_lr, open(f"{checkpoint_dir}/classifier_lr.pkl", 'wb'))
-pickle.dump(clf_mlp, open(f"{checkpoint_dir}/classifier_mlp.pkl", 'wb'))
-pickle.dump(scaler, open(f"{checkpoint_dir}/scaler.pkl", 'wb'))
-pickle.dump(class_to_idx, open(f"{checkpoint_dir}/class_to_idx.pkl", 'wb'))
+with open(f"{checkpoint_dir}/classifier_lr.pkl", 'wb') as f:
+    pickle.dump(clf_lr, f)
+with open(f"{checkpoint_dir}/classifier_mlp.pkl", 'wb') as f:
+    pickle.dump(clf_mlp, f)
+with open(f"{checkpoint_dir}/scaler.pkl", 'wb') as f:
+    pickle.dump(scaler, f)
+with open(f"{checkpoint_dir}/class_to_idx.pkl", 'wb') as f:
+    pickle.dump(class_to_idx, f)
 
 print(f" Models saved to {checkpoint_dir}/")
 print(f"  - classifier_lr.pkl")
