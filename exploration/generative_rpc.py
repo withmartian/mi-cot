@@ -17,6 +17,7 @@ from tqdm import tqdm
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 checkpoint_dir = "rpc_dataset"
+test_checkpoint_dir = "rpc_test_dataset"
 os.makedirs(checkpoint_dir, exist_ok=True)
 dtype = torch.bfloat16
 
