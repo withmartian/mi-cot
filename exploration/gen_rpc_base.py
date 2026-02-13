@@ -18,12 +18,13 @@ from datasets import load_dataset
 from tqdm import tqdm
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-checkpoint_dir = "rpc_dataset"  
+checkpoint_dir = "rpc_dataset_base"  # CHANGED: Separate from reasoning model
 os.makedirs(checkpoint_dir, exist_ok=True)
 dtype = torch.bfloat16
 SKIP_CACHE = False
 
-model_ft_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B" 
+# CHANGED: Use BASE model instead of reasoning model
+model_ft_name = "Qwen/Qwen2.5-14B"  # BASE model (no reasoning tuning)
 model_base_name = "Qwen/Qwen2.5-14B"
 
 ANCHOR_CLASSES = {
@@ -37,11 +38,16 @@ ANCHOR_CLASSES = {
     "FINAL_ANSWER_EMISSION": "Explicitly stating the final answer"
 }
 
-
+print("="*80)
+print("RUNNING ON BASE MODEL (Not Reasoning-Tuned)")
+print("="*80)
 print(f"Model: {model_ft_name}")
 print(f"Checkpoint: {checkpoint_dir}")
+print("="*80 + "\n")
 
+print("="*80)
 print("PHASE 1: LOAD MODELS & GENERATE CoTs")
+print("="*80 + "\n")
 
 print("Loading BASE model...", flush=True)
 tokenizer = AutoTokenizer.from_pretrained(model_base_name, trust_remote_code=True)
@@ -54,7 +60,7 @@ model_tl = HookedTransformer.from_pretrained_no_processing(
 del hf_model
 torch.cuda.empty_cache()
 gc.collect()
-print("Base Model loaded\n")
+print("✓ Base Model loaded\n")
 
 def split_into_sentences(text):
     sentences = re.split(r'(?<=[.!?])\s+', text)
@@ -140,18 +146,20 @@ def get_causal_matrix(model, tokenizer, cot, sentences, problem=""):
     
     return causal_matrix
 
-print("LOADING DATASET & GENERATING CoTs")
+print("="*80)
+print("LOADING DATASET & GENERATING CoTs (BASE MODEL)")
+print("="*80 + "\n")
 
 dataset = load_dataset("openai/gsm8k", 'main', split="train[:100]")
 problems = [item['question'] for item in dataset]
-print(f"Loaded {len(problems)} problems\n")
+print(f"✓ Loaded {len(problems)} problems\n")
 
 ckpt_cot = f"{checkpoint_dir}/cot_data.pkl"
 if os.path.exists(ckpt_cot) and not SKIP_CACHE:
     print(f"Loading cached CoT data...")
     all_cot_data_full = pickle.load(open(ckpt_cot, 'rb'))
     all_cot_data = {k: v for k, v in all_cot_data_full.items() if k < 100}
-    print(f"Loaded {len(all_cot_data)} cached problems (limited to 100)\n")
+    print(f"✓ Loaded {len(all_cot_data)} cached problems (limited to 100)\n")
 else:
     all_cot_data = {}
     for pid, problem in enumerate(problems):
@@ -184,9 +192,11 @@ else:
         gc.collect()
     
     pickle.dump(all_cot_data, open(ckpt_cot, 'wb'))
-    print(f"\n Saved CoT data for {len(all_cot_data)} problems\n")
+    print(f"\n✓ Saved CoT data for {len(all_cot_data)} problems\n")
 
+print("="*80)
 print("PHASE 2: IDENTIFY ANCHORS & CLASSIFY SENTENCES")
+print("="*80 + "\n")
 
 del model_tl
 torch.cuda.empty_cache()
@@ -196,7 +206,7 @@ print("Loading base model for classification...")
 model_base = AutoModelForCausalLM.from_pretrained(
     model_base_name, torch_dtype=dtype
 ).to(device)
-print(" Model loaded\n")
+print("✓ Model loaded\n")
 
 def classify_sentence(sentence):
     classes_list = "\n".join([f"- {k}: {v}" for k, v in ANCHOR_CLASSES.items()])
@@ -255,7 +265,7 @@ for pid, data in all_cot_data.items():
     torch.cuda.empty_cache()
     gc.collect()
 
-print(f"\n Processed {len(all_sentence_data)} total sentences\n")
+print(f"\n✓ Processed {len(all_sentence_data)} total sentences\n")
 
 print("Reasoning Stage Distribution (anchors only):")
 for stage in sorted(ANCHOR_CLASSES.keys()):
@@ -266,7 +276,9 @@ del model_base
 torch.cuda.empty_cache()
 gc.collect()
 
-print("PHASE 3: EXTRACT MEAN-POOLED ACTIVATIONS")
+print("\n" + "="*80)
+print("PHASE 3: EXTRACT MEAN-POOLED ACTIVATIONS (BASE MODEL)")
+print("="*80 + "\n")
 
 print("Reloading models for activation extraction...")
 tokenizer = AutoTokenizer.from_pretrained(model_base_name, trust_remote_code=True)
@@ -279,7 +291,7 @@ model_tl = HookedTransformer.from_pretrained_no_processing(
 del hf_model
 torch.cuda.empty_cache()
 gc.collect()
-print("Models loaded\n")
+print("✓ Models loaded\n")
 
 def get_sentence_activation(problem, sentences, sent_idx, layer=-1):
     ctx = problem + " " + " ".join(sentences[:sent_idx])
@@ -300,7 +312,7 @@ if os.path.exists(ckpt_features) and not SKIP_CACHE:
     print(f"Loading cached features...")
     all_features_full = pickle.load(open(ckpt_features, 'rb'))
     all_features = [f for f in all_features_full if f['problem_id'] < 100]
-    print(f"Loaded {len(all_features)} cached features (limited to first 100 problems)\n")
+    print(f"✓ Loaded {len(all_features)} cached features (limited to first 100 problems)\n")
 else:
     all_features = []
     
@@ -324,13 +336,15 @@ else:
         })
     
     pickle.dump(all_features, open(ckpt_features, 'wb'))
-    print(f"\nExtracted and saved {len(all_features)} features\n")
+    print(f"\n✓ Extracted and saved {len(all_features)} features\n")
 
 del model_tl
 torch.cuda.empty_cache()
 gc.collect()
 
-print("PHASE 4: PREPROCESSING (PCA)")
+print("="*80)
+print("PHASE 4: PREPROCESSING (PCA - BASE MODEL)")
+print("="*80 + "\n")
 
 X_all = np.array([f['hidden_state'] for f in all_features])
 print(f"Raw activation shape: {X_all.shape}")
@@ -338,6 +352,7 @@ print(f"Raw activation shape: {X_all.shape}")
 scaler = StandardScaler()
 X_norm = scaler.fit_transform(X_all)
 
+# KEY COMPARISON: Check variance retention
 pca_50 = PCA(n_components=0.6732)
 X_pca = pca_50.fit_transform(X_norm)
 d = X_pca.shape[1]
@@ -348,10 +363,15 @@ X_pca_100 = pca_100.fit_transform(X_norm)
 variance_100 = pca_100.explained_variance_ratio_.sum()
 
 print(f"PCA shape: {X_pca.shape}")
-print(f"\n*** DIMENSIONALITY ANALYSIS ***")
-print(f"Top 50 components explain: {variance_50:.4f}")
+print(f"\n*** DIMENSIONALITY ANALYSIS (BASE MODEL) ***")
+print(f"Top 50 components explain: {variance_50:.4f} (67.32% in reasoning model)")
 print(f"Top 100 components explain: {variance_100:.4f}")
-
+print(f"\n** Interpretation: ", end="")
+if variance_50 < 0.60:
+    print("Base model's latent space is MESSIER (less structured)")
+else:
+    print("Base model's latent space is SIMILAR to reasoning model")
+print("**\n")
 
 stage_to_idx = {stage: i for i, stage in enumerate(sorted(set(f['stage'] for f in all_features)))}
 idx_to_stage = {v: k for k, v in stage_to_idx.items()}
@@ -361,7 +381,9 @@ for f in all_features:
 
 num_stages = len(stage_to_idx)
 
+print("="*80)
 print("PHASE 5: BUILD SEQUENCES")
+print("="*80 + "\n")
 
 problem_to_indices = defaultdict(list)
 for i, f in enumerate(all_features):
@@ -375,11 +397,13 @@ for pid in sorted(problem_to_indices.keys()):
     z_seq = torch.from_numpy(X_pca[indices]).float().to(device)
     sequences.append((z_seq, pid))
 
-print(f"Built {len(sequences)} sequences")
+print(f"✓ Built {len(sequences)} sequences")
 lengths = [s[0].shape[0] for s in sequences]
 print(f"  Avg length: {np.mean(lengths):.1f}, min: {min(lengths)}, max: {max(lengths)}\n")
 
+print("="*80)
 print("PHASE 6: SDS ARCHITECTURE")
+print("="*80 + "\n")
 
 K = 4
 hidden_dim = 128
@@ -419,8 +443,11 @@ print(f"Switch params: {sum(p.numel() for p in switch.parameters())}")
 print(f"Regimes params: {sum(p.numel() for p in regimes.parameters())}")
 print(f"Total: {sum(p.numel() for p in switch.parameters()) + sum(p.numel() for p in regimes.parameters())}\n")
 
-print("PHASE 7: TRAINING REGIME SWITCHING (SDS)")
+print("="*80)
+print("PHASE 7: TRAINING REGIME SWITCHING (SDS) - BASE MODEL")
+print("="*80 + "\n")
 
+print("APPLES-TO-APPLES COMPARISON: Same hyperparameters as reasoning model\n")
 
 num_epochs = 100
 beta_diversity = 15.0
@@ -466,7 +493,9 @@ for epoch in range(num_epochs):
         usage_str = " | ".join([f"R{i}:{usage[i]:.1f}%" for i in range(K)])
         print(f"Epoch {epoch+1:02d} | Loss: {total_loss/len(sequences):.4f} | Usage: [{usage_str}]")
 
+print("\n" + "="*80)
 print("PHASE 8: MAPPING REGIMES TO HUMAN LABELS (BASE MODEL)")
+print("="*80 + "\n")
 
 regime_to_stage = defaultdict(Counter)
 switch.train()
@@ -490,13 +519,24 @@ for r in range(K):
         for label, count in top_labels:
             print(f"  - {label}: {count} tokens")
     else:
-        print(f" - No significant specialization")
+        print(f"  - No significant specialization")
     print()
 
-print("INTERPRETATION: Regimes in MODEL")
+print("="*80)
+print("INTERPRETATION: Regimes in BASE MODEL")
+print("="*80 + "\n")
 
+print("✓ Analysis Complete for BASE Model")
+print(f"✓ Results saved to {checkpoint_dir}/")
+print("\nNow compare with reasoning model results:")
+print("  - Variance retention (50 components)")
+print("  - Loss trajectory")
+print("  - Regime specialization")
+print("  - Persistence statistics (coming in Phase 9)")
 
-print("PHASE 9: REGIME TIMELINE ANALYSIS ")
+print("\n" + "="*80)
+print("PHASE 9: REGIME TIMELINE ANALYSIS (BASE MODEL)")
+print("="*80 + "\n")
 
 def analyze_regime_persistence(sequences, switch, problem_to_indices):
     """Analyze how stable regimes are (measure of state differentiation)."""
@@ -518,13 +558,19 @@ def analyze_regime_persistence(sequences, switch, problem_to_indices):
                 persistence_scores.append(persistence)
     
     mean_persistence = np.mean(persistence_scores) if persistence_scores else 0
-    print(f"Regime Persistence Statistics:")
+    print(f"Regime Persistence Statistics (BASE MODEL):")
     print(f"  Mean persistence: {mean_persistence:.3f}")
     print(f"  Median persistence: {np.median(persistence_scores):.3f}")
     print(f"  Min persistence: {np.min(persistence_scores):.3f}")
     print(f"  Max persistence: {np.max(persistence_scores):.3f}")
     print(f"  Std persistence: {np.std(persistence_scores):.3f}\n")
-
+    
+    if mean_persistence > 0.7:
+        print("✓ GOOD: Regimes are stable (low chattering).")
+    elif mean_persistence > 0.4:
+        print("⚠ MODERATE: Some stability but noisy.")
+    else:
+        print("✗ POOR: Very chattery. Base model lacks coherent management.")
     
     print(f"\nExample regime sequences (first 5 problems):")
     for i in range(min(5, len(regime_sequences))):
@@ -547,7 +593,7 @@ def analyze_regime_transitions(regime_sequences, K):
     row_sums = transition_matrix.sum(axis=1, keepdims=True)
     transition_prob = np.divide(transition_matrix, row_sums, where=row_sums != 0, out=np.zeros_like(transition_matrix))
     
-    print("Regime Transition Probabilities:")
+    print("Regime Transition Probabilities (BASE MODEL):")
     print("       ", " ".join([f"→R{i}" for i in range(K)]))
     for i in range(K):
         row = transition_prob[i]
@@ -570,7 +616,20 @@ def analyze_regime_transitions(regime_sequences, K):
 
 mean_persistence, regime_sequences = analyze_regime_persistence(sequences, switch, problem_to_indices)
 
-print("REGIME TRANSITION MATRIX ")
+print("\n" + "="*80)
+print("REGIME TRANSITION MATRIX (BASE MODEL)")
+print("="*80 + "\n")
 
 transition_matrix, transition_prob = analyze_regime_transitions(regime_sequences, K)
 
+print("\n" + "="*80)
+print("✓ BASE MODEL ANALYSIS COMPLETE")
+print("="*80)
+print(f"\nResults saved to: {checkpoint_dir}/")
+print("\n*** COMPARISON WITH REASONING MODEL ***")
+print("Check:")
+print("  1. Variance retention: Is base model less structured?")
+print("  2. Loss convergence: Does base model struggle more?")
+print("  3. Persistence: 0.40 (reasoning) vs ? (base)")
+print("  4. Transition matrix: Does base model have cyclic entropic flow?")
+print("  5. Regime specialization: PLAN+COMPUTE overlap?")

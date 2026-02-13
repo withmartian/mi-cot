@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from collections import defaultdict
@@ -5,7 +9,6 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from transformer_lens import HookedTransformer
 from datasets import load_dataset
 from tqdm import tqdm
-import os
 import pickle
 import numpy as np
 import torch

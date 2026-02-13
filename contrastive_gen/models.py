@@ -36,3 +36,31 @@ class DynamicsMoE(nn.Module):
     def forward(self, h, s):
         preds = torch.stack([m(h) for m in self.experts], dim=1)
         return torch.sum(s.unsqueeze(-1) * preds, dim=1)
+
+
+class SDSSwitch(nn.Module):
+    """Gating network: decide which dynamical regime is active."""
+    def __init__(self, d, K, hidden):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(d, hidden),
+            nn.LayerNorm(hidden),
+            nn.Softplus(),
+            nn.Linear(hidden, K, bias=False)
+        )
+    
+    def forward(self, z):
+        return self.net(z)
+
+class SDSRegime(nn.Module):
+    """A dynamical rule: z_{t+1} = f(z_t)"""
+    def __init__(self, d, hidden):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(d, hidden),
+            nn.Softplus(),
+            nn.Linear(hidden, d)
+        )
+    
+    def forward(self, z):
+        return self.net(z)
