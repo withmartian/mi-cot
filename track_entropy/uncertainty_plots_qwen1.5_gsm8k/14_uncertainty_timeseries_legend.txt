@@ -1,0 +1,37 @@
+S1: First, 20% of 20 students is 4 students in contemporary dance.
+
+S2: Then, 25% of the remaining students.
+
+S3: So, 20 - 4 = 16 students remaining.
+
+S4: 25% of 16 is 4 students in jazz.
+
+S5: So, total students in contemporary and jazz: 4 + 4 = 8 students.
+
+S6: Therefore, remaining students in hip-hop: 20 - 8 = 12.
+
+S7: Thus, 12 out of 20 students are in hip-hop.
+
+S8: 12 divided by 20 is 0.
+
+S9: 6, which is 60%.
+
+S10 (Backtracking): Wait, but the question is asking for the percentage of the entire students who
+enrolled in hip-hop dance.
+
+S11: So, 12 is 60% of 20, which is 12 students.
+
+S12: But wait, I think I made a mistake in the calculation.
+
+S13: Let me go back.
+
+S14: In the dance class of 20 students, 20% enrolled in contemporary dance, so that's
+4 students.
+
+S15: Remaining students: 16.
+
+S16: Then, 25% of the remaining students enrolled in jazz dance.
+
+S17: So, 25% of 16 is 4.
+
+S18: So

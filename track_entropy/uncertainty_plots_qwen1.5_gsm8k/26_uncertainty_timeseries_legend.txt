@@ -1,0 +1,41 @@
+S1: Step 1: Understand the problem.
+
+S2: Step 2: Identify the given information.
+
+S3: Step 3: Determine the unknowns.
+
+S4: Step 4: Formulate equations based on the information.
+
+S5: Step 5: Solve the equations.
+
+S6: Step 6: Verify the solution.
+
+S7: Let me try this approach.
+
+S8: First, identify the given information.
+
+S9: Mishka bought 3 pairs of shorts, 3 pairs of pants, and 3 pairs of shoes.
+
+S10: The costs are:  - One pair of shorts costs \$16.
+
+S11: 50.
+
+S12: - One pair of pants costs \$22.
+
+S13: 50.
+
+S14: - One pair of shoes costs \$42.
+
+S15: We need to find the total amount Mishka spent on all the clothing items.
+
+S16: So, in terms of variables:  Let S = number of pairs of shorts = 3  Cost per pair
+of shorts = \$16.
+
+S17: 50  Similarly, P = number of pairs of pants = 3  Cost per pair of pants = \$22.
+
+S18: 50  O = number of pairs of shoes = 3  Cost per pair of shoes = \$42  Total cost
+= S * 16.
+
+S19: 50 + P * 22.
+
+S20: 50 + O * 42  So, substituting

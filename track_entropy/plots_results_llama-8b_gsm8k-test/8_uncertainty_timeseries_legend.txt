@@ -1,0 +1,33 @@
+S1: First, we know that John drives for 3 hours at a speed of 60 mph.
+
+S2: So, he has traveled 3 x 60 = 180 miles.
+
+S3: John turned around because he realized he forgot something very important at
+home.
+
+S4: He tries to get home in 4 hours but spends the first 2 hours in standstill
+traffic.
+
+S5: So, in those 2 hours, he hasn't traveled anywhere.
+
+S6: He spends the next half-hour driving at a speed of 30 mph.
+
+S7: So, in that half-hour, he has traveled 30 x 0.
+
+S8: 5 = 15 miles.
+
+S9: Before being able to drive the remaining time of the 4 hours going at 80 mph.
+
+S10: So, in the remaining time of 4 hours, he has traveled 80 x 2 = 160 miles.
+
+S11: In total, he has traveled 180 + 15 + 160 = 355 miles.
+
+S12: Now, we have to find how far is he from home at the end of those 4 hours.
+
+S13: In the beginning, he was 180 miles away from home.
+
+S14: He traveled 15 miles and then traveled 160 miles.
+
+S15: So, he is now 355 - 180 = 175 miles away from home.
+
+S16: Final answer: 175

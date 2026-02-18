@@ -1,0 +1,48 @@
+S1: First, how much does it cost to plant a lemon tree?
+
+S2: \$90.
+
+S3: Next, how many lemons does it grow each year?
+
+S4: 7.
+
+S5: What does each lemon sell for?
+
+S6: \$1.
+
+S7: 50.
+
+S8: Finally, how much does it cost to water and feed the tree each year?
+
+S9: \$3.
+
+S10: Let's see if we can make a chart of all these numbers.
+
+S11: So, we know that the tree costs \$90 to plant, so that's our starting point.
+
+S12: It grows 7 lemons each year, so we add \$1.
+
+S13: 50 for each lemon to our chart.
+
+S14: Finally, we add the \$3 we need to spend each year on the tree.
+
+S15: Now we need to find out how long it takes for the tree to start making money for
+Carlos.
+
+S16: First, let's find the difference between the amount of money we make and the
+amount of money we spend.
+
+S17: So, we subtract the \$3 we spend on the tree from the \$10.
+
+S18: 50 we make each year.
+
+S19: That leaves us with \$7.
+
+S20: 50.
+
+S21: Finally, we need to divide that number by the amount of money we make each year
+to find out how many years it will take to start making money on the tree.
+
+S22: We can use division to find the answer.
+
+S23: So, we

@@ -1,0 +1,83 @@
+S1: First, determine the initial cost.
+
+S2: So, the tree costs \$90 to plant.
+
+S3: So, that's the first cost.
+
+S4: Then, each year he has to pay \$3 for watering and feeding.
+
+S5: So, that's an annual cost of \$3.
+
+S6: Then, each year he grows 7 lemons, which he can sell for \$1.
+
+S7: 5 each.
+
+S8: So, the revenue from selling lemons is 7 * \$1.
+
+S9: 5 per lemon, which is \$10.
+
+S10: 50 per year.
+
+S11: So, revenue per year is \$10.
+
+S12: 50.
+
+S13: Additionally, each year he has to pay \$3 for watering and feeding.
+
+S14: So, he has to deduct that cost from the revenue, right?
+
+S15: So, net cash flow per year is revenue (\$10.
+
+S16: 50) minus cost (\$3) = \$7.
+
+S17: 50 per year.
+
+S18: So, each year, he's making \$7.
+
+S19: 50 in net cash flow.
+
+S20: He also has to consider the initial cost of planting the tree.
+
+S21: So, if the tree is growing, it's like a project with an initial cost and then
+cash flows each year.
+
+S22: So, the project has an initial cost of \$90, and then each year he has to pay
+\$3, but also get \$10.
+
+S23: 50 in revenue.
+
+S24: So, the cash flow each year is \$7.
+
+S25: 50.
+
+S26: Now, we can model this as a cash flow timeline.
+
+S27: Year 0: -\$90 (cost to plant)  Year 1: -\$3 + \$10.
+
+S28: 50 = \$7.
+
+S29: 50  Year 2: \$7.
+
+S30: 50  Year 3: \$7.
+
+S31: 50  And so on.
+
+S32: So, the cash flows are: at year 0, a cost of \$90, and then each subsequent
+year, a net cash flow of \$7.
+
+S33: 50.
+
+S34: Now, to find when he starts earning money on the tree, we need to find the point
+where the cumulative cash flows turn positive.
+
+S35: Alternatively, we can compute the net present value (NPV) for each year, but
+since the question is about when he starts earning money, it's about when the
+cumulative cash flows become positive.
+
+S36: So, the initial cost is \$90, which is a cash outflow.
+
+S37: Then, each year, he gains \$7.
+
+S38: 50 in net cash flow.
+
+S39: So, the cash flows are as follows:  Year 0: -

@@ -1,0 +1,56 @@
+S1: First, define variables.
+
+S2: Let me define variables:  Let me let D be Darrell's current age.
+
+S3: Let A be Allen's current age.
+
+S4: Given that the ratio of their ages is 7:11.
+
+S5: So, D/A = 7/11.
+
+S6: This means D = (7/11) * A.
+
+S7: Given that the sum of their ages is 162.
+
+S8: So, D + A = 162.
+
+S9: Substituting D:  (7/11)*A + A = 162.
+
+S10: Combine the terms:  (7/11)*A + (11/11)*A = (7 + 11)/11 * A = 18/11 * A.
+
+S11: So, 18/11 * A = 162.
+
+S12: Solve for A:  A = 162 * (11/18) = (162 / 18) * 11 = 9 * 11 = 99.
+
+S13: So, Allen is currently 99 years old.
+
+S14: Question: Calculate Allen's age 10 years from now.
+
+S15: So, Allen's age in 10 years = A + 10 = 99 + 10 = 109.
+
+S16: Final answer: 109.
+
+S17: Let me verify this.
+
+S18: If Allen is 99 now, then Darrell's age is (7/11)*99 = 63.
+
+S19: So, 63 + 99 = 162, which matches the given total age.
+
+S20: Yes, that seems correct.
+
+S21: Another way to verify: The ratio of Darrell to Allen's age is 63:99, which
+simplifies to 7:11, as 63 divided by 9 is 7, and 99 divided by 9 is 11.
+
+S22: So, that ratio holds.
+
+S23: Therefore, Allen's age in 10 years is 109.
+
+S24: Yes, that makes sense.
+
+S25: **Final Answer** Allen's age 10 years from now will be \boxed{109}.
+
+S26: </think>  Let \( D \) be Darrell's current age and \( A \) be Allen's current
+age.
+
+S27: The ratio of their ages is given as 7:11, which means:  \[ \frac{D}{A} =
+\frac{7}{11

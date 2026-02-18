@@ -1,0 +1,36 @@
+S1: Total customers: 8.
+
+S2: First, how many customers are in each group?
+
+S3: The first group is 3 customers, then next group is 2 customers, and last group
+is 3 customers.
+
+S4: So, 3 + 2 + 3 = 8, which is correct.
+
+S5: First group: 3 customers, each buys 1 DVD.
+
+S6: So, total for first group: 3 * 1 = 3 DVDs.
+
+S7: Second group: 2 customers, each buys 2 DVDs.
+
+S8: So, total for second group: 2 * 2 = 4 DVDs.
+
+S9: Third group: 3 customers, each buys 0 DVDs.
+
+S10: So, total for third group: 3 * 0 = 0 DVDs.
+
+S11: Now, add all the totals: 3 + 4 + 0 = 7 DVDs.
+
+S12 (Backtracking): Wait, the question says he has 8 customers.
+
+S13: Let me double-check the groupings.
+
+S14: 3 + 2 + 3 is indeed 8.
+
+S15: So, 3 group buys 1, 2 group buys 2, 3 group buys 0.
+
+S16: So, 3 + 4 + 0 is 7.
+
+S17: So, answer is 7.
+
+S18: But let me make sure I didn't miscount the groups

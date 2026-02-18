@@ -1,0 +1,27 @@
+S1: First, let's name the three guesses.
+
+S2: • The first guess is \$x\$.
+
+S3: • The second guess is \$x+20\$.
+
+S4: • The third guess is \$1.
+
+S5: 25 \times x\$.
+
+S6: Now, we can find the average of the three guesses.
+
+S7: \$ \displaystyle \frac{1}{3}(x+x+20+1.
+
+S8: 25x) = \frac{1}{3}(2.
+
+S9: 25x+20)\$ \$ \displaystyle = \frac{1}{3}(2.
+
+S10: 25x) + \frac{1}{3}(20) = 0.
+
+S11: 75x+6.
+
+S12: 67\$ \$ \displaystyle = 6.
+
+S13: 67+0.
+
+S14: 75x\$

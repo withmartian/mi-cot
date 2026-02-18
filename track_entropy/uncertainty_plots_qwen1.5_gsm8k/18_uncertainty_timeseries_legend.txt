@@ -1,0 +1,28 @@
+S1: Alright, so Claire is making a 3-egg omelet every morning.
+
+S2: She does this for breakfast every day.
+
+S3: We need to figure out how many dozens of eggs she'll eat in 4 weeks.
+
+S4: First, let's figure out how many days are in 4 weeks.
+
+S5: Since there are 7 days in a week, 4 weeks would be 4 times 7, which is 28 days.
+
+S6: So, Claire is making an omelet each day for 28 days.
+
+S7: Each omelet is 3 eggs.
+
+S8: So, the total number of eggs she eats is 3 eggs multiplied by 28 days.
+
+S9: Let me write that as:  Total eggs = 3 eggs/day * 28 days = 84 eggs.
+
+S10: Now, the question is asking how many dozens of eggs she eats.
+
+S11: A dozen is 12 eggs, so we need to find how many groups of 12 are in 84.
+
+S12: To find that, we divide the total number of eggs by the number of eggs in a
+dozen:  Number of dozens = 84 eggs / 12 eggs/dozen.
+
+S13: Let me calculate that: 84 divided by 12.
+
+S14: 12 goes into 84 how many

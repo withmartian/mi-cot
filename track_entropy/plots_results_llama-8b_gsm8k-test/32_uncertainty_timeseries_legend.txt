@@ -1,0 +1,24 @@
+S1: 1.
+
+S2: There are 10 dogs, so we can multiply.
+
+S3: 5 by 10.
+
+S4: 2.
+
+S5: This equals 5.
+
+S6: 3.
+
+S7: To find the number of hours a week he spends taking care of dogs, we multiply 5
+by 7, since there are 7 days in a week.
+
+S8: 4.
+
+S9: This equals 35.
+
+S10: 5.
+
+S11: The final answer is 35 hours a week.
+
+S12: Final answer: 35

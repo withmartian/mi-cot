@@ -1,0 +1,16 @@
+S1: If the pair of boots cost \$b and the pair of heels cost \$h, the problem tells
+us that the following is true: \$b=2h+33\$ We can solve this equation by using
+the properties of equality to isolate \$b\$ on one side of the equation.
+
+S2: \$b=2h+33\$ \$b-2h=33\$ We can use the properties of equality to rewrite the
+equation in the form \$ax=b\$, where \$a\$ and \$b\$ are integers, and
+\$a\ne0\$.
+
+S3: Then we can solve for \$x\$ using the Division Property of Equality.
+
+S4: \$\begin{array}{rll} b-2h&=&33\\ \dfrac{b-2h}{-2}&=&\dfrac{33}{-2}\\
+\dfrac{b}{-2}&-&\dfrac{2h}{-2}&=&\dfrac{33}{-2}\\
+\dfrac{b}{-2}&=&\dfrac{-33}{-2}\\ b&=&33 \end{array}\$ So the boots cost \$33,
+and the heels cost\$16.
+
+S5: 50 each.

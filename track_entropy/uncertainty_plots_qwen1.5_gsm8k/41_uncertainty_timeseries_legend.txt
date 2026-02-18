@@ -1,0 +1,36 @@
+S1: First, define variables.
+
+S2: Let d be the distance the dragon can reach with its fire.
+
+S3: It's 1000 feet.
+
+S4: Let p be the distance Polly can throw the javelin when not holding the gemstone.
+
+S5: It's 400 feet.
+
+S6: When Polly holds the gemstone, the javelin is three times farther.
+
+S7: So, the distance when holding the gemstone is 3 * p.
+
+S8 (Backtracking): Wait, but hold on, is the distance three times the original p, or three times
+farther?
+
+S9: The wording says, "three times farther than when not holding the gemstone.
+
+S10: " So, when holding the gemstone, the distance is 3 * p.
+
+S11 (Backtracking): Wait, but p is 400 feet.
+
+S12: So, 3 * p would be 1200 feet.
+
+S13: But hold on, is that the distance from the dragon, or from Polly?
+
+S14 (Backtracking): Wait, the question is asking: "If holding the gemstone, how far outside of the
+reach of the dragon's flames could Polly stand and still hit the dragon with the
+gold javelin?
+
+S15: "  So, Polly is throwing the javelin, and she is standing outside the reach of
+the dragon.
+
+S16: So, the distance from the dragon's reach is the distance from Polly to the
+dragon, which is

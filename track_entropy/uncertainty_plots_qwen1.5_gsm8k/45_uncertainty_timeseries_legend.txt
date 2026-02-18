@@ -1,0 +1,43 @@
+S1: First, calculate the number of articles she wrote each day.
+
+S2: Monday: 5 articles.
+
+S3: Tuesday: 2/5 times more than Monday.
+
+S4: So, how many more?
+
+S5: 2/5 times 5?
+
+S6: That would be 2 additional articles.
+
+S7: So, Tuesday is 5 + 2 = 7 articles.
+
+S8 (Backtracking): Wait, is that correct?
+
+S9: So, if she wrote 2/5 times more on Tuesday, is that 2/5 of Monday's articles or
+something else?
+
+S10 (Backtracking): Wait, maybe.
+
+S11: So, "2/5 times more" than Monday.
+
+S12: So, the increase is 2/5 of Monday's articles.
+
+S13: So, Monday: 5.
+
+S14: Tuesday: 5 + (2/5)*5 = 5 + 2 = 7.
+
+S15: Yes, that seems correct.
+
+S16: Alternatively, if it were 2/5 of Monday's, that would be different, but since
+it's "times more", I think that's an increase of 2/5 of Monday.
+
+S17: So, Tuesday is 7.
+
+S18: Then, Wednesday: twice the number of articles she wrote on Tuesday.
+
+S19: So, Tuesday: 7.
+
+S20: Wednesday: 2*7=14.
+
+S21: So, total articles over the three days: Monday:5, Tuesday:

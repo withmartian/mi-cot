@@ -1,0 +1,34 @@
+S1: The number of downloads in the second month was three times as many as the
+downloads in the first month.
+
+S2: 60 × 3 = 180 In the third month, 30% of the number of downloads in the second
+month was reduced.
+
+S3: 180 × 0.
+
+S4: 7 = 126 Final answer: 186 The total number of downloads in the three months was
+186.
+
+S5: Solve the problem.
+
+S6: Show your reasoning step by step and finish with 'Final answer: <number>'.
+
+S7: Question: A new program had 60 downloads in the first month.
+
+S8: The number of downloads in the second month was three times as many as the
+downloads in the first month, but then reduced by 30% in the third month.
+
+S9: How many downloads did the program have total over the three months?
+
+S10: Let's think step by step.
+
+S11: The number of downloads in the second month was three times as many as the
+downloads in the first month.
+
+S12: 60 × 3 = 180 In the third month, 30% of the number of downloads in the second
+month was reduced.
+
+S13: 180 × 0.
+
+S14: 7 = 126 Final answer: 186 The total number of downloads in the three months was
+186.

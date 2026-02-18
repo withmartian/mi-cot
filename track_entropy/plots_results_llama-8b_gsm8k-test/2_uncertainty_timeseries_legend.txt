@@ -1,0 +1,24 @@
+S1: 1) What is the equation we need to solve?
+
+S2: We need to find the profit.
+
+S3: We can call this variable 'P'.
+
+S4: P represents profit.
+
+S5: The equation would be:  \$P = \text{80,000 + 50,000 - 80,000}\$  2) What does
+this equation mean?
+
+S6: The profit is equal to the value of the house plus the amount spent on repairs,
+minus the value of the house.
+
+S7: This makes sense since the profit is the value of the house plus the cost of
+repairs, minus the cost of the house.
+
+S8: 3) What is the answer?
+
+S9: The answer is \$50,000.
+
+S10: This makes sense since Josh made \$50,000 by selling the house.
+
+S11: Here is the final answer: Final answer: \$50,000.

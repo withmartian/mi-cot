@@ -1,0 +1,41 @@
+S1: First, identify the number of pastries and their cost per dozen.
+
+S2: So, for donuts: 3 dozen at \$68 per dozen.
+
+S3: Mini cupcakes: 2 dozen at \$80 per dozen.
+
+S4: Mini cheesecakes: 6 dozen at \$55 per dozen.
+
+S5: Total cost is the sum of all these.
+
+S6: So, step 1: Calculate each type's cost.
+
+S7: Donuts: 3 * 68.
+
+S8: Mini cupcakes: 2 * 80.
+
+S9: Cheesecakes: 6 * 55.
+
+S10: Sum all these to get the total cost.
+
+S11: Alright, now let's compute each part.
+
+S12: Starting with donuts: 3 * 68.
+
+S13: 68 multiplied by 3.
+
+S14: Let me compute 68*3:  60*3=180, 8*3=24, so 180+24=204.
+
+S15: So, 3 dozen donuts cost \$204.
+
+S16: Next, mini cupcakes: 2 * 80.
+
+S17: 80*2=160.
+
+S18: So, 2 dozen mini cupcakes cost \$160.
+
+S19: Then, mini cheesecakes: 6 * 55.
+
+S20: 55*6.
+
+S21: Compute 5

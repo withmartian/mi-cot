@@ -1,0 +1,37 @@
+S1: First, we want to know how many ties John bought.
+
+S2: Let's call the number of ties \$x\$.
+
+S3: We are told that he buys twice as many red ties as blue ties.
+
+S4: This means that he buys \$2x\$ red ties.
+
+S5: The blue ties cost \$40 each.
+
+S6: So, he spent \$40x\$ on blue ties.
+
+S7: We are told that the red ties cost \$50\%\$ more than blue ties.
+
+S8: This means that the red ties cost \$40(1.
+
+S9: 5) = 60\$ each.
+
+S10: So, he spent \$60(2x)\$ on red ties.
+
+S11: We are told that he spent \$200\$ on blue ties that cost \$40\$ each.
+
+S12: This means that he spent \$200\$ on blue ties.
+
+S13: So, \$40x = 200\$.
+
+S14: Solving for \$x\$, we get \$x = 5\$.
+
+S15: So, John bought \$5\$ blue ties and \$10\$ red ties.
+
+S16: We are told that he spent \$200\$ on blue ties.
+
+S17: We also know that he spent \$60(2x)\$ on red ties.
+
+S18: We just found that \$x = 5\$.
+
+S19: So, he spent \$60(2)(5) =

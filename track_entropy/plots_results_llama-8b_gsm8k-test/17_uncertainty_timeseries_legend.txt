@@ -1,0 +1,37 @@
+S1: 1.
+
+S2: Write out the given information.
+
+S3: I'm going to use the letters to stand for the amounts of money.
+
+S4: 2.
+
+S5: Fill in the amounts of time worked.
+
+S6: I'll use the letter to stand for the number of weeks she works.
+
+S7: Jill works 50 weeks a year, 35 hours a week as a teacher and 15 hours a week as
+a coach.
+
+S8: 3.
+
+S9: Fill in the hourly rate.
+
+S10: Jill gets paid \$20 per hour to teach and \$30 to be a cheerleading coach.
+
+S11: Let's use the letter to stand for the hourly rate.
+
+S12: 4.
+
+S13: Fill in the annual salary.
+
+S14: Jill gets paid \$20 per hour to teach and \$30 to be a cheerleading coach.
+
+S15: If she works 50 weeks a year, 35 hours a week as a teacher and 15 hours a week
+as a coach, what's her annual salary?
+
+S16: Now let's write an equation to solve the problem.
+
+S17: Annual salary = 50 weeks x 52 hours x 20\$ = 50 weeks x 52 hours x 30\$= 50
+weeks x 52 hours x 20\$ + 50 weeks x 52 hours x 30\$ = 50 weeks x 52 hours x
+20\$ + 50 weeks x 52 hours x

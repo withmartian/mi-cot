@@ -1,0 +1,75 @@
+S1: First, calculate the total number of units in the building.
+
+S2: Then, determine how many are occupied.
+
+S3: Finally, subtract to find the number of unoccupied units.
+
+S4: Step 1: Total units = number of floors × units per floor.
+
+S5: Step 2: Occupied units = (3/4) × total units.
+
+S6: Step 3: Unoccupied units = total units - occupied units.
+
+S7: Step 1: 15 floors × 8 units per floor.
+
+S8 (Backtracking): Wait, 15×8 is 120 units?
+
+S9: Hmm.
+
+S10 (Backtracking): Wait, 15×8 is indeed 120 units.
+
+S11: Step 2: 3/4 of the building is occupied.
+
+S12: So, occupied units = (3/4) × 120.
+
+S13: 3/4 of 120: 120 divided by 4 is 30, 30×3 is 90.
+
+S14: So, 90 units occupied.
+
+S15: Step 3: Unoccupied units = 120 - 90 = 30.
+
+S16 (Backtracking): Wait, that seems straightforward, but let me double-check each step.
+
+S17: Step 1: 15 floors, each with 8 units.
+
+S18: 15×8 is 120.
+
+S19: That's correct.
+
+S20: Step 2: 3/4 of the building is occupied.
+
+S21: So, 3/4 of 120.
+
+S22: 120 divided by 4 is 30, 30×3 is 90.
+
+S23: So, 90 units are occupied.
+
+S24: That's correct.
+
+S25: Step 3: Total units 120 minus occupied units 90, so unoccupied units are 30.
+
+S26: That's correct.
+
+S27: Alternatively, think in terms of percentages.
+
+S28: 3/4 is 75%, so unoccupied is 25%.
+
+S29: 25% of 120 is 30, because 120 divided by 4 is 30.
+
+S30: So same result.
+
+S31: Alternatively, is there another way to compute this?
+
+S32: Alternatively, compute unoccupied floor per floor, multiply by 15 floors.
+
+S33: Unoccupied per floor: 1 - 3/4 = 1/4.
+
+S34: So, 1/4 of 8 units per floor.
+
+S35: 8 divided by 4 is 2.
+
+S36: So, 2 units per floor unoccupied.
+
+S37: 15 floors × 2 units per floor = 30 units.
+
+S38: Same

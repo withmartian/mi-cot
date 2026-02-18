@@ -1,0 +1,41 @@
+S1: Mike plays ping pong for 40 minutes.
+
+S2: In the first 20 minutes, he scores 4 points.
+
+S3: In the second 20 minutes, he scores 25% more points.
+
+S4: How many total points did he score?
+
+S5: We can write this as an equation.
+
+S6: If Mike scores \$x\$ points in the first 20 minutes, then he scores \$1.
+
+S7: 25x\$ points in the second 20 minutes.
+
+S8: Since Mike plays ping pong for 40 minutes, we can write the equation \$4 + 1.
+
+S9: 25x = 40\$ We can solve this equation by adding \$-4\$ to both sides.
+
+S10: \$4 + 1.
+
+S11: 25x = 40\$ \$4 + 1.
+
+S12: 25x - 4 = 40 - 4\$ \$1.
+
+S13: 25x = 36\$ Now we can divide both sides by \$1.
+
+S14: 25\$.
+
+S15: \$1.
+
+S16: 25x = 36\$ \$\frac{1.
+
+S17: 25x}{1.
+
+S18: 25} = \frac{36}{1.
+
+S19: 25}\$ \$x = 28.
+
+S20: 8\$ Since Mike scored \$4\$ points in the first 20 minutes and \$28.
+
+S21: 8\$ points in the second 20 minutes, he scored \$4 +

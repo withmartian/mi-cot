@@ -1,0 +1,18 @@
+S1: The total number of cups of feed that Wendi gives her chickens in a day is 15 +
+25 = 40 cups.
+
+S2: Wendi has a flock of 20 chickens, so each chicken gets 2 cups of feed each day.
+
+S3: We know that 40 ÷ 20 = 2, so 40 cups of feed divided evenly among 20 chickens is
+2 cups per chicken.
+
+S4: If each chicken gets 2 cups of feed in the morning and 2 cups in the afternoon,
+then each chicken must get 2 cups of feed in the evening to get the total of 2
+cups for the day.
+
+S5: Therefore, 2 cups of feed for each chicken in the evening is the same as 40 ÷ 20
+= 2 cups of feed for the entire flock of chickens.
+
+S6: This is the final answer.
+
+S7: Final answer: 2 cups

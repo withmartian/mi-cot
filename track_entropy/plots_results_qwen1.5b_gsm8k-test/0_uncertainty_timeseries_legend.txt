@@ -1,0 +1,76 @@
+S1: Step 1: Understand the problem.
+
+S2: Step 2: Determine the number of eggs.
+
+S3: Step 3: Determine how many eggs Janet eats each day.
+
+S4: Step 4: Determine how many eggs she has left after eating.
+
+S5: Step 5: Determine how many eggs she sells.
+
+S6: Step 6: Calculate the total money she makes.
+
+S7: Final answer: \$_____  Let's think step by step.
+
+S8: Step 1: Understand the problem.
+
+S9: Janet has ducks that lay 16 eggs per day.
+
+S10: She eats 3 eggs for breakfast every morning.
+
+S11: She bakes muffins for her friends every day, using 4 eggs.
+
+S12: She sells the remaining eggs for \$2 each.
+
+S13: We need to find out how much money she makes every day.
+
+S14: Step 2: Determine the number of eggs.
+
+S15: Total eggs laid per day: 16.
+
+S16: Step 3: Determine how many eggs Janet eats each day.
+
+S17: Breakfast: 3 eggs per morning.
+
+S18: Since she has a full day, from morning to afternoon, she has breakfast and after
+that she has afternoon.
+
+S19: So, 3 eggs for breakfast every morning, but how many times does she have
+breakfast?
+
+S20 (Backtracking): Wait, is breakfast once per day, or multiple times?
+
+S21 (Backtracking): Wait, the problem says she eats three for breakfast every morning.
+
+S22: So, per day, she eats 3 eggs for breakfast.
+
+S23: But does she eat breakfast more than once a day?
+
+S24 (Backtracking): Wait, the problem says: "She eats three for breakfast every morning.
+
+S25: " So, that would imply one breakfast per day, 3 eggs.
+
+S26 (Backtracking): Wait, but the problem is a bit ambiguous.
+
+S27 (Backtracking): Wait, no, perhaps.
+
+S28 (Backtracking): Wait, is she eating 3 eggs every morning for breakfast?
+
+S29: So, that would be 3 eggs per day breakfast.
+
+S30 (Backtracking): Wait, but in the problem, she eats 3 for breakfast every morning.
+
+S31: So, perhaps, each day, she eats 3 eggs for breakfast, and 4 eggs for baking.
+
+S32: So, perhaps, in total, she eats 3 + 4 = 7 eggs per day.
+
+S33: Alternatively, she eats 3 eggs per day for breakfast, and 4 eggs for friends, so
+7 in total.
+
+S34: But let's re-examine the problem.
+
+S35: Problem says: "She eats three for breakfast every morning and bakes muffins for
+her friends every day with four.
+
+S36: "  So, that would mean each morning, she eats 3 eggs, and on each day, she uses
+4 eggs to bake muffins for her friends

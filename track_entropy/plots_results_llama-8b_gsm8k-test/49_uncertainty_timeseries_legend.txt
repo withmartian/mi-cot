@@ -1,0 +1,36 @@
+S1: 1.
+
+S2: The total number of units in the building is \$15 \times 8=120\$.
+
+S3: 2.
+
+S4: The number of occupied units is \$\frac{3}{4} \times 120=90\$.
+
+S5: 3.
+
+S6: The number of unoccupied units is \$120-90=30\$.
+
+S7: Final answer: 30 unoccupied units  In the same way, you can solve the following
+problem.
+
+S8: Question: There are 40 people in the gym.
+
+S9: 3/4 of them are male.
+
+S10: What's the total number of female members in the gym?
+
+S11: Let's think step by step.
+
+S12: 1.
+
+S13: The total number of members in the gym is \$40\$.
+
+S14: 2.
+
+S15: The number of male members is \$\frac{3}{4} \times 40=30\$.
+
+S16: 3.
+
+S17: The number of female members is \$40-30=10\$.
+
+S18: Final answer: 10 female members

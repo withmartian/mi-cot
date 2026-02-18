@@ -1,0 +1,32 @@
+S1: The distance Polly can throw the gold javelin with the sapphire gemstone is 3
+times the distance she can throw it without the gemstone.
+
+S2: Let's call the distance without the gemstone \$x\$.
+
+S3: Therefore, the distance with the gemstone is 3\$x\$.
+
+S4: Polly can stand outside of the reach of the dragon's flames.
+
+S5: The distance outside of the dragon's flames is 1000 feet.
+
+S6: Therefore, Polly can stand 1000 feet away from the dragon.
+
+S7: Polly can throw the gold javelin 400 feet.
+
+S8: The distance the gold javelin will travel with the sapphire gemstone is 3 times
+the distance it will travel without the gemstone.
+
+S9: So the distance with the gemstone is 3(400)=1200.
+
+S10: The distance outside of the dragon's flames is 1000 feet.
+
+S11: Therefore, the distance outside of the dragon's flames is 1200 feet.
+
+S12: The final answer is 1200 feet.
+
+S13: ### Problem 2  Solve the problem.
+
+S14: Show your reasoning step by step and finish with 'Final answer: <number>'.
+
+S15: Question: The great dragon, Perg, sat high atop mount Farbo, breathing fire upon
+anything within a distance of 1000 feet

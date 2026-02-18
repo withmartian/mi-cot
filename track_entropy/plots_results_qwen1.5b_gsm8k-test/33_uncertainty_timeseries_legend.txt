@@ -1,0 +1,60 @@
+S1: First, I need to understand the problem.
+
+S2: Gretchen has 110 coins in total.
+
+S3: These coins consist of gold and silver.
+
+S4: It's mentioned that there are 30 more gold coins than silver coins.
+
+S5: So, I need to find how many gold coins she has.
+
+S6: Alright, so let me structure this.
+
+S7: Let G be the number of gold coins.
+
+S8: Let S be the number of silver coins.
+
+S9: Given that total coins G + S = 110.
+
+S10: Also, it's given that there are 30 more gold coins than silver coins.
+
+S11: So, G = S + 30.
+
+S12: So, now I have two equations:  1) G + S = 110  2) G = S + 30  So, I can
+substitute equation 2 into equation 1.
+
+S13: So, substituting G = S + 30 into equation 1:  (S + 30) + S = 110  Simplify:  2S
++ 30 = 110  Subtract 30 from both sides:  2S = 80  Divide both sides by 2:  S =
+40  So, the number of silver coins is 40.
+
+S14: Then, the number of gold coins is G = S + 30 = 40 + 30 = 70.
+
+S15: So, Gretchen has 70 gold coins.
+
+S16: Let me double-check to make sure.
+
+S17: Total coins: 70 + 40 = 110, which matches.
+
+S18: Also, 70 = 40 + 30, so the condition is satisfied.
+
+S19: Yes, that seems correct.
+
+S20: So, the number of gold coins is 70.
+
+S21: **Final Answer** Gretchen has \boxed{70} gold coins.
+
+S22: </think>  Gretchen has 110 coins in total, consisting of gold and silver coins.
+
+S23: There are 30 more gold coins than silver coins.
+
+S24: We need to find how many gold coins she has.
+
+S25: Let \( G \) be the number of gold coins and \( S \) be the number of silver
+coins.
+
+S26: We have the following equations:  1.
+
+S27: \( G + S = 110 \) 2.
+
+S28: \( G = S + 30 \)  Substitute the second equation into the first equation:  \[ (S
++ 30) + S = 110 \

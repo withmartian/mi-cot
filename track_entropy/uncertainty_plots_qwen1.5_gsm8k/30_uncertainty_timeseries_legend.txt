@@ -1,0 +1,29 @@
+S1: Step 1: Express their current ages in terms of a variable.
+
+S2: Let’s denote Darrell's current age as D and Allen's current age as A.
+
+S3: We know that the ratio of their ages is 7:11.
+
+S4: So, D/A = 7/11.
+
+S5: Step 2: Express this ratio in a way that allows us to solve for the variables.
+
+S6: We can write D = (7/11) * A.
+
+S7: Step 3: Use the total age to set up an equation.
+
+S8: We know that D + A = 162.
+
+S9: Substituting D from step 2 into this equation:  (7/11) * A + A = 162.
+
+S10: Step 4: Simplify the equation.
+
+S11: First, combine the terms:  (7/11)A + (11/11)A = (18/11)A.
+
+S12: So, (18/11)A = 162.
+
+S13: Step 5: Solve for A.
+
+S14: Multiply both sides by (11/18):  A = 162 * (11/18).
+
+S15: Simplify 162 divided by 18: 162 ÷ 18

@@ -1,0 +1,36 @@
+S1: First, calculate the total distance Marissa has already covered.
+
+S2: She started with 4 miles, then another 2 miles.
+
+S3: So, 4 + 2 = 6 miles total.
+
+S4: She has a trail that is 12 miles long.
+
+S5: So, the remaining distance she needs to cover is 12 - 6 = 6 miles.
+
+S6: Now, the total time she has already spent hiking is 1 hour + 1 hour = 2 hours.
+
+S7: She wants her average speed to be 4 miles per hour.
+
+S8: Remember, average speed is total distance divided by total time.
+
+S9: So, average speed = 4 mph.
+
+S10: We can use the formula:  Average speed = (Total distance) / (Total time)  We can
+rearrange this formula to solve for the remaining distance she needs to cover.
+
+S11 (Backtracking): Wait, no.
+
+S12 (Backtracking): Wait, let me think again.
+
+S13: We know that the total average speed is 4 mph, and she has covered 6 miles in 2
+hours.
+
+S14: So, the total distance she has covered is 6 miles, and the total time is 2
+hours.
+
+S15: Therefore, the average speed is 6 / 2 = 3 mph.
+
+S16: But she wants her average speed to be 4 mph.
+
+S17: So, she needs to cover more distance

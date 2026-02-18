@@ -1,0 +1,37 @@
+S1: First, list all given information.
+
+S2: Given:  - John runs 60 miles a week.
+
+S3: - He runs 3 days a week.
+
+S4: - On the first day, he runs 3 hours.
+
+S5: - On the other two days, he runs half as much as he did on the first day.
+
+S6: We need to find his speed, which is distance divided by time.
+
+S7: So, to find his speed, we can find the total distance he runs and then divide by
+the total time he spends running.
+
+S8: First, let's find the total distance he runs.
+
+S9: He runs 3 days a week, and each day he runs a certain distance.
+
+S10: On the first day, he runs 3 hours, but the distance for that day is not given
+directly.
+
+S11: However, we do know that the total distance he runs in a week is 60 miles.
+
+S12: Therefore, the sum of the distances he runs on each of the three days is 60
+miles.
+
+S13: We know the distance on the first day: it's 3 hours, but the speed is what we're
+trying to find.
+
+S14 (Backtracking): Wait, but hold on.
+
+S15: Actually, the distance on the first day is equal to speed multiplied by time.
+
+S16: So, the distance on the first day is speed * 3 hours.
+
+S17: Similarly,

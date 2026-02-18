@@ -1,0 +1,15 @@
+S1: Step 1: Find the number of inches in 4 feet.
+
+S2: There are 12 inches in a foot.
+
+S3: So, there are 12 × 4 = 48 inches in 4 feet.
+
+S4: Step 2: Find the number of 6-inch pieces in 48 inches.
+
+S5: There are 8 of these in 48 inches.
+
+S6: Step 3: Find the number of 6-inch pieces in 4 feet.
+
+S7: There are 8 of these in 4 feet.
+
+S8: Final answer: 8

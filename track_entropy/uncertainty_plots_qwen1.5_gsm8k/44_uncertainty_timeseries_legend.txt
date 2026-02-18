@@ -1,0 +1,43 @@
+S1: Step 1: Compute how many pounds of beeswax Charlie needs.
+
+S2: Step 2: Determine the cost of the beeswax and wicks.
+
+S3: Step 3: Find out how many candles he can make.
+
+S4: Step 4: Compute how much money he makes from selling the candles.
+
+S5: Step 5: Calculate his net profit.
+
+S6: Step 1: Compute how many pounds of beeswax Charlie needs.
+
+S7: He makes 10 candles per pound.
+
+S8: So, for 20 candles, how many pounds is that?
+
+S9: I think it's 20 /10 = 2 pounds.
+
+S10: So, he needs 2 pounds of beeswax.
+
+S11: Step 2: Determine the cost of the beeswax and wicks.
+
+S12: One pound costs \$10.
+
+S13: 00.
+
+S14: So, 2 pounds would cost 2 * \$10.
+
+S15: 00 = \$20.
+
+S16: 00.
+
+S17: Step 3: Find out how many candles he can make.
+
+S18: He can make 10 candles per pound.
+
+S19: If he has 2 pounds, he can make 2 *10 =20 candles.
+
+S20: But wait, he already made the 20 candles in step 4.
+
+S21: So, maybe step 3 is just confirming the number.
+
+S22: Step

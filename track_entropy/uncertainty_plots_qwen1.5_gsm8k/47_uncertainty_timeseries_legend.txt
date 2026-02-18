@@ -1,0 +1,42 @@
+S1: First, determine how many blue ties John bought.
+
+S2: Second, determine how many red ties John bought.
+
+S3: Third, determine how much each red tie costs.
+
+S4: Fourth, determine the total cost of all red ties.
+
+S5: Fifth, determine the total cost of all ties.
+
+S6 (Backtracking): Wait, no, perhaps.
+
+S7 (Backtracking): Wait, the problem says he buys twice as many red ties as blue ties.
+
+S8: So, number of red ties is twice the number of blue ties.
+
+S9: Then, the red ties cost 50% more than blue ties.
+
+S10: So, the price of red tie is 1.
+
+S11: 5 times the price of blue tie.
+
+S12: He spent \$200 on blue ties that cost \$40 each.
+
+S13: So, how much did he buy?
+
+S14: So, number of blue ties is 200 divided by 40.
+
+S15: Then, using that number, number of red ties is twice that.
+
+S16: Then, each red tie is 1.
+
+S17: 5 times the blue tie price.
+
+S18: So, price of each red tie is 1.
+
+S19: 5 * \$40.
+
+S20: Multiply that by number of red ties to get the total cost for red ties.
+
+S21: Then, add the total cost of blue ties, which is \$200, and red ties, which is
+whatever, to get total spending.

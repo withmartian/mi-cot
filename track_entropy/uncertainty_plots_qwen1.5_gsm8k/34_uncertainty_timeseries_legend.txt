@@ -1,0 +1,37 @@
+S1: First, identify the variables.
+
+S2: Let S = number of jewels Siobhan has.
+
+S3: Let A = number of jewels Aaron has.
+
+S4: Let R = number of jewels Raymond has.
+
+S5: Given that R = 40.
+
+S6: We can write equations based on the information given.
+
+S7: First, "Aaron has 5 more jewels than half of Raymond's jewels.
+
+S8: " So, in terms of R, that's:  A = (1/2)*R + 5.
+
+S9: Second, "Siobhan has 2 fewer jewels than Aaron.
+
+S10: " So, in terms of A:  S = A - 2.
+
+S11: Given that R is 40, we can compute A first.
+
+S12: So, substituting R = 40 into the equation for A:  A = (1/2)*40 + 5.
+
+S13: Let's compute that step by step.
+
+S14: Half of 40 is 20.
+
+S15: Then, 20 plus 5 is 25.
+
+S16: So, Aaron has 25 jewels.
+
+S17: Then, since S = A - 2, substituting A = 25:  S = 25 - 2 = 23.
+
+S18: So, Siobhan has 23 jewels.
+
+S19 (Backtracking): Wait a second, let me check if I did everything correctly.

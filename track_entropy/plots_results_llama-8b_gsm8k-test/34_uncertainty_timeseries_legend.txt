@@ -1,0 +1,13 @@
+S1: Let's start with Aaron.
+
+S2: We know he has 5 more jewels than half of Raymond's jewels.
+
+S3: So, we can write:  \$\$\begin{array}{rcl} \text{Aaron's jewels} &=& \text{half
+of Raymond's jewels} + 5 \\ &=& \frac{1}{2} \times 40 + 5 \\ &=& 25
+\end{array}\$\$  Now let's think about Siobhan.
+
+S4: We know she has 2 fewer jewels than Aaron.
+
+S5: So, we can write:  \$\$\begin{array}{rcl} \text{Siobhan's jewels} &=&
+\text{Aaron's jewels} - 2 \\ &=& 25 - 2 \\ &=& 23 \end{array}\$\$  Final answer:
+23

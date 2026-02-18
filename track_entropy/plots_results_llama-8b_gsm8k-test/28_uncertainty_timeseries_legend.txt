@@ -1,0 +1,33 @@
+S1: 1.
+
+S2: We know Henry traveled 20 miles before his first stop and 15 miles before his
+second stop.
+
+S3: 2.
+
+S4: We can find the number of miles traveled between the first and second stops by
+subtracting 20 from 15.
+
+S5: We can show this as \$15-20\$.
+
+S6: 3.
+
+S7: When we subtract a larger number from a smaller number, we get a negative
+answer.
+
+S8: In this case, the number of miles traveled between the first and second stops is
+-5 miles.
+
+S9: We can show this as \$15-20=-5\$.
+
+S10: 4.
+
+S11: We can check our answer by adding the distances traveled before the first and
+second stops.
+
+S12: We get \$20+15=35\$ miles.
+
+S13: This is the total distance traveled on Henry's bike trip, so our answer is
+correct.
+
+S14: Final answer: -5 miles  ## Video solution  Here is the video solution.

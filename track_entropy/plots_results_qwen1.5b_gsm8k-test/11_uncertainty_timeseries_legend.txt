@@ -1,0 +1,72 @@
+S1: 1.
+
+S2: Write down the quantity and price for each item.
+
+S3: 2.
+
+S4: Multiply quantity by price to get the total cost for each item.
+
+S5: 3.
+
+S6: Sum all the individual totals to get the overall cost.
+
+S7: 4.
+
+S8: Final answer: ?
+
+S9: Let's start by identifying each item and its respective quantity and price.
+
+S10: First item: 3 dozen donuts, cost \$68 per dozen.
+
+S11: Second item: 2 dozen mini cupcakes, cost \$80 per dozen.
+
+S12: Third item: 6 dozen mini cheesecakes, cost \$55 per dozen.
+
+S13: Now, let's compute the total cost for each item.
+
+S14: For donuts: 3 dozen × \$68 per dozen.
+
+S15: For cupcakes: 2 dozen × \$80 per dozen.
+
+S16: For cheesecakes: 6 dozen × \$55 per dozen.
+
+S17: After calculating each total, add them all together to get the overall cost.
+
+S18: Let me compute each step.
+
+S19: First, donuts: 3 × 68.
+
+S20: Let me compute 3 × 60 = 180, and 3 × 8 = 24.
+
+S21: So total is 180 + 24 = 204.
+
+S22: So donuts cost \$204.
+
+S23: Next, cupcakes: 2 × 80.
+
+S24: That's straightforward, 2 × 80 = 160.
+
+S25: So cupcakes cost \$160.
+
+S26: Then, cheesecakes: 6 × 55.
+
+S27: Hmm, let me compute 6 × 50 = 300, and 6 × 5 = 30.
+
+S28: So total is 300 + 30 = 330.
+
+S29: So cheesecakes cost \$330.
+
+S30: Now, adding up all these totals: \$204 (donuts) + \$160 (cupcakes) + \$330
+(cheesecakes).
+
+S31: Let me add the first two: 204 + 160.
+
+S32: 200 + 160 = 360, and 4 + 0 = 4.
+
+S33: So total is 364.
+
+S34: Then, add 330 to that: 364 + 330.
+
+S35: Let me do 364 + 300 = 664, and then add 30 more: 664 + 30 = 694.
+
+S36: So,

@@ -1,0 +1,62 @@
+S1: First, let's find the original price before the discount.
+
+S2: So, the original price is what we're trying to find.
+
+S3: Let's call that P.
+
+S4: The discount is 25%, so Kyle paid 75% of the original price.
+
+S5 (Backtracking): Wait, no, the discount is 25%, so he paid 100% - 25% = 75% of the original
+price.
+
+S6: So, he paid 0.
+
+S7: 75 * P.
+
+S8: The amount he paid is \$19.
+
+S9: 50, which is 0.
+
+S10: 75 * P.
+
+S11: So, we can set up the equation: 0.
+
+S12: 75 * P = 19.
+
+S13: 50.
+
+S14: Then, solving for P, we divide both sides by 0.
+
+S15: 75.
+
+S16: P = 19.
+
+S17: 50 / 0.
+
+S18: 75.
+
+S19: Let me compute that.
+
+S20: 19.
+
+S21: 50 divided by 0.
+
+S22: 75.
+
+S23: Hmm, 0.
+
+S24: 75 times 26 is 19.
+
+S25: 50, because 0.
+
+S26: 75*20=15, and 0.
+
+S27: 75*6=4.
+
+S28: 5, so 15+4.
+
+S29: 5=19.
+
+S30: 5.
+
+S31: So, 2

@@ -1,0 +1,53 @@
+S1: 1.
+
+S2: We know there are 110 coins in total.
+
+S3: Let \$x\$ be the number of silver coins and \$y\$ be the number of gold coins.
+
+S4: 2.
+
+S5: We can write the number of coins as \$x+y=110\$.
+
+S6: 3.
+
+S7: We also know there are 30 more gold coins than silver coins.
+
+S8: That is \$y=x+30\$.
+
+S9: We can rewrite the number of coins as \$x+(x+30)=110\$.
+
+S10: 4.
+
+S11: Let's expand the left side: \$x+x+30=110\$.
+
+S12: Then, \$2x+30=110\$.
+
+S13: 5.
+
+S14: We can subtract 30 from both sides to get \$2x=110-30\$.
+
+S15: That means \$2x=80\$.
+
+S16: 6.
+
+S17: Divide both sides by 2 to get \$x=40\$.
+
+S18: 7.
+
+S19: We can plug \$x=40\$ into \$y=x+30\$.
+
+S20: That means \$y=40+30\$.
+
+S21: That means \$y=70\$.
+
+S22: 8.
+
+S23: Final answer: Gretchen has 70 gold coins.
+
+S24: Check:  Question: There are 30 more gold coins than silver coins.
+
+S25: The number of gold coins is 2 times the number of silver coins.
+
+S26: How many silver coins does Gretchen have?
+
+S27: Let's think step by

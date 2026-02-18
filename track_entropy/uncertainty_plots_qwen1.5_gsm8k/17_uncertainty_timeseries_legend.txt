@@ -1,0 +1,31 @@
+S1: First, identify what is given.
+
+S2: Given: - Hourly rate for teaching: \$20 per hour - Hourly rate for coaching:
+\$30 per hour - Total working weeks per year: 50 weeks - Hours worked per week
+as a teacher: 35 hours - Hours worked per week as a coach: 15 hours  Question:
+What is her annual salary?
+
+S3: Possible approaches:  Approach 1: Compute total hours worked in a year as a
+teacher and as a coach, then multiply by respective rates and sum.
+
+S4: Approach 2: Compute total earnings from teaching and total earnings from
+coaching, then sum both.
+
+S5: Approach 3: Calculate earnings per week for each role and then sum.
+
+S6: Approach 4: Compute total pay as a teacher and as a coach separately, then add
+them.
+
+S7: Approach 5: Calculate the total pay for the year, which includes both teacher
+and coach roles, and then divide by 12 to get weekly pay.
+
+S8: Approach 6: Check for any errors in computation, like incorrect multiplication
+or addition.
+
+S9: So, which approach is correct?
+
+S10: Let me try Approach 1 first.
+
+S11: Approach 1: Compute total hours and multiply rates.
+
+S12: Total hours as a teacher:

@@ -1,0 +1,41 @@
+S1: 1.
+
+S2: John sells all legos for \$15 each, total from Legos is L*15.
+
+S3: 2.
+
+S4: Then, he buys 8 video games for \$20 each, total spent on video games is 8*20.
+
+S5: 3.
+
+S6: He has \$5 left after this purchase.
+
+S7: So, let's translate this into an equation.
+
+S8: John's total money after selling legos is L*15.
+
+S9: Then, he spends 8*20 on video games.
+
+S10: He ends up with \$5 left.
+
+S11: So, the equation would be:  L*15 - (8*20) = 5.
+
+S12: So, 15L - 160 = 5.
+
+S13: Then, 15L = 165.
+
+S14: So, L = 11.
+
+S15: But wait, John only has 13 legos to start with.
+
+S16: So, 11 left means he sold 2.
+
+S17: That seems possible.
+
+S18: But let's double-check.
+
+S19: He sells 13 legos at \$15 each: 13*15 = \$195.
+
+S20: He buys 8 video games at \$20 each: 8*20 = \$160.
+
+S21: He has \$5 left after this

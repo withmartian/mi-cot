@@ -1,0 +1,41 @@
+S1: Alright, so Marie bought several items and spent a total of \$50.
+
+S2: We need to figure out how many pizza boxes she bought.
+
+S3: Each pizza box costs \$8.
+
+S4: 50.
+
+S5: Hmm, okay.
+
+S6: First, let's list out all the items she ordered and their respective costs:  1.
+
+S7: Chicken meal: \$12 2.
+
+S8: 5 packs of milk: Each pack is \$3, so 5 * \$3 3.
+
+S9: 4 apples: Each apple is \$1.
+
+S10: 50, so 4 * \$1.
+
+S11: 50 4.
+
+S12: Pizza boxes: Each box is \$8.
+
+S13: 50, and we need to find how many she bought.
+
+S14 (Backtracking): Wait, actually, the problem doesn't specify the number of pizza boxes, so maybe
+we can find it by subtracting the total cost of all other items from the total
+amount she spent, then divide by the cost per pizza box.
+
+S15: Yes, that makes sense.
+
+S16: So, let's compute the total cost of the chicken meal, milk, and apples first,
+then subtract that from \$50 to find out how much she spent on pizza, and then
+divide by \$8.
+
+S17: 50 to get the number of pizza boxes.
+
+S18: Let me write this out step by step:  1.
+
+S19: Calculate the

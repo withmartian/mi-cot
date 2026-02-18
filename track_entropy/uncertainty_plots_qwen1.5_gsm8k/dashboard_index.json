@@ -1,0 +1,352 @@
+[
+  {
+    "index": "0",
+    "trace": "0_uncertainty_trace.html",
+    "legend": "0_uncertainty_timeseries_legend.txt",
+    "plot": "0_uncertainty_timeseries.png",
+    "legend_text": "S1: First, the number of eggs in a day is 16.\n\nS2: Number of eggs eaten for breakfast: 3 per day.\n\nS3: Number of eggs baked for friends: 4 per day.\n\nS4: She sells the remainder at \\$2 per egg.\n\nS5: So, first, let's calculate how many eggs she has in a day: 16.\n\nS6: Now, let's calculate how many eggs she eats for breakfast every day: 3.\n\nS7: Then, she bakes muffins for friends every day with 4 eggs.\n\nS8: So, total eggs eaten or used for breakfast and friends every day: 3 + 4 = 7.\n\nS9: Therefore, the number of eggs remaining for sale is 16 - 7 = 9.\n\nS10: She sells these 9 eggs at \\$2 each.\n\nS11: So, total money made every day is 9 * 2 = \\$18.\n\nS12 (Backtracking): Wait, let me check my calculations again.\n\nS13: Number of eggs per day: 16.\n\nS14: Eaten for breakfast: 3 per day.\n\nS15: Eaten for friends: 4 per day.\n\nS16: Total used for breakfast and friends: 3 + 4 = 7.\n\nS17: Thus, remaining eggs: 16 - 7 = 9.\n\nS18: She sells these 9 eggs at \\$2 each.\n\nS19: So\n"
+  },
+  {
+    "index": "1",
+    "plot": "1_uncertainty_timeseries.png",
+    "trace": "1_uncertainty_trace.html",
+    "legend": "1_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: Okay, so I need to figure out how many blue and white fibers are needed to make\na robe.\n\nS2: The problem says the robe takes 2 bolts of blue fiber and half that much white\nfiber.\n\nS3: I need to add those together to get the total number of bolts.\n\nS4 (Backtracking): Wait, let me make sure I understand the problem correctly.\n\nS5: It says the robe takes 2 bolts of blue fiber.\n\nS6: Then it takes half that much white fiber.\n\nS7: So the total number of bolts is the sum of blue fiber and white fiber.\n\nS8: So, blue fiber is 2 bolts.\n\nS9: White fiber is half of that.\n\nS10: Half of 2 is 1.\n\nS11: So white fiber is 1 bolt.\n\nS12: So total is 2 (blue) + 1 (white) = 3 bolts.\n\nS13: Is that right?\n\nS14: Let me check.\n\nS15: Alternatively, maybe I misinterpret the half that much.\n\nS16: Maybe it's half as much as the blue fiber, but no, the problem says half that\nmuch white fiber.\n\nS17: So half of 2 is 1.\n\nS18: So 1 white fiber.\n\nS19: So total is 3.\n\nS20 (Backtracking): Wait, another thought.\n\nS21: Maybe the problem is in terms of total fiber?\n\nS22: So 2 blue and 1 white.\n\nS23: So 3 total.\n\nS24: Yes, that seems correct.\n\nS25: Alternatively, maybe the\n"
+  },
+  {
+    "index": "2",
+    "plot": "2_uncertainty_timeseries.png",
+    "legend": "2_uncertainty_timeseries_legend.txt",
+    "trace": "2_uncertainty_trace.html",
+    "legend_text": "S1: First, the original cost is \\$80,000.\n\nS2: He buys the house for \\$80,000.\n\nS3: Then he puts in \\$50,000 in repairs.\n\nS4: So, the total cost becomes \\$80,000 + \\$50,000 = \\$130,000.\n\nS5 (Backtracking): Wait, but the problem says \"this increased the value of the house by 150%.\n\nS6: \" Hmm, so is it 150% of the original or 150% of the total cost?\n\nS7: I think it's 150% of the total cost because it says \"this increased the value of\nthe house by 150%.\n\nS8: \" So, the increased value is 150% of the repairs or the original?\n\nS9 (Backtracking): Wait, no.\n\nS10: Let me think.\n\nS11: When they say the value increased by 150%, that is 150% of the original value.\n\nS12: So, if the value was V before, now it's V + 1.\n\nS13: 5V = 2.\n\nS14: 5V.\n\nS15: Alternatively, it could be 150% of the total cost, but in that case, it would be\n1.\n\nS16: 5 times the total cost.\n"
+  },
+  {
+    "index": "3",
+    "trace": "3_uncertainty_trace.html",
+    "plot": "3_uncertainty_timeseries.png",
+    "legend": "3_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: First, determine the number of sprints James runs each week.\n\nS2: He runs 3 sprints each week.\n\nS3: Each sprint is 60 meters.\n\nS4: To find the total meters he runs, multiply the number of sprints by the distance\nper sprint.\n\nS5: 60 meters/sprint * 3 sprints/week = 180 meters/week.\n\nS6: Is this correct?\n\nS7: Let me double-check.\n\nS8: He runs 3 times a week, each time doing a 60m sprint.\n\nS9: So 3 * 60 = 180.\n\nS10: Yes, that seems right.\n\nS11: So, the total meters he runs in a week is 180.\n\nS12: Final answer: \\boxed{180} </think>  James decides to run 3 sprints 3 times a\nweek, with each sprint being 60 meters.\n\nS13: To find the total meters he runs in a week, we multiply the number of sprints by\nthe distance per sprint:  \\[ 60 \\text{ meters/sprint} \\times 3 \\text{\nsprints/week} = 180 \\text{ meters/week} \\]  ### Final answer: \\boxed{180}\n"
+  },
+  {
+    "index": "4",
+    "plot": "4_uncertainty_timeseries.png",
+    "trace": "4_uncertainty_trace.html",
+    "legend": "4_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: 1.\n\nS2: First, determine the total amount of feed Wendi uses each day.\n\nS3: 2.\n\nS4: Then, subtract the amounts given in the morning and afternoon from the total.\n\nS5: 3.\n\nS6: Finally, divide by the number of chickens to find the cups per chicken.\n\nS7: 4.\n\nS8: Multiply by the number of chickens to find the total.\n\nS9 (Backtracking): Wait, no, perhaps step 3 is: subtract the amount given in the morning and\nafternoon from the total, then divide by the number of chickens to get the cups\nper chicken, then multiply by the number of chickens to find the total.\n\nS10 (Backtracking): Wait, no, the problem is asking for the number of cups she needs to give her\nchickens in the final meal of the day.\n\nS11: So, perhaps the answer is (Total cups - morning - afternoon) / number of\nchickens.\n\nS12: But wait, let me read the problem again.\n\nS13: Question: Every day, Wendi feeds each of her chickens three cups of mixed\nchicken feed, containing seeds, mealworms and vegetables to help keep them\nhealthy.\n\nS14: She gives the chickens their feed in three separate meals.\n\nS15: In the morning, she gives her flock of chickens 15 cups of feed.\n\nS16: In the afternoon, she gives her chickens another 25 cups of feed.\n\nS17: How many cups of feed does she need to give her\n"
+  },
+  {
+    "index": "5",
+    "trace": "5_uncertainty_trace.html",
+    "legend": "5_uncertainty_timeseries_legend.txt",
+    "plot": "5_uncertainty_timeseries.png",
+    "legend_text": "S1: Step 1: Determine how many of the first type (full price) and how many of the\nsecond type (discounted) Kylar needs.\n\nS2: Step 2: Calculate the total cost.\n\nS3: Step 3: Check if the total cost is less than or equal to the amount he has.\n\nS4: Step 4: If needed, add the remaining amount to pay.\n\nS5: But in this problem, it's not mentioned whether Kylar has a certain amount of\nmoney.\n\nS6: So, how is this problem structured?\n\nS7: Is it just about calculating the total cost?\n\nS8: Or is the problem expecting to use the amount of money Kylar has?\n\nS9 (Backtracking): Wait, the original problem is just to calculate the total cost based on the\nnumber of glasses and their pricing.\n\nS10: So, maybe the problem is just about finding the total cost without considering\nif Kylar has enough money or not.\n\nS11: But let me check the problem again.\n\nS12: Question: Kylar went to the store to buy glasses for his new apartment.\n\nS13: One glass costs \\$5, but every second glass costs only 60% of the price.\n\nS14: Kylar wants to buy 16 glasses.\n\nS15: How much does he need to pay for them?\n\nS16: So, the question is about calculating the total cost for 16 glasses.\n\nS17: The\n"
+  },
+  {
+    "index": "6",
+    "plot": "6_uncertainty_timeseries.png",
+    "legend": "6_uncertainty_timeseries_legend.txt",
+    "trace": "6_uncertainty_trace.html",
+    "legend_text": "S1: Alright, so I need to figure out how many sheep Toulouse, Charleston, and\nSeattle have together.\n\nS2: The problem gives me some relationships between their numbers.\n\nS3: Let me parse this step by step.\n\nS4: First, it says Toulouse has twice as many sheep as Charleston.\n\nS5: So, if I let T be the number of sheep Toulouse has, and C be the number of sheep\nCharleston has, then T = 2 * C.\n\nS6: Got that.\n\nS7: Second, it says Charleston has 4 times as many sheep as Seattle.\n\nS8: So, if S is the number of sheep Seattle has, then C = 4 * S.\n\nS9: The problem also gives me that Seattle has 20 sheep, so S = 20.\n\nS10: That should help me find C.\n\nS11: Third, it asks how many sheep T, C, and S have together.\n\nS12: So, I need to find T + C + S.\n\nS13: Let me start with the information about Seattle.\n\nS14: It's given directly that S = 20.\n\nS15: So, C = 4 * S = 4 * 20.\n\nS16: Let me compute that: 4 * 20 = 80.\n\nS17: So, C = 80.\n\nS18: That means Charleston has 80 sheep.\n\nS19: Now, going back to the relationship between\n"
+  },
+  {
+    "index": "7",
+    "legend": "7_uncertainty_timeseries_legend.txt",
+    "trace": "7_uncertainty_trace.html",
+    "plot": "7_uncertainty_timeseries.png",
+    "legend_text": "S1: First, her normal download rate is 2 GB per minute.\n\nS2: So, without any restarts, the time to download 200 GB would be 200 / 2 = 100\nminutes.\n\nS3: But with restarts, the time is longer.\n\nS4: So, we need to compute the total time including the restart periods.\n\nS5: But the problem is asking how much load is done to download the file, not the\ntotal time.\n\nS6: So, maybe it's about the amount of data downloaded before and after the\nrestarts.\n\nS7 (Backtracking): Wait, but the question is: \"How load does it take to download the file?\n\nS8: \"  Hmm, not sure.\n\nS9: Maybe it's the data downloaded before the restarts, which would be 200 GB minus\nthe data downloaded after restarts.\n\nS10 (Backtracking): Wait, no.\n\nS11: The problem says that when 40% of the way through the download, Windows forces a\nrestart.\n\nS12: So, 40% of the way is 80 GB downloaded, and the restart takes 20 minutes.\n\nS13: Then, after the restart, the download process starts again.\n\nS14: But the question is, how much load does it take to download the file?\n\nS15: So, maybe the total load is 200 GB, but the time taken is longer because of\n"
+  },
+  {
+    "index": "8",
+    "trace": "8_uncertainty_trace.html",
+    "plot": "8_uncertainty_timeseries.png",
+    "legend": "8_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: First, compute the distance John went away from home during his initial trip.\n\nS2: Then, figure out how far he is from home during the trip he made to return.\n\nS3: Finally, sum up the distances he was from home during both his initial trip and\nthe return trip to get the total distance from home.\n\nS4: To find the final answer, compute the sum of both distances.\n\nS5 (Backtracking): Wait, no, perhaps I should consider the direction and distance he moved each\nsegment.\n\nS6: Let me structure this problem step by step.\n\nS7: Step 1: Calculate the distance John traveled away from home during his initial 3\nhours of driving at 60 mph.\n\nS8: Step 2: Determine how much time John spent trying to get home and the distance\nhe covered during that time.\n\nS9: This includes the time before entering standstill traffic and the time he spent\ndriving at 30 mph before the remaining time at 80 mph.\n\nS10: Step 3: Calculate the direction (towards home or away from home) of each segment\nand compute the net distance from home.\n\nS11: Let me go through each step carefully.\n\nS12: Step 1: Distance away from home during initial 3 hours.\n\nS13: John drives for 3 hours at 60 mph.\n\nS14: So, distance = speed × time = 60 mph × 3 hours =\n"
+  },
+  {
+    "index": "9",
+    "legend": "9_uncertainty_timeseries_legend.txt",
+    "plot": "9_uncertainty_timeseries.png",
+    "trace": "9_uncertainty_trace.html",
+    "legend_text": "S1: First, figure out Eliza's regular pay for the first 40 hours.\n\nS2: Second, calculate the overtime pay for the remaining 5 hours.\n\nS3: Third, add them together to get the total earnings.\n\nS4: Step 1: Regular hours are 40.\n\nS5: Regular pay rate is \\$10 per hour.\n\nS6: So regular pay is 40 * 10 = \\$400.\n\nS7: Step 2: Overtime hours are 5.\n\nS8: Overtime pay rate is 1.\n\nS9: 2 * regular rate = 1.\n\nS10: 2 * 10 = \\$12 per hour.\n\nS11: So overtime pay is 5 * 12 = \\$60.\n\nS12: Step 3: Total earnings are regular pay + overtime pay = 400 + 60 = \\$460.\n\nS13: Final answer: \\$460.\n\nS14: Yes, that seems right.\n\nS15: But let me double-check each step.\n\nS16: Regular pay: 40 hours * \\$10/hour = \\$400.\n\nS17: That looks correct.\n\nS18: Overtime pay: She works 5 hours beyond the regular 40.\n\nS19: The overtime rate is 1.\n\nS20: 2 times her regular rate.\n\nS21: So, 1.\n\nS22: 2 * \\$10 = \\$12 per hour.\n\nS23: Then, 5 hours\n"
+  },
+  {
+    "index": "10",
+    "legend": "10_uncertainty_timeseries_legend.txt",
+    "plot": "10_uncertainty_timeseries.png",
+    "trace": "10_uncertainty_trace.html",
+    "legend_text": "S1: First, figure out the number of downloads for each month.\n\nS2: First Month: Number of downloads = 60.\n\nS3: Second Month: Number of downloads = 3 times as many as the first month.\n\nS4: Third Month: Number of downloads = 70% of the second month's downloads.\n\nS5: Then, add all three months together to get the total downloads.\n\nS6: Let me compute each step carefully.\n\nS7: First Month: 60 downloads.\n\nS8: Second Month: 3 times 60 = 180 downloads.\n\nS9: Third Month: 70% of 180.\n\nS10: Let's calculate 0.\n\nS11: 7 * 180.\n\nS12: 0.\n\nS13: 7 * 180 = 126 downloads.\n\nS14: Now, total downloads: 60 + 180 + 126.\n\nS15: Compute 60 + 180 = 240.\n\nS16: Then, 240 + 126 = 366.\n\nS17: So, total downloads over the three months is 366.\n\nS18 (Backtracking): Wait, but let me verify each step again to make sure I didn't make a mistake.\n\nS19: First month: 60 downloads.\n\nS20: That's straightforward.\n\nS21: Second month: 3 times as many as the first.\n\nS22: So 3 *\n"
+  },
+  {
+    "index": "11",
+    "legend": "11_uncertainty_timeseries_legend.txt",
+    "trace": "11_uncertainty_trace.html",
+    "plot": "11_uncertainty_timeseries.png",
+    "legend_text": "S1: First, identify the number of pastries and their cost per dozen.\n\nS2: So, for donuts: 3 dozen at \\$68 per dozen.\n\nS3: Mini cupcakes: 2 dozen at \\$80 per dozen.\n\nS4: Mini cheesecakes: 6 dozen at \\$55 per dozen.\n\nS5: Total cost is the sum of all these.\n\nS6: So, step 1: Calculate each type's cost.\n\nS7: Donuts: 3 * 68.\n\nS8: Mini cupcakes: 2 * 80.\n\nS9: Cheesecakes: 6 * 55.\n\nS10: Sum all these to get the total cost.\n\nS11: Alright, now let's compute each part.\n\nS12: Starting with donuts: 3 * 68.\n\nS13: 68 multiplied by 3.\n\nS14: Let me compute 68*3:  60*3=180, 8*3=24, so 180+24=204.\n\nS15: So, 3 dozen donuts cost \\$204.\n\nS16: Next, mini cupcakes: 2 * 80.\n\nS17: 80*2=160.\n\nS18: So, 2 dozen mini cupcakes cost \\$160.\n\nS19: Then, mini cheesecakes: 6 * 55.\n\nS20: 55*6.\n\nS21: Compute 5\n"
+  },
+  {
+    "index": "12",
+    "plot": "12_uncertainty_timeseries.png",
+    "legend": "12_uncertainty_timeseries_legend.txt",
+    "trace": "12_uncertainty_trace.html",
+    "legend_text": "S1: First, we need to figure out the initial cost.\n\nS2: The tree costs \\$90.\n\nS3: Then, each year it produces 7 lemons.\n\nS4: He can sell each lemon for \\$1.\n\nS5: 5.\n\nS6: So, each year, he can make money from the lemons.\n\nS7: But, each year, it costs \\$3 to water and feed the tree.\n\nS8: So, each year, the net profit is (lemons sold * price per lemon) - (cost to\nwater and feed).\n\nS9: We need to find how many years it will take for this net profit to be positive,\nmeaning he starts earning money.\n\nS10: So, we can model this as a cash flow timeline:  Year 0: -90 (cost to plant)\nYear 1: + (7 * 1.\n\nS11: 5 - 3)  Year 2: + (7 * 1.\n\nS12: 5 - 3)  .\n\nS13: .\n\nS14: .\n\nS15: Each subsequent year will have the same net cash flow.\n\nS16: We can then calculate the net cash flow each year and see when it turns\npositive.\n\nS17: So, let's compute the cash flow for the first year.\n\nS18: Lemons per year: 7  Price per lemon: \\$1.\n\nS19: 5  Revenue per year: 7 * 1.\n\nS20: 5 = \\$10.\n\nS21: 5  Cost per year\n"
+  },
+  {
+    "index": "13",
+    "plot": "13_uncertainty_timeseries.png",
+    "trace": "13_uncertainty_trace.html",
+    "legend": "13_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: Step 1: Let’s denote the initial number of vacuum cleaners Melanie had as x.\n\nS2: Step 2: She sold a third of her vacuum cleaners at the green house.\n\nS3: So, she sold (x/3) at green house.\n\nS4: Step 3: Then, she sold 2 more at the red house.\n\nS5: So, she sold 2 more.\n\nS6: Step 4: Then, she sold half of what was left at the orange house.\n\nS7: After all this, she has 5 vacuum cleaners left.\n\nS8: We need to find x.\n\nS9: We can set up an equation accordingly.\n\nS10: But wait, let me double-check.\n\nS11: So, step 2: sold x/3, step 3: sold 2, so total sold so far is x/3 + 2.\n\nS12: Then, what's left is x - (x/3 + 2) = (2x/3 - 2).\n\nS13: Then, she sold half of that at the orange house.\n\nS14: So, sold (2x/3 - 2)/2.\n\nS15: So, total sold so far is x/3 + 2 + (2x/3 - 2)/2.\n\nS16 (Backtracking): Wait, this seems a bit complicated.\n\nS17: Alternatively, maybe we can think in terms of the quantities she sold at each\n"
+  },
+  {
+    "index": "14",
+    "legend": "14_uncertainty_timeseries_legend.txt",
+    "plot": "14_uncertainty_timeseries.png",
+    "trace": "14_uncertainty_trace.html",
+    "legend_text": "S1: First, 20% of 20 students is 4 students in contemporary dance.\n\nS2: Then, 25% of the remaining students.\n\nS3: So, 20 - 4 = 16 students remaining.\n\nS4: 25% of 16 is 4 students in jazz.\n\nS5: So, total students in contemporary and jazz: 4 + 4 = 8 students.\n\nS6: Therefore, remaining students in hip-hop: 20 - 8 = 12.\n\nS7: Thus, 12 out of 20 students are in hip-hop.\n\nS8: 12 divided by 20 is 0.\n\nS9: 6, which is 60%.\n\nS10 (Backtracking): Wait, but the question is asking for the percentage of the entire students who\nenrolled in hip-hop dance.\n\nS11: So, 12 is 60% of 20, which is 12 students.\n\nS12: But wait, I think I made a mistake in the calculation.\n\nS13: Let me go back.\n\nS14: In the dance class of 20 students, 20% enrolled in contemporary dance, so that's\n4 students.\n\nS15: Remaining students: 16.\n\nS16: Then, 25% of the remaining students enrolled in jazz dance.\n\nS17: So, 25% of 16 is 4.\n\nS18: So\n"
+  },
+  {
+    "index": "15",
+    "legend": "15_uncertainty_timeseries_legend.txt",
+    "plot": "15_uncertainty_timeseries.png",
+    "trace": "15_uncertainty_trace.html",
+    "legend_text": "S1: First, I need to figure out the profit from each plan.\n\nS2: That would involve the initial amount plus the profit percentage, right?\n\nS3 (Backtracking): Wait, no.\n\nS4 (Backtracking): Wait, actually, profit is calculated as the initial amount multiplied by the\nprofit percentage, but only if the profit is based on the initial amount.\n\nS5 (Backtracking): Wait, perhaps another way: if the market goes up 2.\n\nS6: 5%, then the jewelry's value would increase by 2.\n\nS7: 5%, so the total value would be 5000*(1 + 2.\n\nS8: 5%) = 5000*1.\n\nS9: 025 = ?\n\nS10: Similarly for the electronics, it would be 8000*(1 + 1.\n\nS11: 2%) = 8000*1.\n\nS12: 012 = ?\n\nS13: Then, the profit would be the total value minus the original value.\n\nS14 (Backtracking): Wait, yes, that makes sense.\n\nS15: Because the total value is the initial plus the profit, so the profit is total\nminus initial.\n\nS16: So, let me compute that.\n\nS17: First plan: jewelry.\n\nS18: 5000*(1 + 0.\n\nS19: 025) = 5000*1.\n\nS20: 025.\n\nS21: Calculating 5000*1.\n\nS22: 025: 5000\n"
+  },
+  {
+    "index": "16",
+    "legend": "16_uncertainty_timeseries_legend.txt",
+    "trace": "16_uncertainty_trace.html",
+    "plot": "16_uncertainty_timeseries.png",
+    "legend_text": "S1: Step 1: Read the problem again.\n\nS2: Step 2: Identify what the question is asking.\n\nS3: Step 3: Break down the problem into parts.\n\nS4: Step 4: Solve each part.\n\nS5: Step 5: Combine the solutions to find the total.\n\nS6: Step 6: Check if the answer makes sense.\n\nS7: So, the problem is: Two trains leave San Rafael at the same time.\n\nS8: They begin traveling westward, both traveling for 80 miles.\n\nS9: The next day, they travel northwards, covering 150 miles.\n\nS10: What's the distance covered by each train in the two days?\n\nS11: I need to find the distance each train has traveled over the two days.\n\nS12 (Backtracking): Wait, the problem says they travel westward for 80 miles, then the next day\nnorthward for 150 miles.\n\nS13: So, each train has two legs: 80 miles west, then 150 miles north.\n\nS14: So, each train's total distance would be 80 + 150 miles.\n\nS15: But wait, does it specify the direction?\n\nS16: Or is it just the path?\n\nS17: Hmm.\n\nS18: So, each train starts at the same point, San Rafael.\n\nS19: Then they go west for 80 miles.\n\nS20: The next day, they go north for 1\n"
+  },
+  {
+    "index": "17",
+    "legend": "17_uncertainty_timeseries_legend.txt",
+    "plot": "17_uncertainty_timeseries.png",
+    "trace": "17_uncertainty_trace.html",
+    "legend_text": "S1: First, identify what is given.\n\nS2: Given: - Hourly rate for teaching: \\$20 per hour - Hourly rate for coaching:\n\\$30 per hour - Total working weeks per year: 50 weeks - Hours worked per week\nas a teacher: 35 hours - Hours worked per week as a coach: 15 hours  Question:\nWhat is her annual salary?\n\nS3: Possible approaches:  Approach 1: Compute total hours worked in a year as a\nteacher and as a coach, then multiply by respective rates and sum.\n\nS4: Approach 2: Compute total earnings from teaching and total earnings from\ncoaching, then sum both.\n\nS5: Approach 3: Calculate earnings per week for each role and then sum.\n\nS6: Approach 4: Compute total pay as a teacher and as a coach separately, then add\nthem.\n\nS7: Approach 5: Calculate the total pay for the year, which includes both teacher\nand coach roles, and then divide by 12 to get weekly pay.\n\nS8: Approach 6: Check for any errors in computation, like incorrect multiplication\nor addition.\n\nS9: So, which approach is correct?\n\nS10: Let me try Approach 1 first.\n\nS11: Approach 1: Compute total hours and multiply rates.\n\nS12: Total hours as a teacher:\n"
+  },
+  {
+    "index": "18",
+    "legend": "18_uncertainty_timeseries_legend.txt",
+    "trace": "18_uncertainty_trace.html",
+    "plot": "18_uncertainty_timeseries.png",
+    "legend_text": "S1: Alright, so Claire is making a 3-egg omelet every morning.\n\nS2: She does this for breakfast every day.\n\nS3: We need to figure out how many dozens of eggs she'll eat in 4 weeks.\n\nS4: First, let's figure out how many days are in 4 weeks.\n\nS5: Since there are 7 days in a week, 4 weeks would be 4 times 7, which is 28 days.\n\nS6: So, Claire is making an omelet each day for 28 days.\n\nS7: Each omelet is 3 eggs.\n\nS8: So, the total number of eggs she eats is 3 eggs multiplied by 28 days.\n\nS9: Let me write that as:  Total eggs = 3 eggs/day * 28 days = 84 eggs.\n\nS10: Now, the question is asking how many dozens of eggs she eats.\n\nS11: A dozen is 12 eggs, so we need to find how many groups of 12 are in 84.\n\nS12: To find that, we divide the total number of eggs by the number of eggs in a\ndozen:  Number of dozens = 84 eggs / 12 eggs/dozen.\n\nS13: Let me calculate that: 84 divided by 12.\n\nS14: 12 goes into 84 how many\n"
+  },
+  {
+    "index": "19",
+    "legend": "19_uncertainty_timeseries_legend.txt",
+    "plot": "19_uncertainty_timeseries.png",
+    "trace": "19_uncertainty_trace.html",
+    "legend_text": "S1: First, calculate the total distance Marissa has already covered.\n\nS2: She started with 4 miles, then another 2 miles.\n\nS3: So, 4 + 2 = 6 miles total.\n\nS4: She has a trail that is 12 miles long.\n\nS5: So, the remaining distance she needs to cover is 12 - 6 = 6 miles.\n\nS6: Now, the total time she has already spent hiking is 1 hour + 1 hour = 2 hours.\n\nS7: She wants her average speed to be 4 miles per hour.\n\nS8: Remember, average speed is total distance divided by total time.\n\nS9: So, average speed = 4 mph.\n\nS10: We can use the formula:  Average speed = (Total distance) / (Total time)  We can\nrearrange this formula to solve for the remaining distance she needs to cover.\n\nS11 (Backtracking): Wait, no.\n\nS12 (Backtracking): Wait, let me think again.\n\nS13: We know that the total average speed is 4 mph, and she has covered 6 miles in 2\nhours.\n\nS14: So, the total distance she has covered is 6 miles, and the total time is 2\nhours.\n\nS15: Therefore, the average speed is 6 / 2 = 3 mph.\n\nS16: But she wants her average speed to be 4 mph.\n\nS17: So, she needs to cover more distance\n"
+  },
+  {
+    "index": "20",
+    "legend": "20_uncertainty_timeseries_legend.txt",
+    "plot": "20_uncertainty_timeseries.png",
+    "trace": "20_uncertainty_trace.html",
+    "legend_text": "S1: First, I need to find the amount of water in the orange drink before spilling.\n\nS2: Second, find the amount of water in the pineapple drink.\n\nS3: Third, sum those two quantities.\n\nS4: Fourth, subtract the spilled orange drink's water.\n\nS5 (Backtracking): Wait, but orange drink is two-thirds water.\n\nS6: So in the orange drink, the water is two-thirds.\n\nS7: So in 10 liters, the water is two-thirds of 10 liters.\n\nS8: Similarly, the pineapple drink is three-fifths water.\n\nS9: So in 15 liters, the water is three-fifths of 15 liters.\n\nS10: But wait, when you pour the orange drink into the pineapple drink, the orange\nand pineapple drinks have different water proportions.\n\nS11: So you can't just add them together as water without considering the\nconcentration of water in each.\n\nS12: Or, you can.\n\nS13 (Backtracking): Wait, but the initial orange drink is 10 liters with two-thirds water, so the\nwater is 6.\n\nS14: 666.\n\nS15: .\n\nS16: .\n\nS17: liters.\n\nS18: Then, when you add 15 liters of pineapple drink with three-fifths water, which\nis 9 liters.\n\nS19: So total water before spilling is 6.\n\nS20: 666 + 9 = 15.\n\nS21: 666 liters.\n\nS22: But then, you spill one liter of\n"
+  },
+  {
+    "index": "21",
+    "legend": "21_uncertainty_timeseries_legend.txt",
+    "plot": "21_uncertainty_timeseries.png",
+    "trace": "21_uncertainty_trace.html",
+    "legend_text": "S1: First, let's find out how old Samantha is now and how old Samantha was when she\nhad the son.\n\nS2: Samantha is now 31, so when she had the son, she was 31 - x, where x is the age\nof the son.\n\nS3 (Backtracking): Wait, no.\n\nS4: Let me think again.\n\nS5: If the son is x years old now, then Samantha was x years old when the son was\nborn.\n\nS6: So if Samantha is 31, then the son was x = 31 - 31 = 0?\n\nS7 (Backtracking): Wait, that can't be right.\n\nS8 (Backtracking): Wait, no.\n\nS9: Let me correct that.\n\nS10: If the son is x years old now, then when the son was born, Samantha was x years\nold.\n\nS11: Since Samantha is now 31, her age at the son's birth was 31 - x.\n\nS12: But that can't be, because if the son is x years old, then 31 - x is the son's\nage when he was born.\n\nS13 (Backtracking): Wait, perhaps I'm getting confused here.\n\nS14: Let me approach it differently.\n\nS15: If the son is x years old now, then Samantha's age when she had the son was x\nyears old.\n\nS16: Since Samantha is now 31, her age at the son's birth was\n"
+  },
+  {
+    "index": "22",
+    "legend": "22_uncertainty_timeseries_legend.txt",
+    "trace": "22_uncertainty_trace.html",
+    "plot": "22_uncertainty_timeseries.png",
+    "legend_text": "S1: Total customers: 8.\n\nS2: First, how many customers are in each group?\n\nS3: The first group is 3 customers, then next group is 2 customers, and last group\nis 3 customers.\n\nS4: So, 3 + 2 + 3 = 8, which is correct.\n\nS5: First group: 3 customers, each buys 1 DVD.\n\nS6: So, total for first group: 3 * 1 = 3 DVDs.\n\nS7: Second group: 2 customers, each buys 2 DVDs.\n\nS8: So, total for second group: 2 * 2 = 4 DVDs.\n\nS9: Third group: 3 customers, each buys 0 DVDs.\n\nS10: So, total for third group: 3 * 0 = 0 DVDs.\n\nS11: Now, add all the totals: 3 + 4 + 0 = 7 DVDs.\n\nS12 (Backtracking): Wait, the question says he has 8 customers.\n\nS13: Let me double-check the groupings.\n\nS14: 3 + 2 + 3 is indeed 8.\n\nS15: So, 3 group buys 1, 2 group buys 2, 3 group buys 0.\n\nS16: So, 3 + 4 + 0 is 7.\n\nS17: So, answer is 7.\n\nS18: But let me make sure I didn't miscount the groups\n"
+  },
+  {
+    "index": "23",
+    "trace": "23_uncertainty_trace.html",
+    "plot": "23_uncertainty_timeseries.png",
+    "legend": "23_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: 1.\n\nS2: Identify the time period during which the candle is burning.\n\nS3: 2.\n\nS4: Determine how many hours the candle is burning.\n\nS5: 3.\n\nS6: Find the rate at which the candle melts.\n\nS7: 4.\n\nS8: Multiply the number of hours by the rate to find the total length the candle has\nmelted.\n\nS9: 5.\n\nS10: The total length melted is the answer.\n\nS11: 6.\n\nS12: Also, if needed, express the time period and the rate in terms of variables.\n\nS13: Let's go through each step in detail.\n\nS14: First, identify the time period.\n\nS15: The candle is burning from 1:00 PM to 5:00 PM.\n\nS16: Let me figure out how many hours that is.\n\nS17: From 1:00 PM to 5:00 PM is 4 hours.\n\nS18 (Backtracking): Wait, 1 PM to 2 PM is 1 hour, 2 PM to 3 PM is 1, 3 to 4 is 1, 4 to 5 is 1.\n\nS19: So total 4 hours.\n\nS20: So that's 4 hours.\n\nS21: Next, determine how many hours the candle is burning.\n\nS22: 4 hours.\n\nS23: Rate at which the candle melts is 2 centimeters every hour.\n\nS24: So per hour, 2 cm.\n\nS25: Now, to find the total length melted, we multiply the number of hours\n"
+  },
+  {
+    "index": "24",
+    "legend": "24_uncertainty_timeseries_legend.txt",
+    "trace": "24_uncertainty_trace.html",
+    "plot": "24_uncertainty_timeseries.png",
+    "legend_text": "S1: First, let's find the original price before the discount.\n\nS2: So, the original price is what we're trying to find.\n\nS3: Let's call that P.\n\nS4: The discount is 25%, so Kyle paid 75% of the original price.\n\nS5 (Backtracking): Wait, no, the discount is 25%, so he paid 100% - 25% = 75% of the original\nprice.\n\nS6: So, he paid 0.\n\nS7: 75 * P.\n\nS8: The amount he paid is \\$19.\n\nS9: 50, which is 0.\n\nS10: 75 * P.\n\nS11: So, we can set up the equation: 0.\n\nS12: 75 * P = 19.\n\nS13: 50.\n\nS14: Then, solving for P, we divide both sides by 0.\n\nS15: 75.\n\nS16: P = 19.\n\nS17: 50 / 0.\n\nS18: 75.\n\nS19: Let me compute that.\n\nS20: 19.\n\nS21: 50 divided by 0.\n\nS22: 75.\n\nS23: Hmm, 0.\n\nS24: 75 times 26 is 19.\n\nS25: 50, because 0.\n\nS26: 75*20=15, and 0.\n\nS27: 75*6=4.\n\nS28: 5, so 15+4.\n\nS29: 5=19.\n\nS30: 5.\n\nS31: So, 2\n"
+  },
+  {
+    "index": "25",
+    "legend": "25_uncertainty_timeseries_legend.txt",
+    "plot": "25_uncertainty_timeseries.png",
+    "trace": "25_uncertainty_trace.html",
+    "legend_text": "S1: Alright, so Marie bought several items and spent a total of \\$50.\n\nS2: We need to figure out how many pizza boxes she bought.\n\nS3: Each pizza box costs \\$8.\n\nS4: 50.\n\nS5: Hmm, okay.\n\nS6: First, let's list out all the items she ordered and their respective costs:  1.\n\nS7: Chicken meal: \\$12 2.\n\nS8: 5 packs of milk: Each pack is \\$3, so 5 * \\$3 3.\n\nS9: 4 apples: Each apple is \\$1.\n\nS10: 50, so 4 * \\$1.\n\nS11: 50 4.\n\nS12: Pizza boxes: Each box is \\$8.\n\nS13: 50, and we need to find how many she bought.\n\nS14 (Backtracking): Wait, actually, the problem doesn't specify the number of pizza boxes, so maybe\nwe can find it by subtracting the total cost of all other items from the total\namount she spent, then divide by the cost per pizza box.\n\nS15: Yes, that makes sense.\n\nS16: So, let's compute the total cost of the chicken meal, milk, and apples first,\nthen subtract that from \\$50 to find out how much she spent on pizza, and then\ndivide by \\$8.\n\nS17: 50 to get the number of pizza boxes.\n\nS18: Let me write this out step by step:  1.\n\nS19: Calculate the\n"
+  },
+  {
+    "index": "26",
+    "legend": "26_uncertainty_timeseries_legend.txt",
+    "trace": "26_uncertainty_trace.html",
+    "plot": "26_uncertainty_timeseries.png",
+    "legend_text": "S1: Step 1: Understand the problem.\n\nS2: Step 2: Identify the given information.\n\nS3: Step 3: Determine the unknowns.\n\nS4: Step 4: Formulate equations based on the information.\n\nS5: Step 5: Solve the equations.\n\nS6: Step 6: Verify the solution.\n\nS7: Let me try this approach.\n\nS8: First, identify the given information.\n\nS9: Mishka bought 3 pairs of shorts, 3 pairs of pants, and 3 pairs of shoes.\n\nS10: The costs are:  - One pair of shorts costs \\$16.\n\nS11: 50.\n\nS12: - One pair of pants costs \\$22.\n\nS13: 50.\n\nS14: - One pair of shoes costs \\$42.\n\nS15: We need to find the total amount Mishka spent on all the clothing items.\n\nS16: So, in terms of variables:  Let S = number of pairs of shorts = 3  Cost per pair\nof shorts = \\$16.\n\nS17: 50  Similarly, P = number of pairs of pants = 3  Cost per pair of pants = \\$22.\n\nS18: 50  O = number of pairs of shoes = 3  Cost per pair of shoes = \\$42  Total cost\n= S * 16.\n\nS19: 50 + P * 22.\n\nS20: 50 + O * 42  So, substituting\n"
+  },
+  {
+    "index": "27",
+    "plot": "27_uncertainty_timeseries.png",
+    "legend": "27_uncertainty_timeseries_legend.txt",
+    "trace": "27_uncertainty_trace.html",
+    "legend_text": "S1: First, determine how many servings Cynthia eats over 60 days.\n\nS2: Second, determine how many cartons she needs to buy to have enough servings.\n\nS3: Third, calculate the total cost.\n\nS4: Final answer: <number>  Alright, let's take it step by step.\n\nS5: First, determine how many servings Cynthia eats over 60 days.\n\nS6: She eats one serving every night.\n\nS7: So, how many nights in 60 days?\n\nS8: Well, each day she eats one serving, so over 60 days, she eats 60 servings.\n\nS9: That seems straightforward.\n\nS10 (Backtracking): Wait, hold on.\n\nS11: Is that correct?\n\nS12: Let me check.\n\nS13: If she eats one serving each night, then each day she's eating one.\n\nS14: So, in 60 days, she eats 60 times one, which is 60 servings.\n\nS15: Yeah, that's correct.\n\nS16: Second, determine how many cartons she needs to buy to have enough servings.\n\nS17: Each carton has 15 servings.\n\nS18: So, how many cartons does she need to have at least 60 servings?\n\nS19: To find that, we can divide the total servings needed by the servings per\ncarton.\n\nS20: So, 60 servings divided by 15 servings per carton.\n\nS21: Let's do that calculation.\n\nS22: 60 �\n"
+  },
+  {
+    "index": "28",
+    "plot": "28_uncertainty_timeseries.png",
+    "legend": "28_uncertainty_timeseries_legend.txt",
+    "trace": "28_uncertainty_trace.html",
+    "legend_text": "S1: First, set up a diagram.\n\nS2: First, he has 60 miles.\n\nS3: He stops after 20 miles.\n\nS4: Then, he stops again 15 miles before the end.\n\nS5: So, the first stop is at 20 miles.\n\nS6: The second stop is at 60 - 15 = 45 miles.\n\nS7: Therefore, the distance between first and second stops is 45 - 20 = 25 miles.\n\nS8: But wait, in the problem statement, it says \"How many miles did he travel\nbetween his first and second stops?\n\nS9: \"  So, the answer is 25 miles.\n\nS10: But let me think again.\n\nS11 (Backtracking): Wait, the problem says he made two stops during his 60-mile bike trip.\n\nS12: First stop: after 20 miles.\n\nS13: Second stop: 15 miles before the end.\n\nS14: So, first stop at 20, second stop at 60 -15 = 45.\n\nS15: Distance between first and second is 45 -20=25.\n\nS16: But is that correct?\n\nS17 (Backtracking): Wait, if he goes 60 miles, and first stop is at 20, then second stop is at 45,\nso the distance between first and second is 25.\n\nS18: But in the problem\n"
+  },
+  {
+    "index": "29",
+    "legend": "29_uncertainty_timeseries_legend.txt",
+    "plot": "29_uncertainty_timeseries.png",
+    "trace": "29_uncertainty_trace.html",
+    "legend_text": "S1: First, we need to define variables.\n\nS2: Let b be the cost of the boots.\n\nS3: Let h1 be the cost of the first pair of high heels.\n\nS4: Let h2 be the cost of the second pair of high heels.\n\nS5: Now, according to the problem, the total cost of the two pairs of high heels is\nfive dollars less than the cost of the boots.\n\nS6: So, h1 + h2 = b - 5.\n\nS7: We also know that one pair of high heels costs \\$33, so h1 = 33.\n\nS8: The other pair costs twice as much, so h2 = 2 * h1 = 2 * 33 = 66.\n\nS9: Therefore, h1 + h2 = 33 + 66 = 99.\n\nS10: So, 99 = b - 5.\n\nS11: Solving for b, we add 5 to both sides: 99 + 5 = b.\n\nS12: So, b = 104.\n\nS13 (Backtracking): Wait, that seems like a big difference.\n\nS14: Let me check the calculations again.\n\nS15: h1 = 33, h2 = 66.\n\nS16: Sum is 99.\n\nS17: So, 99 = b - 5, so b = 104.\n\nS18: Yes,\n"
+  },
+  {
+    "index": "30",
+    "trace": "30_uncertainty_trace.html",
+    "plot": "30_uncertainty_timeseries.png",
+    "legend": "30_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: Step 1: Express their current ages in terms of a variable.\n\nS2: Let’s denote Darrell's current age as D and Allen's current age as A.\n\nS3: We know that the ratio of their ages is 7:11.\n\nS4: So, D/A = 7/11.\n\nS5: Step 2: Express this ratio in a way that allows us to solve for the variables.\n\nS6: We can write D = (7/11) * A.\n\nS7: Step 3: Use the total age to set up an equation.\n\nS8: We know that D + A = 162.\n\nS9: Substituting D from step 2 into this equation:  (7/11) * A + A = 162.\n\nS10: Step 4: Simplify the equation.\n\nS11: First, combine the terms:  (7/11)A + (11/11)A = (18/11)A.\n\nS12: So, (18/11)A = 162.\n\nS13: Step 5: Solve for A.\n\nS14: Multiply both sides by (11/18):  A = 162 * (11/18).\n\nS15: Simplify 162 divided by 18: 162 ÷ 18\n"
+  },
+  {
+    "index": "31",
+    "legend": "31_uncertainty_timeseries_legend.txt",
+    "plot": "31_uncertainty_timeseries.png",
+    "trace": "31_uncertainty_trace.html",
+    "legend_text": "S1: First, I need to find the number each friend's guess is, then add them all\ntogether, and finally divide by the number of friends to get the average.\n\nS2: So, step one: find each friend's guess.\n\nS3: First friend: 80.\n\nS4: That's straightforward.\n\nS5: Second friend: says 20 more than half the first one.\n\nS6: So, half of 80 is 40, and 20 more than that is 60.\n\nS7: So, second friend is 60.\n\nS8: Third friend: says 25% more than the first one.\n\nS9: 25% of 80 is 20, so 80 + 20 is 100.\n\nS10: Third friend is 100.\n\nS11: Now, add them all together: 80 + 60 is 140, plus 100 is 240.\n\nS12 (Backtracking): Wait, but the question is about the average guess.\n\nS13: So, how many friends are there?\n\nS14: There are three friends: first, second, third.\n\nS15: So, we need to find the average of these three guesses.\n\nS16: So, total is 240, divided by 3.\n\nS17: 240 divided by 3 is 80.\n\nS18: So, the average\n"
+  },
+  {
+    "index": "32",
+    "trace": "32_uncertainty_trace.html",
+    "legend": "32_uncertainty_timeseries_legend.txt",
+    "plot": "32_uncertainty_timeseries.png",
+    "legend_text": "S1: First, find the total hours per day.\n\nS2: Each dog needs .\n\nS3: 5 hours.\n\nS4: Number of dogs is 10.\n\nS5: Total hours per day = 10 * 0.\n\nS6: 5  Compute that: 10 * 0.\n\nS7: 5 is 5.\n\nS8: So, 5 hours per day.\n\nS9: Now, how many days are in a week?\n\nS10: Typically, 7 days.\n\nS11: So, total hours per week = 5 * 7.\n\nS12: Compute that: 5 * 7 is 35.\n\nS13: So, 35 hours per week.\n\nS14 (Backtracking): Wait, is there anything else I need to consider?\n\nS15: Hmm, the question says each dog takes .\n\nS16: 5 hours a day to walk and take care of their business.\n\nS17: So, it's just walking and taking care, no extra time.\n\nS18: Therefore, the total time is 5 hours per day, 35 hours per week.\n\nS19: Yes, that makes sense.\n\nS20: I think I did everything correctly.\n\nS21: So, the final answer is 35 hours.\n\nS22: **Final Answer** John spends \\boxed{35} hours a week taking care of dogs.\n\nS23: </think>  John takes care of 10 dogs, with each dog requiring 0.\n\nS24: 5 hours per day to walk and take care of their business.\n\nS25: To find the\n"
+  },
+  {
+    "index": "33",
+    "legend": "33_uncertainty_timeseries_legend.txt",
+    "plot": "33_uncertainty_timeseries.png",
+    "trace": "33_uncertainty_trace.html",
+    "legend_text": "S1: First, let's define variables.\n\nS2: Let g be the number of gold coins.\n\nS3: Let s be the number of silver coins.\n\nS4: So, total coins = g + s = 110.\n\nS5: Also, it's given that there are 30 more gold coins than silver coins.\n\nS6: So, g = s + 30.\n\nS7: So, we have two equations:  1) g + s = 110  2) g = s + 30  So, we can substitute\nequation 2 into equation 1.\n\nS8: g + s = (s + 30) + s = 110  So, 2s + 30 = 110  Subtract 30 from both sides:  2s\n= 80  Divide both sides by 2:  s = 40  So, number of silver coins is 40.\n\nS9: Then, number of gold coins is s + 30 = 40 + 30 = 70.\n\nS10: So, Gretchen has 70 gold coins.\n\nS11 (Backtracking): Wait, but let me check again.\n\nS12: Total coins: 40 + 70 = 110.\n\nS13: Correct.\n\nS14: Also, 70 = 40 +\n"
+  },
+  {
+    "index": "34",
+    "legend": "34_uncertainty_timeseries_legend.txt",
+    "plot": "34_uncertainty_timeseries.png",
+    "trace": "34_uncertainty_trace.html",
+    "legend_text": "S1: First, identify the variables.\n\nS2: Let S = number of jewels Siobhan has.\n\nS3: Let A = number of jewels Aaron has.\n\nS4: Let R = number of jewels Raymond has.\n\nS5: Given that R = 40.\n\nS6: We can write equations based on the information given.\n\nS7: First, \"Aaron has 5 more jewels than half of Raymond's jewels.\n\nS8: \" So, in terms of R, that's:  A = (1/2)*R + 5.\n\nS9: Second, \"Siobhan has 2 fewer jewels than Aaron.\n\nS10: \" So, in terms of A:  S = A - 2.\n\nS11: Given that R is 40, we can compute A first.\n\nS12: So, substituting R = 40 into the equation for A:  A = (1/2)*40 + 5.\n\nS13: Let's compute that step by step.\n\nS14: Half of 40 is 20.\n\nS15: Then, 20 plus 5 is 25.\n\nS16: So, Aaron has 25 jewels.\n\nS17: Then, since S = A - 2, substituting A = 25:  S = 25 - 2 = 23.\n\nS18: So, Siobhan has 23 jewels.\n\nS19 (Backtracking): Wait a second, let me check if I did everything correctly.\n"
+  },
+  {
+    "index": "35",
+    "plot": "35_uncertainty_timeseries.png",
+    "legend": "35_uncertainty_timeseries_legend.txt",
+    "trace": "35_uncertainty_trace.html",
+    "legend_text": "S1: First, the first 20 minutes, he scores 4 points.\n\nS2: In the second 20 minutes, he scores 25% more points.\n\nS3: So, in the second 20 minutes, he scores 4 * 1.\n\nS4: 25 = 5 points.\n\nS5: So, total points would be 4 + 5 = 9.\n\nS6 (Backtracking): Wait, but hold on.\n\nS7: I think I might be confusing the scoring here.\n\nS8: In ping pong, the scoring system is different from points in some games.\n\nS9: I remember that in ping pong, you get a point when you win a point, and the game\nis won when you have two more points than your opponent.\n\nS10: However, in the context of this problem, it says Mike scores points, so perhaps\neach point he gets is equivalent to one point in ping pong.\n\nS11: So, if in the first 20 minutes, he scores 4 points, and in the second 20\nminutes, he scores 25% more points, then 25% of 4 is 1, so 4 + 1 = 5 points.\n\nS12: Therefore, total points he scored would be 4 + 5 = 9 points.\n\nS13 (Backtracking): Wait, but let me think again.\n\nS14: Is the 25% increase\n"
+  },
+  {
+    "index": "36",
+    "trace": "36_uncertainty_trace.html",
+    "legend": "36_uncertainty_timeseries_legend.txt",
+    "plot": "36_uncertainty_timeseries.png",
+    "legend_text": "S1: First, determine how many days Terry eats 2 yogurt each day.\n\nS2: Since he eats yogurt 2 times a day, and we're looking at 30 days, we can\ncalculate the total number of yogurt days.\n\nS3 (Backtracking): Wait, actually, the question is about how much he spends on yogurt over 30 days.\n\nS4: Since he eats 2 yogurt each day, over 30 days, that's 2 * 30 = 60 yogurt days.\n\nS5: But each yogurt is sold individually, I assume, or perhaps in the sale\npackaging.\n\nS6 (Backtracking): Wait, let me re-read the question: Terry eats 2 yogurt each day.\n\nS7: They are currently on sale at 4 yogurt for \\$5.\n\nS8: 00.\n\nS9: How much does he spend on yogurt over 30 days?\n\nS10: So, it's about the total number of yogurt sold.\n\nS11: Each day, Terry eats 2, so over 30 days, 60 yogurt are consumed.\n\nS12: But the sale is on 4 for \\$5.\n\nS13: 00.\n\nS14: So, how many packs of 4 does he buy to cover 60 yogurt?\n\nS15: Each pack has 4, so 60 / 4 = 15 packs.\n\nS16: Each pack is \\$5.\n\nS17: 00, so total cost is\n"
+  },
+  {
+    "index": "37",
+    "trace": "37_uncertainty_trace.html",
+    "plot": "37_uncertainty_timeseries.png",
+    "legend": "37_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: 1.\n\nS2: John sells all legos for \\$15 each, total from Legos is L*15.\n\nS3: 2.\n\nS4: Then, he buys 8 video games for \\$20 each, total spent on video games is 8*20.\n\nS5: 3.\n\nS6: He has \\$5 left after this purchase.\n\nS7: So, let's translate this into an equation.\n\nS8: John's total money after selling legos is L*15.\n\nS9: Then, he spends 8*20 on video games.\n\nS10: He ends up with \\$5 left.\n\nS11: So, the equation would be:  L*15 - (8*20) = 5.\n\nS12: So, 15L - 160 = 5.\n\nS13: Then, 15L = 165.\n\nS14: So, L = 11.\n\nS15: But wait, John only has 13 legos to start with.\n\nS16: So, 11 left means he sold 2.\n\nS17: That seems possible.\n\nS18: But let's double-check.\n\nS19: He sells 13 legos at \\$15 each: 13*15 = \\$195.\n\nS20: He buys 8 video games at \\$20 each: 8*20 = \\$160.\n\nS21: He has \\$5 left after this\n"
+  },
+  {
+    "index": "38",
+    "plot": "38_uncertainty_timeseries.png",
+    "trace": "38_uncertainty_trace.html",
+    "legend": "38_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: First, list all given information.\n\nS2: Given:  - John runs 60 miles a week.\n\nS3: - He runs 3 days a week.\n\nS4: - On the first day, he runs 3 hours.\n\nS5: - On the other two days, he runs half as much as he did on the first day.\n\nS6: We need to find his speed, which is distance divided by time.\n\nS7: So, to find his speed, we can find the total distance he runs and then divide by\nthe total time he spends running.\n\nS8: First, let's find the total distance he runs.\n\nS9: He runs 3 days a week, and each day he runs a certain distance.\n\nS10: On the first day, he runs 3 hours, but the distance for that day is not given\ndirectly.\n\nS11: However, we do know that the total distance he runs in a week is 60 miles.\n\nS12: Therefore, the sum of the distances he runs on each of the three days is 60\nmiles.\n\nS13: We know the distance on the first day: it's 3 hours, but the speed is what we're\ntrying to find.\n\nS14 (Backtracking): Wait, but hold on.\n\nS15: Actually, the distance on the first day is equal to speed multiplied by time.\n\nS16: So, the distance on the first day is speed * 3 hours.\n\nS17: Similarly,\n"
+  },
+  {
+    "index": "39",
+    "legend": "39_uncertainty_timeseries_legend.txt",
+    "trace": "39_uncertainty_trace.html",
+    "plot": "39_uncertainty_timeseries.png",
+    "legend_text": "S1: Step 1: Determine her walking speed.\n\nS2: Step 2: Determine her running speed.\n\nS3: Step 3: Determine her skipping speed.\n\nS4: Step 4: Check if the skipping speed matches the given.\n\nS5: Step 5: Calculate the distance for running and walking.\n\nS6: Step 6: Sum them to get total distance.\n\nS7: Step 7: Check if the total time adds up to six hours.\n\nS8: Now, let's proceed.\n\nS9: Step 1: Determine her walking speed.\n\nS10: She can run at a rate four times faster than she can walk.\n\nS11: So, running speed = 4 * walking speed.\n\nS12: Let's denote walking speed as W.\n\nS13: So, Running speed R = 4W.\n\nS14: Step 2: Determine her running speed.\n\nS15: She can skip at a rate half as fast as she can run.\n\nS16: Skipping speed S = (1/2) * R.\n\nS17: Given that she skips at 3 mph, so 3 = (1/2) * R.\n\nS18: Therefore, R = 3 * 2 = 6 mph.\n\nS19: So, running speed is 6 mph.\n\nS20: Step 3: Determine her walking speed.\n\nS21: Since R = 4W, and R = 6, then 6 = 4W => W = 6 / 4 = 1.\n"
+  },
+  {
+    "index": "40",
+    "plot": "40_uncertainty_timeseries.png",
+    "trace": "40_uncertainty_trace.html",
+    "legend": "40_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: Step 1: Figure out the relationship between Suzy's iPhone and Ben's.\n\nS2: Step 2: Use that to find Ben's iPhone age.\n\nS3: Step 3: Use Ben's age to find Brandon's.\n\nS4: Step 4: Write equations for each step and solve.\n\nS5 (Backtracking): Wait, let me clarify the relationships first.\n\nS6: The problem states:  1.\n\nS7: Brandon's iPhone is four times as old as Ben's iPhone.\n\nS8: 2.\n\nS9: Ben's iPhone is two times older than Suzy's iPhone.\n\nS10: 3.\n\nS11: Suzy’s iPhone is 1 year old.\n\nS12: We need to find the age of Brandon’s iPhone.\n\nS13: Let me parse each sentence carefully.\n\nS14: First, it says that Suzy’s iPhone is 1 year old.\n\nS15: That’s straightforward.\n\nS16: Second, Ben's iPhone is two times older than Suzy's.\n\nS17: Since Suzy's is 1, Ben's is 2 * 1 = 2 years old.\n\nS18: Third, Brandon's iPhone is four times as old as Ben's.\n\nS19: Since Ben's is 2, then Brandon's is 4 * 2 = 8 years old.\n\nS20 (Backtracking): Wait, so that would make Brandon's iPhone 8 years old.\n\nS21: But let me think again, is \"two times older\" equivalent to doubling or something\nelse?\n\nS22: For example, sometimes\n"
+  },
+  {
+    "index": "41",
+    "plot": "41_uncertainty_timeseries.png",
+    "legend": "41_uncertainty_timeseries_legend.txt",
+    "trace": "41_uncertainty_trace.html",
+    "legend_text": "S1: First, define variables.\n\nS2: Let d be the distance the dragon can reach with its fire.\n\nS3: It's 1000 feet.\n\nS4: Let p be the distance Polly can throw the javelin when not holding the gemstone.\n\nS5: It's 400 feet.\n\nS6: When Polly holds the gemstone, the javelin is three times farther.\n\nS7: So, the distance when holding the gemstone is 3 * p.\n\nS8 (Backtracking): Wait, but hold on, is the distance three times the original p, or three times\nfarther?\n\nS9: The wording says, \"three times farther than when not holding the gemstone.\n\nS10: \" So, when holding the gemstone, the distance is 3 * p.\n\nS11 (Backtracking): Wait, but p is 400 feet.\n\nS12: So, 3 * p would be 1200 feet.\n\nS13: But hold on, is that the distance from the dragon, or from Polly?\n\nS14 (Backtracking): Wait, the question is asking: \"If holding the gemstone, how far outside of the\nreach of the dragon's flames could Polly stand and still hit the dragon with the\ngold javelin?\n\nS15: \"  So, Polly is throwing the javelin, and she is standing outside the reach of\nthe dragon.\n\nS16: So, the distance from the dragon's reach is the distance from Polly to the\ndragon, which is\n"
+  },
+  {
+    "index": "42",
+    "trace": "42_uncertainty_trace.html",
+    "legend": "42_uncertainty_timeseries_legend.txt",
+    "plot": "42_uncertainty_timeseries.png",
+    "legend_text": "S1: First, write down the problem.\n\nS2: Step 1: Write down the important numbers and key phrases.\n\nS3: Important numbers: 5 pies, each cut into 8 pieces.\n\nS4: Key phrases: At the end, 14 pieces remaining.\n\nS5: Step 2: Understand what is needed.\n\nS6: We need to find how many pieces were taken by the guests.\n\nS7: Step 3: Identify the process.\n\nS8: We can think in two steps:  1.\n\nS9: Calculate the total number of pie pieces before the evening.\n\nS10: 2.\n\nS11: Subtract the number of remaining pieces to find the number taken.\n\nS12: Yes, that makes sense.\n\nS13: So, let's proceed.\n\nS14: First, the total number of pie pieces:  Each pie is cut into 8 pieces, so 5 pies\nx 8 pieces per pie = total pieces.\n\nS15: Total pieces = 5 x 8 = 40.\n\nS16 (Backtracking): Wait, 5 x 8 is 40, that seems right.\n\nS17: At the end of the evening, 14 pieces were remaining.\n\nS18: So, the number of pieces taken by the guests is total pieces minus remaining\npieces.\n\nS19: Number taken = 40 - 14 = 26.\n\nS20 (Backtracking): Wait, that seems straightforward.\n\nS21: But let me double-check my calculations to make sure I haven't missed anything.\n\nS22: So, 5\n"
+  },
+  {
+    "index": "43",
+    "trace": "43_uncertainty_trace.html",
+    "plot": "43_uncertainty_timeseries.png",
+    "legend": "43_uncertainty_timeseries_legend.txt",
+    "legend_text": "S1: Step 1: Determine the number of calories per serving.\n\nS2: Step 2: Determine the number of calories per serving per gram.\n\nS3: Step 3: Determine the number of calories in the 300g bag.\n\nS4: Step 4: Determine how many calories you can consume per gram.\n\nS5: Step 5: Determine how many calories you can consume in total.\n\nS6: Step 6: Subtract the calories you've already consumed from your total.\n\nS7: Step 7: Find the number of grams you can eat.\n\nS8: Let's proceed with each step.\n\nS9: Step 1: Determine the number of calories per serving.\n\nS10: Given that each serving has 250 calories.\n\nS11: So, calories per serving = 250.\n\nS12: Step 2: Determine the number of calories per serving per gram.\n\nS13: To find calories per gram, we divide the calories per serving by the number of\ngrams per serving.\n\nS14: Number of grams per serving = 300g.\n\nS15: So, calories per gram = 250 calories / 300 grams.\n\nS16: Calculating that:  250 ÷ 300 = 0.\n\nS17: 8333.\n\nS18: .\n\nS19: .\n\nS20: calories per gram.\n\nS21: So, approximately 0.\n\nS22: 833 calories per gram.\n\nS23: Step 3: Determine the number of calories in the\n"
+  },
+  {
+    "index": "44",
+    "trace": "44_uncertainty_trace.html",
+    "legend": "44_uncertainty_timeseries_legend.txt",
+    "plot": "44_uncertainty_timeseries.png",
+    "legend_text": "S1: Step 1: Compute how many pounds of beeswax Charlie needs.\n\nS2: Step 2: Determine the cost of the beeswax and wicks.\n\nS3: Step 3: Find out how many candles he can make.\n\nS4: Step 4: Compute how much money he makes from selling the candles.\n\nS5: Step 5: Calculate his net profit.\n\nS6: Step 1: Compute how many pounds of beeswax Charlie needs.\n\nS7: He makes 10 candles per pound.\n\nS8: So, for 20 candles, how many pounds is that?\n\nS9: I think it's 20 /10 = 2 pounds.\n\nS10: So, he needs 2 pounds of beeswax.\n\nS11: Step 2: Determine the cost of the beeswax and wicks.\n\nS12: One pound costs \\$10.\n\nS13: 00.\n\nS14: So, 2 pounds would cost 2 * \\$10.\n\nS15: 00 = \\$20.\n\nS16: 00.\n\nS17: Step 3: Find out how many candles he can make.\n\nS18: He can make 10 candles per pound.\n\nS19: If he has 2 pounds, he can make 2 *10 =20 candles.\n\nS20: But wait, he already made the 20 candles in step 4.\n\nS21: So, maybe step 3 is just confirming the number.\n\nS22: Step\n"
+  },
+  {
+    "index": "45",
+    "legend": "45_uncertainty_timeseries_legend.txt",
+    "plot": "45_uncertainty_timeseries.png",
+    "trace": "45_uncertainty_trace.html",
+    "legend_text": "S1: First, calculate the number of articles she wrote each day.\n\nS2: Monday: 5 articles.\n\nS3: Tuesday: 2/5 times more than Monday.\n\nS4: So, how many more?\n\nS5: 2/5 times 5?\n\nS6: That would be 2 additional articles.\n\nS7: So, Tuesday is 5 + 2 = 7 articles.\n\nS8 (Backtracking): Wait, is that correct?\n\nS9: So, if she wrote 2/5 times more on Tuesday, is that 2/5 of Monday's articles or\nsomething else?\n\nS10 (Backtracking): Wait, maybe.\n\nS11: So, \"2/5 times more\" than Monday.\n\nS12: So, the increase is 2/5 of Monday's articles.\n\nS13: So, Monday: 5.\n\nS14: Tuesday: 5 + (2/5)*5 = 5 + 2 = 7.\n\nS15: Yes, that seems correct.\n\nS16: Alternatively, if it were 2/5 of Monday's, that would be different, but since\nit's \"times more\", I think that's an increase of 2/5 of Monday.\n\nS17: So, Tuesday is 7.\n\nS18: Then, Wednesday: twice the number of articles she wrote on Tuesday.\n\nS19: So, Tuesday: 7.\n\nS20: Wednesday: 2*7=14.\n\nS21: So, total articles over the three days: Monday:5, Tuesday:\n"
+  },
+  {
+    "index": "46",
+    "trace": "46_uncertainty_trace.html",
+    "legend": "46_uncertainty_timeseries_legend.txt",
+    "plot": "46_uncertainty_timeseries.png",
+    "legend_text": "S1: Alright, so Candice starts with 80 post-it notes.\n\nS2: She goes to the store and buys a package, which I guess is another set of post-\nit notes.\n\nS3: Then, at work, she puts one on each of 220 cups of coffee.\n\nS4: So, she uses 220 notes for the coffee, but she has some remaining.\n\nS5: Then, overall, she has 23 left.\n\nS6: So, I need to find out how many were in the package she bought.\n\nS7 (Backtracking): Wait, let me make sure I understand the problem.\n\nS8: She starts with 80.\n\nS9: Then, she goes to the store and buys a package.\n\nS10: So, that package has some number of post-it notes.\n\nS11: Let's say the package has P notes.\n\nS12: So, after purchasing, she has 80 + P.\n\nS13: Then, at work, she puts one on each of 220 cups.\n\nS14: So, she uses 220 notes, so the remaining after that would be 80 + P - 220.\n\nS15: And the problem says she had 23 remaining overall.\n\nS16: So, 80 + P - 220 = 23.\n\nS17: So, I can solve for P.\n\nS18 (Backtracking): Wait, but hold on a second.\n\nS19: Did she\n"
+  },
+  {
+    "index": "47",
+    "plot": "47_uncertainty_timeseries.png",
+    "legend": "47_uncertainty_timeseries_legend.txt",
+    "trace": "47_uncertainty_trace.html",
+    "legend_text": "S1: First, determine how many blue ties John bought.\n\nS2: Second, determine how many red ties John bought.\n\nS3: Third, determine how much each red tie costs.\n\nS4: Fourth, determine the total cost of all red ties.\n\nS5: Fifth, determine the total cost of all ties.\n\nS6 (Backtracking): Wait, no, perhaps.\n\nS7 (Backtracking): Wait, the problem says he buys twice as many red ties as blue ties.\n\nS8: So, number of red ties is twice the number of blue ties.\n\nS9: Then, the red ties cost 50% more than blue ties.\n\nS10: So, the price of red tie is 1.\n\nS11: 5 times the price of blue tie.\n\nS12: He spent \\$200 on blue ties that cost \\$40 each.\n\nS13: So, how much did he buy?\n\nS14: So, number of blue ties is 200 divided by 40.\n\nS15: Then, using that number, number of red ties is twice that.\n\nS16: Then, each red tie is 1.\n\nS17: 5 times the blue tie price.\n\nS18: So, price of each red tie is 1.\n\nS19: 5 * \\$40.\n\nS20: Multiply that by number of red ties to get the total cost for red ties.\n\nS21: Then, add the total cost of blue ties, which is \\$200, and red ties, which is\nwhatever, to get total spending.\n"
+  },
+  {
+    "index": "48",
+    "plot": "48_uncertainty_timeseries.png",
+    "legend": "48_uncertainty_timeseries_legend.txt",
+    "trace": "48_uncertainty_trace.html",
+    "legend_text": "S1: 1.\n\nS2: First, understand the problem: Tracy has a wire that's 4 feet long.\n\nS3: She cuts it into pieces that are each 6 inches long.\n\nS4: We need to find out how many such pieces she obtained.\n\nS5: 2.\n\nS6: The question is essentially asking how many 6-inch lengths can be obtained from\na 4-foot wire.\n\nS7: 3.\n\nS8: To solve this, I need to convert the units so that both lengths are in the same\nmeasurement.\n\nS9: Since the wire is given in feet and the pieces are given in inches, I can\nconvert feet to inches because 1 foot is 12 inches.\n\nS10: 4.\n\nS11: First, let's convert 4 feet to inches.\n\nS12: Since 1 foot is 12 inches, 4 feet would be 4 * 12 inches.\n\nS13: 5.\n\nS14: Calculating that: 4 * 12 = 48 inches.\n\nS15: 6.\n\nS16: So, the total length of wire is 48 inches.\n\nS17: 7.\n\nS18: Each piece is 6 inches long, so we can find out how many such pieces can be\nobtained by dividing the total length by the length of each piece.\n\nS19: 8.\n\nS20: So, number of pieces = 48 inches / 6 inches.\n\nS21: 9.\n\nS22: Calculating that: 48 / 6 = 8.\n"
+  },
+  {
+    "index": "49",
+    "plot": "49_uncertainty_timeseries.png",
+    "legend": "49_uncertainty_timeseries_legend.txt",
+    "trace": "49_uncertainty_trace.html",
+    "legend_text": "S1: First, find the total number of units in the building.\n\nS2: So, each floor has 8 units, and there are 15 floors.\n\nS3: Total units = 15 * 8 = ?\n\nS4: 15 * 8.\n\nS5: Let me calculate: 10*8=80, 5*8=40, so 80+40=120.\n\nS6: So total units = 120.\n\nS7 (Backtracking): Wait, but 3/4 of the building is occupied.\n\nS8: So, occupied units = (3/4) * 120.\n\nS9: Calculating: 120 / 4 = 30, 30 * 3 = 90.\n\nS10: So, occupied units = 90.\n\nS11: Therefore, unoccupied units = total units - occupied units = 120 - 90 = 30.\n\nS12: So, the total number of unoccupied units is 30.\n\nS13: But wait, let me make sure I didn't make a mistake.\n\nS14: Total units: 15 floors * 8 units per floor.\n\nS15: Yes, 15*8=120.\n\nS16: 3/4 occupied: 120 * 3/4 = 90.\n\nS17: So, unoccupied is\n"
+  }
+]

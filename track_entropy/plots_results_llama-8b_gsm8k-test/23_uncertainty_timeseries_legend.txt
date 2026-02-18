@@ -1,0 +1,35 @@
+S1: 1.
+
+S2: How many hours is the candle burning for?
+
+S3: 2.
+
+S4: How many centimeters does the candle melt every hour?
+
+S5: 3.
+
+S6: How many centimeters will the candle melt in the given time?
+
+S7: 4.
+
+S8: What is the final answer?
+
+S9: Step 1: How many hours is the candle burning for?
+
+S10: From 1:00 PM to 5:00 PM is 4 hours.
+
+S11: Step 2: How many centimeters does the candle melt every hour?
+
+S12: The candle melts by 2 centimeters every hour that it burns.
+
+S13: Step 3: How many centimeters will the candle melt in the given time?
+
+S14: The candle melts 2 centimeters every hour.
+
+S15: In 4 hours, it will melt \$2 \times 4\$ centimeters, or 8 centimeters.
+
+S16: Step 4: What is the final answer?
+
+S17: The candle will be 8 centimeters shorter after burning from 1:00 PM to 5:00 PM.
+
+S18: Final answer: 8 centimeters shorter

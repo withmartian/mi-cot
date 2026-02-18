@@ -1,0 +1,50 @@
+S1: 1.
+
+S2: Identify the time period during which the candle is burning.
+
+S3: 2.
+
+S4: Determine how many hours the candle is burning.
+
+S5: 3.
+
+S6: Find the rate at which the candle melts.
+
+S7: 4.
+
+S8: Multiply the number of hours by the rate to find the total length the candle has
+melted.
+
+S9: 5.
+
+S10: The total length melted is the answer.
+
+S11: 6.
+
+S12: Also, if needed, express the time period and the rate in terms of variables.
+
+S13: Let's go through each step in detail.
+
+S14: First, identify the time period.
+
+S15: The candle is burning from 1:00 PM to 5:00 PM.
+
+S16: Let me figure out how many hours that is.
+
+S17: From 1:00 PM to 5:00 PM is 4 hours.
+
+S18 (Backtracking): Wait, 1 PM to 2 PM is 1 hour, 2 PM to 3 PM is 1, 3 to 4 is 1, 4 to 5 is 1.
+
+S19: So total 4 hours.
+
+S20: So that's 4 hours.
+
+S21: Next, determine how many hours the candle is burning.
+
+S22: 4 hours.
+
+S23: Rate at which the candle melts is 2 centimeters every hour.
+
+S24: So per hour, 2 cm.
+
+S25: Now, to find the total length melted, we multiply the number of hours

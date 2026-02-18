@@ -1,0 +1,81 @@
+S1: First, figure out the number of articles Meredith wrote each day.
+
+S2: Monday: 5  Tuesday: 5 plus something.
+
+S3 (Backtracking): Wait, it says Tuesday is 2/5 times more than Monday.
+
+S4: So, it's Monday plus 2/5 of Monday.
+
+S5: So, Tuesday = Monday + (2/5)*Monday.
+
+S6: Which is 5 + (2/5)*5.
+
+S7: Compute that: (2/5)*5 is 2, so 5 + 2 = 7.
+
+S8: So, Tuesday is 7.
+
+S9: Wednesday: Twice the number of articles she wrote on Tuesday.
+
+S10: So, Wednesday = 2 * 7 = 14.
+
+S11: Now, total articles over three days: 5 + 7 + 14.
+
+S12: 5 + 7 is 12, 12 + 14 is 26.
+
+S13: So, 26 articles in total.
+
+S14: Each article takes 4 hours to write.
+
+S15: Total hours: 26 * 4.
+
+S16: 26*4 is 104.
+
+S17: So, Meredith spent 104 hours writing articles.
+
+S18 (Backtracking): Wait, but let me check.
+
+S19 (Backtracking): Wait, Monday: 5 articles, Tuesday: 7, Wednesday:14.
+
+S20: Total articles: 5 +7 +14=26.
+
+S21: Each article is 4 hours.
+
+S22: So, total is 26*4=104.
+
+S23: Yes, that seems right.
+
+S24: But wait, let me double-check the Tuesday and Wednesday numbers.
+
+S25: First, Monday is 5.
+
+S26: Tuesday is 2/5 times more than Monday.
+
+S27: So, 5 + (2/5)*5.
+
+S28: Which is 5 + 2=7.
+
+S29: Correct.
+
+S30: Wednesday: twice the number of Tuesday.
+
+S31: So, 2*7=14.
+
+S32: Correct.
+
+S33: Total articles:5+7=12, 12+14=26.
+
+S34: Each article is 4 hours.
+
+S35: 26*4=104.
+
+S36: So, the answer is 104.
+
+S37: Yes, that seems correct.
+
+S38: **Final Answer** The total number of hours Meredith spent writing articles is
+\boxed{104}.
+
+S39: </think>  Meredith wrote 5 articles on Monday.
+
+S40: On Tuesday, she wrote 2/5 times more articles than on Monday, which is
+calculated as follows:  \[ 5 + \left(\frac{2}{5} \times 5\right) = 5 + 2 = 7

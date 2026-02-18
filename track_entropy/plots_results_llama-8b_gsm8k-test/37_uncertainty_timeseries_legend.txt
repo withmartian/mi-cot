@@ -1,0 +1,15 @@
+S1: First, we need to know how much money John has from selling his toys.
+
+S2: He sells 13 lego sets at \$15 each, so he gets \$195.
+
+S3: Second, we need to know how much money he spends on video games.
+
+S4: He buys 8 video games at \$20 each, so he spends \$160.
+
+S5: Third, we need to know how much money he has left over.
+
+S6: He spends \$160 and has \$195, so he has \$35 left.
+
+S7: Last, we need to figure out how many lego sets he has left.
+
+S8: He starts with 13 and sells 8, so he has 5 left.

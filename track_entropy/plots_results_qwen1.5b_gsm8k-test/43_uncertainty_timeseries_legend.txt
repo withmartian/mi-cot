@@ -1,0 +1,65 @@
+S1: Step 1: Find the number of calories in a 300g bag.
+
+S2: Step 2: Find the number of calories consumed per serving.
+
+S3: Step 3: Find the number of calories consumed in the 300g bag.
+
+S4: Step 4: Find the number of calories remaining.
+
+S5: Step 5: Find the number of grams you can eat.
+
+S6: Let's proceed step by step.
+
+S7: Step 1: Find the number of calories in a 300g bag.
+
+S8: The problem says the bag has 250 calories per serving.
+
+S9: But a serving is 300g.
+
+S10: So, if each serving is 300g and each serving is 250 calories, then the total
+calories for 300g would be 250 calories per serving multiplied by the number of
+servings.
+
+S11 (Backtracking): Wait, let me read the question again.
+
+S12: It says: "According to its nutritional info, a bag of chips has 250 calories per
+serving.
+
+S13: " So each serving is 300g.
+
+S14: So a serving is 300g, and that serves with 250 calories.
+
+S15: So, if each serving is 250 calories, and there are 5 servings, the total
+calories in the bag is 250 * 5.
+
+S16: Let me compute that.
+
+S17: 250 times 5 is 1250 calories.
+
+S18 (Backtracking): Wait, but the question says the bag has 250 calories per serving, and the bag is
+300g.
+
+S19: So if each serving is 300g, and 250 calories per serving, then the total is 250
+* 5 = 1250 calories.
+
+S20: So, step 1: 1250 calories.
+
+S21: Step 2: Find the number of calories consumed per serving.
+
+S22 (Backtracking): Wait, no.
+
+S23 (Backtracking): Wait, the 300g bag is divided into 5 servings, each of 300g.
+
+S24: So each serving is 250 calories.
+
+S25: So if I have already consumed 1800 calories, then I can find out how many
+servings that is.
+
+S26 (Backtracking): Wait, but maybe I can go step by step.
+
+S27 (Backtracking): Wait, step 2: Find the number of calories consumed per serving.
+
+S28 (Backtracking): Wait, that might not be necessary.
+
+S29: Alternatively, step 2: find the number of calories consumed per serving, and
+step 3: find the number of calories consumed

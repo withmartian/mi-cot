@@ -1,0 +1,83 @@
+S1: First, let's note down all the given information.
+
+S2: - John drives for 3 hours at 60 mph.
+
+S3: Then he turns around and tries to get home.
+
+S4: - He needs 4 hours to get home, but he starts the trip to home in standstill
+traffic.
+
+S5: - He spends the first 2 hours in standstill traffic.
+
+S6: Then the next half-hour driving at 30 mph.
+
+S7: Finally, he is able to drive the remaining time at 80 mph.
+
+S8: - We need to find how far he is from home at the end of these 4 hours.
+
+S9: Alright, let's break this down.
+
+S10: First, let's compute the distance John covers in the first 3 hours going to the
+opposite direction.
+
+S11: He drives for 3 hours at 60 mph.
+
+S12: So, distance is speed multiplied by time.
+
+S13: Distance1 = 60 mph * 3 hours = 180 miles.
+
+S14: So, he is 180 miles away from home at this point.
+
+S15: But then, he turns around and tries to get home.
+
+S16: Now, he needs 4 hours to get home.
+
+S17: But before that, he starts the trip to home.
+
+S18: He starts the trip to home in standstill traffic.
+
+S19: Standstill traffic means his speed is 0 mph.
+
+S20: He spends the first 2 hours in standstill traffic.
+
+S21: So, during these 2 hours, how much distance does he cover?
+
+S22: Distance2 = 0 mph * 2 hours = 0 miles.
+
+S23: So, after 2 hours, he is still 180 miles away from home.
+
+S24: Then, he spends the next half-hour driving at 30 mph.
+
+S25: So, in the next 0.
+
+S26: 5 hours, how much distance does he cover?
+
+S27: Distance3 = 30 mph * 0.
+
+S28: 5 hours = 15 miles.
+
+S29: So, after this, he is now 180 - 15 = 165 miles away from home.
+
+S30: Then, he is able to drive the remaining time at 80 mph.
+
+S31: So, how much time is left after the first 2.
+
+S32: 5 hours?
+
+S33: He started the trip to home with 4 hours total.
+
+S34: He has already spent 2 hours in standstill, and 0.
+
+S35: 5 hours at 30 mph.
+
+S36: Total time spent: 2 + 0.
+
+S37: 5 = 2.
+
+S38: 5 hours.
+
+S39: So, remaining time: 4 - 2.
+
+S40: 5 = 1.
+
+S41: 5 hours.

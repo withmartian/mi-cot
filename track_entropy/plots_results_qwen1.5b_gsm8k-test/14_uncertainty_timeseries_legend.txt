@@ -1,0 +1,63 @@
+S1: First, in the dance class of 20 students, 20% enrolled in contemporary dance.
+
+S2: So, 20% of 20 is 4 students.
+
+S3: So, 4 students in contemporary dance.
+
+S4: Then, the remaining students: 20 total - 4 in contemporary dance = 16 students.
+
+S5: Of these 16 remaining, 25% enrolled in jazz dance.
+
+S6: 25% of 16 is 4 students.
+
+S7: So, 4 students in jazz dance.
+
+S8: Now, the rest of the students are in hip-hop dance.
+
+S9: So, 16 total remaining students minus 4 in jazz dance = 12 students.
+
+S10: So, 12 out of 20 students are in hip-hop dance.
+
+S11: To find the percentage, (12/20)*100 = 60%.
+
+S12 (Backtracking): Wait, let me check that again.
+
+S13: Total students: 20  Contemporary dance: 20% of 20 = 4  Remaining: 20 - 4 = 16
+Jazz dance: 25% of 16 = 4  Remaining after jazz: 16 - 4 = 12  Hip-hop dance: 12
+Percentage: (12/20)*100 = 60%  That seems correct.
+
+S14 (Backtracking): Wait, let me go through the steps again to make sure.
+
+S15: 1.
+
+S16: Total students: 20  2.
+
+S17: 20% in contemporary dance: 20*0.
+
+S18: 20 = 4  So, 4 in contemporary.
+
+S19: 3.
+
+S20: Remaining students: 20 - 4 = 16  4.
+
+S21: 25% of these remaining in jazz: 16*0.
+
+S22: 25 = 4  So, 4 in jazz.
+
+S23: 5.
+
+S24: Remaining students: 16 - 4 = 12  6.
+
+S25: These 12 are in hip-hop.
+
+S26: 7.
+
+S27: To find percentage: (12/20)*100 = 60%  Yes, that adds up.
+
+S28: Alternatively, let me think of it in terms of fractions.
+
+S29: 20% is 1/5, 25% is 1/4, 50% is 1/2.
+
+S30 (Backtracking): Wait, maybe that approach can help.
+
+S31: Contemporary dance: 20% of 20 = 4, which is 1

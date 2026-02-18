@@ -1,0 +1,50 @@
+S1: Let's start by analyzing the given information.
+
+S2: First, Candice starts with 80 Post-it notes.
+
+S3: Then, she goes to the store and buys a package of Post-it notes.
+
+S4: Let's denote the number of Post-it notes in that package as x.
+
+S5: After that, she goes to work and places a single Post-it note on each of 220
+different cups of coffee.
+
+S6: So, she uses 220 Post-it notes for this.
+
+S7: In addition to that, she had 23 Post-it notes remaining overall.
+
+S8: We need to find the number of Post-it notes in the package she purchased, which
+is x.
+
+S9: So, let's try to write the equation.
+
+S10: Total Post-it notes she had initially: 80  After purchasing the package, she had
+80 + x  Then, she used 220 Post-it notes for work.
+
+S11: So, subtract that.
+
+S12: Total after work: (80 + x) - 220  Then, she had 23 Post-it notes remaining.
+
+S13: So, set this equal to 23.
+
+S14: So, equation is:  (80 + x) - 220 = 23  Simplify the left side:  80 + x - 220 =
+23  Combine constants:  (80 - 220) + x = 23  -140 + x = 23  Now, solve for x:  x
+= 23 + 140  x = 163  So, the package had 163 Post-it notes.
+
+S15 (Backtracking): Wait, but let me double-check the steps.
+
+S16: Start: 80  After purchase: 80 + x  After work: 80 + x - 220  Remaining: 23  So,
+80 + x - 220 = 23  Compute 80 - 220: that's -140  So, -140 + x = 23  x = 23 +
+140 = 163  Yes, that seems correct.
+
+S17: But let me think again about whether I accounted for everything.
+
+S18: So, she started with 80.
+
+S19: She bought a package with x.
+
+S20: So, total is 80 + x.
+
+S21: Then, she used 220 on work.
+
+S22: So, subtract 220.

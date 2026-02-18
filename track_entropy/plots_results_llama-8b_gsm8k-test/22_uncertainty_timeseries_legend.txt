@@ -1,0 +1,29 @@
+S1: Let's think about what each customer bought.
+
+S2: \$2\$ customers bought \$1\$ DVD each.
+
+S3: \$1\$ customer bought \$2\$ DVDs.
+
+S4: \$0\$ customers bought \$0\$ DVDs.
+
+S5: \$0\$ customers bought \$1\$ DVD.
+
+S6: \$0\$ customers bought \$2\$ DVDs.
+
+S7: \$0\$ customers bought \$3\$ DVDs.
+
+S8: \$0\$ customers bought \$4\$ DVDs.
+
+S9: \$0\$ customers bought \$5\$ DVDs.
+
+S10: \$0\$ customers bought \$6\$ DVDs.
+
+S11: \$0\$ customers bought \$7\$ DVDs.
+
+S12: \$0\$ customers bought \$8\$ DVDs.
+
+S13: So the answer is \$5\$ DVDs.
+
+S14: Final answer: \$5\$ DVDs.
+
+S15: ## Video Solution  Here's the video solution on Khan Academy:

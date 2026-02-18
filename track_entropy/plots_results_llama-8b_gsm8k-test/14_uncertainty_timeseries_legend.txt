@@ -1,0 +1,66 @@
+S1: 1.
+
+S2: Let's start by writing the total number of students.
+
+S3: The total number of students is \$20\$.
+
+S4: 2.
+
+S5: Let's find out how many students enrolled in contemporary dance.
+
+S6: 3.
+
+S7: \$20\$ students were enrolled in contemporary dance.
+
+S8: 4.
+
+S9: Let's find out how many students were left.
+
+S10: 5.
+
+S11: There were \$20\$ students left.
+
+S12: 6.
+
+S13: Let's find out how many of those \$20\$ students enrolled in jazz dance.
+
+S14: 7.
+
+S15: \$5\$ students were enrolled in jazz dance.
+
+S16: 8.
+
+S17: Let's find out how many students were left.
+
+S18: 9.
+
+S19: There were \$15\$ students left.
+
+S20: 10.
+
+S21: Let's find out how many of those \$15\$ students enrolled in hip-hop dance.
+
+S22: 11.
+
+S23: \$10\$ students were enrolled in hip-hop dance.
+
+S24: 12.
+
+S25: Let's find out how many students were left.
+
+S26: 13.
+
+S27: There were \$5\$ students left.
+
+S28: 14.
+
+S29: Let's add up the total number of students enrolled in hip-hop dance.
+
+S30: 15.
+
+S31: \$10\$ students enrolled in hip-hop dance.
+
+S32: 16.
+
+S33: The percentage of students enrolled in hip-hop dance is
+\$\frac{10}{20}\times100=50\$%.

@@ -1,0 +1,43 @@
+S1: 1.
+
+S2: How much does Eliza earn for the first 40 hours?
+
+S3: 2.
+
+S4: How much does Eliza earn for the next 5 hours?
+
+S5: 3.
+
+S6: How much is Eliza's total earnings for this week?
+
+S7: Let's work on the first part.
+
+S8: 1.
+
+S9: How much does Eliza earn for the first 40 hours?
+
+S10: Eliza's rate per hour for the first 40 hours is \$10.
+
+S11: If she works for 40 hours, she will earn 40 times \$10 which is \$400.
+
+S12: Let's work on the second part.
+
+S13: 2.
+
+S14: How much does Eliza earn for the next 5 hours?
+
+S15: Eliza's rate per hour for the first 40 hours is \$10.
+
+S16: If she works for 40 hours, she will earn 40 times \$10 which is \$400.
+
+S17: For the next 5 hours, Eliza will earn 5 times \$10 which is \$50.
+
+S18: Let's work on the last part.
+
+S19: 3.
+
+S20: How much is Eliza's total earnings for this week?
+
+S21: Eliza's total earnings for this week is \$400 + \$50 which is \$450.
+
+S22: Therefore, Eliza's total earnings for this week is \$450.

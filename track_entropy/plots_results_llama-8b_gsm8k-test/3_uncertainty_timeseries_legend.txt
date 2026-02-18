@@ -1,0 +1,13 @@
+S1: How many meters does he run each sprint?
+
+S2: 60 meters.
+
+S3: How many meters does he run in 3 sprints?
+
+S4: 60 x 3 = 180 meters.
+
+S5: How many meters does he run in a week?
+
+S6: 180 x 3 = 540 meters.
+
+S7: So, the total number of meters James runs a week is 540.

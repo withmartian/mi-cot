@@ -1,0 +1,21 @@
+S1: The file is 200 GB.
+
+S2: That means 200 \$\times\$ 10\$^{9}\$ bytes.
+
+S3: To download 2 GB/minute means to download 2 \$\times\$ 10\$^{9}\$ bytes/minute.
+
+S4: The first 40% of the file is 0.
+
+S5: 4 \$\times\$ 200 \$\times\$ 10\$^{9}\$ = 80 \$\times\$ 10\$^{9}\$ bytes.
+
+S6: It takes 80 \$\times\$ 10\$^{9}\$ bytes/ (2 \$\times\$ 10\$^{9}\$ bytes/minute)
+= 40 minutes to download the first 40% of the file.
+
+S7: To download the remaining 60% of the file, it takes 60 \$\times\$ 10\$^{9}\$
+bytes/ (2 \$\times\$ 10\$^{9}\$ bytes/minute) = 30 minutes.
+
+S8: 40 + 30 = 70 minutes.
+
+S9: The download takes 70 minutes.
+
+S10: Final answer: 70 minutes

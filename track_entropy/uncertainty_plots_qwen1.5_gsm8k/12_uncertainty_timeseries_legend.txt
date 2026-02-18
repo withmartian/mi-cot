@@ -1,0 +1,45 @@
+S1: First, we need to figure out the initial cost.
+
+S2: The tree costs \$90.
+
+S3: Then, each year it produces 7 lemons.
+
+S4: He can sell each lemon for \$1.
+
+S5: 5.
+
+S6: So, each year, he can make money from the lemons.
+
+S7: But, each year, it costs \$3 to water and feed the tree.
+
+S8: So, each year, the net profit is (lemons sold * price per lemon) - (cost to
+water and feed).
+
+S9: We need to find how many years it will take for this net profit to be positive,
+meaning he starts earning money.
+
+S10: So, we can model this as a cash flow timeline:  Year 0: -90 (cost to plant)
+Year 1: + (7 * 1.
+
+S11: 5 - 3)  Year 2: + (7 * 1.
+
+S12: 5 - 3)  .
+
+S13: .
+
+S14: .
+
+S15: Each subsequent year will have the same net cash flow.
+
+S16: We can then calculate the net cash flow each year and see when it turns
+positive.
+
+S17: So, let's compute the cash flow for the first year.
+
+S18: Lemons per year: 7  Price per lemon: \$1.
+
+S19: 5  Revenue per year: 7 * 1.
+
+S20: 5 = \$10.
+
+S21: 5  Cost per year

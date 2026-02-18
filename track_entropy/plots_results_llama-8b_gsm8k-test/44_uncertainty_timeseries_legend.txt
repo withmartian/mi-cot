@@ -1,0 +1,33 @@
+S1: Step 1:  Let's make a table to organize the information given in the problem.
+
+S2: Step 2:  Let's calculate the profit for 10 candles.
+
+S3: Step 3:  Let's calculate the profit for 20 candles.
+
+S4: Step 4:  Let's calculate the profit for 30 candles.
+
+S5: Step 5:  Let's calculate the profit for 40 candles.
+
+S6: Step 6:  Let's calculate the profit for 50 candles.
+
+S7: Step 7:  Let's calculate the profit for 60 candles.
+
+S8: Step 8:  Let's calculate the profit for 70 candles.
+
+S9: Step 9:  Let's calculate the profit for 80 candles.
+
+S10: Step 10:  Let's calculate the profit for 90 candles.
+
+S11: Step 11:  Let's calculate the profit for 100 candles.
+
+S12: Step 12:  Let's calculate the profit for 110 candles.
+
+S13: Step 13:  Let's calculate the profit for 120 candles.
+
+S14: Step 14:  Let's calculate the profit for 130 candles.
+
+S15: Step 15:  Let's calculate the profit for 140 candles.
+
+S16: Step 16:  Let's calculate the profit for 150 candles.
+
+S17: Step 17:  Let's calculate the profit for

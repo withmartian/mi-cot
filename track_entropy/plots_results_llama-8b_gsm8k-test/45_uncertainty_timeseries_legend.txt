@@ -1,0 +1,27 @@
+S1: Let's write the number of articles Meredith wrote on Monday as \$x\$.
+
+S2: Then, the number of articles Meredith wrote on Tuesday is \$2/5\$ times more
+than on Monday.
+
+S3: So, the number of articles Meredith wrote on Tuesday is \$2/5 \times x\$.
+
+S4: The number of articles Meredith wrote on Wednesday is twice the number of
+articles Meredith wrote on Tuesday.
+
+S5: So, the number of articles Meredith wrote on Wednesday is \$2 \times (2/5)
+\times x\$.
+
+S6: Meredith wrote \$5\$ articles on Monday and \$2/5\$ times more articles on
+Tuesday than on Monday.
+
+S7: So, the total number of articles Meredith wrote on Monday and Tuesday is \$5 +
+2/5 \times x\$.
+
+S8: Meredith wrote \$5 + 2/5 \times x\$ articles on Monday and Tuesday and twice the
+number of articles she wrote on Tuesday on Wednesday.
+
+S9: So, the total number of articles Meredith wrote on Monday, Tuesday and Wednesday
+is \$5 + 2/5 \times x + 2 \times (2/5) \times x\$.
+
+S10: So, the total number of articles Meredith wrote in the three days is \$5 + 2/5
+\times x + 2 \times

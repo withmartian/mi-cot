@@ -1,0 +1,29 @@
+S1: 1.
+
+S2: How many cartons does Cynthia buy in 60 days?
+
+S3: 2.
+
+S4: How much does she spend per carton?
+
+S5: 3.
+
+S6: How much does she spend in 60 days?
+
+S7: 4.
+
+S8: Show your final answer.
+
+S9: 5.
+
+S10: Write down your answer in a number sentence.
+
+S11: This is a problem that requires a student to use multiple operations and to work
+with money.
+
+S12: The student will need to think about how much money Cynthia spends in 60 days,
+which means they will need to think about how many cartons she buys in 60 days,
+how much she spends on each carton, and how much she spends in total.
+
+S13: The student should write the answer as a number sentence and write out the
+number sentence as a final answer.

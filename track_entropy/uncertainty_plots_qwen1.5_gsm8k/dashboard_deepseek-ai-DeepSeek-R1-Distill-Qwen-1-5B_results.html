@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+.sidebar {
+  border-right: 1px solid #ddd;
+  padding: 12px;
+  overflow-y: auto;
+}
+.sidebar button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 6px;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fafafa;
+  cursor: pointer;
+}
+.sidebar button.wait-example {
+  background: #fff3cd;
+  border-color: #f0ad4e;
+}
+.sidebar button.active {
+  background: #eef5ff;
+  border-color: #aac7ff;
+}
+.content {
+  padding: 16px;
+}
+.section {
+  margin-bottom: 16px;
+}
+.tabs {
+  margin-bottom: 12px;
+}
+.tabs button {
+  margin-right: 8px;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fafafa;
+  cursor: pointer;
+}
+.tabs button.active {
+  background: #eef5ff;
+  border-color: #aac7ff;
+}
+.legend {
+  white-space: pre-wrap;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+}
+.plot {
+  max-width: 100%;
+  border: 1px solid #eee;
+}
+.trace {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #ddd;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="sidebar">
+    <div id="sidebar" class="section"></div>
+  </div>
+  <div class="content">
+    <h2 id="title">Select an example</h2>
+    <div id="tab-example-content">
+      <div class="section">
+        <h3>Prompt</h3>
+        <div id="prompt" class="legend">No prompt available.</div>
+      </div>
+      <div class="section">
+        <h3>Example stats</h3>
+        <div class="legend">
+          Average entropy (all tokens, excluding token before Wait): <span id="overall-avg">0.0000</span>
+          (<span id="overall-count">0</span> tokens)
+          <br/>
+          Average entropy (token before Wait): <span id="wait-avg">0.0000</span>
+          (<span id="wait-count">0</span> occurrences)
+        </div>
+      </div>
+      <div class="section">
+        <h3>Entropy Plot</h3>
+        <img id="plot" class="plot" alt="Entropy plot"/>
+      </div>
+      <div class="section">
+        <h3>Sentence legend (S# -> sentence)</h3>
+        <div id="legend" class="legend">No legend available.</div>
+      </div>
+      <div class="section">
+        <h3>Trace (HTML)</h3>
+        <iframe id="trace" class="trace"></iframe>
+      </div>
+    </div>
+    <div id="tab-dist-content" style="display:none;">
+      <div class="section">
+        <h3>Aggregate distributions (per-example averages)</h3>
+        <div class="legend">
+          Mean overall entropy (excluding token before Wait): <span id="mean-overall">0.0000</span>
+          <br/>
+          Mean entropy (token before Wait): <span id="mean-wait">0.0000</span>
+        </div>
+      </div>
+      <div class="section">
+        <h4>Overall entropy averages</h4>
+        <img id="dist-overall-img" class="plot" alt="Overall entropy distribution"/>
+      </div>
+      <div class="section">
+        <h4>Token-before-Wait averages</h4>
+        <img id="dist-wait-img" class="plot" alt="Wait entropy distribution"/>
+      </div>
+    </div>
+    <div id="tab-dist-wait-content" style="display:none;">
+      <div class="section">
+        <h3>Aggregate (Wait-only examples)</h3>
+        <div class="legend">
+          Mean overall entropy (excluding token before Wait): <span id="mean-overall-wait">0.0000</span>
+          <br/>
+          Mean entropy (token before Wait): <span id="mean-wait-wait">0.0000</span>
+        </div>
+      </div>
+      <div class="section">
+        <h4>Examples with Wait</h4>
+        <div id="wait-only-list" class="legend"></div>
+      </div>
+      <div class="section">
+        <h4>Overall entropy averages (Wait-only)</h4>
+        <img id="dist-overall-wait-img" class="plot" alt="Overall entropy distribution (Wait-only)"/>
+      </div>
+      <div class="section">
+        <h4>Token-before-Wait averages (Wait-only)</h4>
+        <img id="dist-wait-wait-img" class="plot" alt="Wait entropy distribution (Wait-only)"/>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const INDEX_FILE = 'dashboard_index.json';
+const STATS_FILE = 'dashboard_stats.json';
+const sidebar = document.getElementById('sidebar');
+const title = document.getElementById('title');
+const plot = document.getElementById('plot');
+const legend = document.getElementById('legend');
+const trace = document.getElementById('trace');
+const distOverallImg = document.getElementById('dist-overall-img');
+const distWaitImg = document.getElementById('dist-wait-img');
+const distOverallWaitImg = document.getElementById('dist-overall-wait-img');
+const distWaitWaitImg = document.getElementById('dist-wait-wait-img');
+const meanOverallEl = document.getElementById('mean-overall');
+const meanWaitEl = document.getElementById('mean-wait');
+const meanOverallWaitEl = document.getElementById('mean-overall-wait');
+const meanWaitWaitEl = document.getElementById('mean-wait-wait');
+const waitOnlyList = document.getElementById('wait-only-list');
+let statsByExample = {};
+
+function setActive(btn) {
+  const buttons = sidebar.querySelectorAll('button');
+  buttons.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function showTab(kind) {
+  const exampleContent = document.getElementById('tab-example-content');
+  const distContent = document.getElementById('tab-dist-content');
+  const distWaitContent = document.getElementById('tab-dist-wait-content');
+  if (kind === 'dist') {
+    exampleContent.style.display = 'none';
+    distContent.style.display = 'block';
+    distWaitContent.style.display = 'none';
+  } else if (kind === 'dist-wait') {
+    exampleContent.style.display = 'none';
+    distContent.style.display = 'none';
+    distWaitContent.style.display = 'block';
+  } else {
+    distContent.style.display = 'none';
+    distWaitContent.style.display = 'none';
+    exampleContent.style.display = 'block';
+  }
+}
+
+function showExample(item, btn) {
+  if (btn) {
+    setActive(btn);
+  }
+  const prompt = document.getElementById('prompt');
+  title.textContent = 'Example ' + item.index;
+  plot.src = item.plot || '';
+  plot.style.display = item.plot ? 'block' : 'none';
+  if (item.legend) {
+    fetch(item.legend).then(r => r.text()).then(t => {
+      legend.textContent = t || 'No legend available.';
+    }).catch(() => {
+      legend.textContent = 'No legend available.';
+    });
+  } else {
+    legend.textContent = 'No legend available.';
+  }
+  trace.src = item.trace || '';
+  trace.style.display = item.trace ? 'block' : 'none';
+  const stats = statsByExample[String(item.index)] || {};
+  prompt.textContent = stats.prompt ? stats.prompt : 'No prompt available.';
+  document.getElementById('overall-avg').textContent = Number(stats.overall_entropy_avg || 0).toFixed(4);
+  document.getElementById('overall-count').textContent = stats.overall_entropy_count || 0;
+  document.getElementById('wait-avg').textContent = Number(stats.wait_prev_entropy_avg || 0).toFixed(4);
+  document.getElementById('wait-count').textContent = stats.wait_prev_entropy_count || 0;
+}
+
+Promise.all([
+  fetch(INDEX_FILE).then(r => r.json()),
+  fetch(STATS_FILE).then(r => r.json())
+]).then(([indexData, statsData]) => {
+  statsByExample = statsData.per_example || {};
+  const aggregateButton = document.createElement('button');
+  aggregateButton.textContent = 'Aggregate';
+  aggregateButton.addEventListener('click', () => {
+    setActive(aggregateButton);
+    showTab('dist');
+  });
+  sidebar.appendChild(aggregateButton);
+  const aggregateWaitButton = document.createElement('button');
+  aggregateWaitButton.textContent = 'Aggregate (Wait-only)';
+  aggregateWaitButton.addEventListener('click', () => {
+    setActive(aggregateWaitButton);
+    showTab('dist-wait');
+  });
+  sidebar.appendChild(aggregateWaitButton);
+  indexData.forEach((item) => {
+    const btn = document.createElement('button');
+    btn.textContent = 'Example ' + item.index;
+    const stats = statsByExample[String(item.index)] || {};
+    if ((stats.wait_prev_entropy_count || 0) > 0) {
+      btn.classList.add('wait-example');
+    }
+    btn.addEventListener('click', () => {
+      showTab('example');
+      showExample(item, btn);
+    });
+    sidebar.appendChild(btn);
+  });
+  if (indexData.length > 0) {
+    const firstExampleButton = sidebar.querySelectorAll('button')[2];
+    if (firstExampleButton) {
+      showTab('example');
+      showExample(indexData[0], firstExampleButton);
+    }
+  }
+  meanOverallEl.textContent = Number(statsData.overall_mean || 0).toFixed(4);
+  meanWaitEl.textContent = Number(statsData.wait_prev_mean || 0).toFixed(4);
+  meanOverallWaitEl.textContent = Number(statsData.overall_mean_wait || 0).toFixed(4);
+  meanWaitWaitEl.textContent = Number(statsData.wait_prev_mean_wait || 0).toFixed(4);
+  distOverallImg.src = statsData.overall_distribution_plot || 'aggregate_overall_entropy.png';
+  distWaitImg.src = statsData.wait_prev_distribution_plot || 'aggregate_wait_prev_entropy.png';
+  distOverallWaitImg.src = statsData.overall_distribution_wait_plot || 'aggregate_wait_overall_entropy.png';
+  distWaitWaitImg.src = statsData.wait_prev_distribution_wait_plot || 'aggregate_wait_prev_entropy_wait.png';
+  const waitExamples = Object.keys(statsByExample)
+    .filter(key => (statsByExample[key].wait_prev_entropy_count || 0) > 0)
+    .map(key => 'Example ' + key);
+  waitOnlyList.textContent = waitExamples.length
+    ? waitExamples.join(', ')
+    : 'No examples with Wait found.';
+}).catch(() => {
+  title.textContent = 'Failed to load dashboard data. Use a local web server.';
+});
+</script>
+</body>
+</html>

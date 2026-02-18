@@ -1,0 +1,61 @@
+S1: 1.
+
+S2: Janet's ducks lay 16 eggs per day.
+
+S3: 2.
+
+S4: She eats three for breakfast every morning and bakes muffins for her friends
+every day with four.
+
+S5: 3.
+
+S6: She sells the remainder at the farmers' market daily for \$2 per fresh duck egg.
+
+S7: 4.
+
+S8: How much in dollars does she make every day at the farmers' market?
+
+S9: 5.
+
+S10: Let's first figure out how many eggs Janet's ducks lay per day.
+
+S11: We can do this by multiplying the number of eggs per duck by the number of
+ducks.
+
+S12: Let's assume she has 16 ducks.
+
+S13: (We can change this if we need to.
+
+S14: ) 6.
+
+S15: Let's write an equation to represent this situation.
+
+S16: 7.
+
+S17: Let's solve the equation for x.
+
+S18: 8.
+
+S19: x = 256 9.
+
+S20: Now, let's figure out how many eggs Janet eats every day.
+
+S21: We know she eats three eggs for breakfast and bakes four muffins with four eggs
+each.
+
+S22: 10.
+
+S23: Let's write an equation to represent this situation.
+
+S24: 11.
+
+S25: Let's solve the equation for x.
+
+S26: 12.
+
+S27: x = 49 13.
+
+S28: Now, let's figure out how many eggs Janet sells at the farmers' market every
+day.
+
+S29: We know she has 256 eggs per day and eats 49 eggs per day.

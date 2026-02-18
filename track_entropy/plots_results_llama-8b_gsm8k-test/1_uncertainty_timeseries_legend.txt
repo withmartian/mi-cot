@@ -1,0 +1,16 @@
+S1: We are told that the robe takes 2 bolts of blue fiber and half that much white
+fiber.
+
+S2: So, the white fiber is half the blue fiber.
+
+S3: Let's say the blue fiber is \$x\$.
+
+S4: The white fiber is \$x \div 2\$.
+
+S5: The robe takes \$2+x \div 2\$ bolts.
+
+S6: The total is \$2+x \div 2\$.
+
+S7: So, \$2+x \div 2\$ bolts of fabric are needed for the robe.
+
+S8: Final answer: \$2+x \div 2\$

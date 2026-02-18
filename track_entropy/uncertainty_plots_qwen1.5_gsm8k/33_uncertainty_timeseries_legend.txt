@@ -1,0 +1,29 @@
+S1: First, let's define variables.
+
+S2: Let g be the number of gold coins.
+
+S3: Let s be the number of silver coins.
+
+S4: So, total coins = g + s = 110.
+
+S5: Also, it's given that there are 30 more gold coins than silver coins.
+
+S6: So, g = s + 30.
+
+S7: So, we have two equations:  1) g + s = 110  2) g = s + 30  So, we can substitute
+equation 2 into equation 1.
+
+S8: g + s = (s + 30) + s = 110  So, 2s + 30 = 110  Subtract 30 from both sides:  2s
+= 80  Divide both sides by 2:  s = 40  So, number of silver coins is 40.
+
+S9: Then, number of gold coins is s + 30 = 40 + 30 = 70.
+
+S10: So, Gretchen has 70 gold coins.
+
+S11 (Backtracking): Wait, but let me check again.
+
+S12: Total coins: 40 + 70 = 110.
+
+S13: Correct.
+
+S14: Also, 70 = 40 +

@@ -1,0 +1,56 @@
+S1: First, understand what's given.
+
+S2: He buys the house for \$80,000.
+
+S3: Then he puts in \$50,000 in repairs.
+
+S4: This increased the value of the house by 150%.
+
+S5: So, total initial investment is 80,000 + 50,000.
+
+S6: So, 130,000.
+
+S7: Then, after repairs, the house's value increased by 150%.
+
+S8: So, what's the value after the increase?
+
+S9 (Backtracking): Wait, maybe I need to think differently.
+
+S10: Because when they say "increased the value of the house by 150%", is that 150%
+of the original value, or 150% of the increased value?
+
+S11: In other words, is the value after repair equal to the original value plus 150%
+of the original value, or is it the original value plus 150% of the current
+value?
+
+S12: In business terms, when they say "an increase by 150%", that's usually 150% of
+the original value, not the current value.
+
+S13: So, in this case, the increase is 150% of the original repair cost?
+
+S14 (Backtracking): Wait, no.
+
+S15 (Backtracking): Wait, he paid \$50,000 for repairs.
+
+S16: So, the original value was \$80,000.
+
+S17: So, 150% of \$80,000 is \$120,000.
+
+S18: But he only paid \$50,000 for repairs.
+
+S19: So, the increase is 150% of the original value, but he only spent \$50,000 on
+it.
+
+S20: So, is the value of the house after repairs \$80,000 + 50,000 + 120,000?
+
+S21: That can't be.
+
+S22 (Backtracking): Wait, that would be \$250,000, which seems too high.
+
+S23 (Backtracking): Wait, maybe the increase is 150% on top of the original cost.
+
+S24: So, the increase is 150% of \$80,000, which is \$120,000.
+
+S25: So, the new value is \$80,000 + \$120,000 = \$200,000.
+
+S26 (Backtracking): Wait, but that seems a big jump.

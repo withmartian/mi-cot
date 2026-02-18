@@ -1,0 +1,27 @@
+S1: 1.
+
+S2: We can write down what Marissa's average speed needs to be.
+
+S3: The average speed is the total distance traveled divided by the total time.
+
+S4: We know the total distance is 12 miles and the total time is 3 hours.
+
+S5: So, we can write:  \$\frac{12 \text { miles }}{3 \text { hours }}=4 \text {
+miles per hour }\$  2.
+
+S6: We know that Marissa has already walked 6 miles in 2 hours.
+
+S7: We can write this in an equation:  \$4 \text { miles per hour } \times 2 \text {
+hours }=6 \text { miles }\$  3.
+
+S8: We need to find the distance Marissa has left to walk.
+
+S9: We can subtract 6 from 12 to get the distance left:  \$12 \text { miles }-6
+\text { miles }=6 \text { miles }\$  4.
+
+S10: We know that Marissa needs to walk 6 miles in 1 hour.
+
+S11: We can write this in an equation:  \$4 \text { miles per hour } \times 1 \text {
+hour }=6 \text { miles }\$  5.
+
+S12: We can write an equation to find the speed Marissa needs to walk:  \$\frac{6

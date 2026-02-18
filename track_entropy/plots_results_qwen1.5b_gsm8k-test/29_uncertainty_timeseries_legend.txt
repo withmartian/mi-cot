@@ -1,0 +1,76 @@
+S1: First, define variables.
+
+S2: Let x = cost of boots.
+
+S3: Let y = cost of high heels.
+
+S4 (Backtracking): Wait, but the problem says "two pairs of high heels that together cost five
+dollars less than the boots.
+
+S5: " So maybe the high heels together cost (x - 5).
+
+S6: That would make sense.
+
+S7: So y1 + y2 = x - 5.
+
+S8 (Backtracking): Wait, but the problem says "two pairs of high heels that together cost five
+dollars less than the boots.
+
+S9: " So the total cost of the two pairs of high heels is (x - 5).
+
+S10: So I can write that as y1 + y2 = x - 5.
+
+S11: Also, it's given that one pair of heels costs \$33, and the other costs twice as
+much.
+
+S12: So one pair is \$33, the other is 2 * 33 = \$66.
+
+S13: So the two pairs of high heels cost 33 + 66 = \$99.
+
+S14: So that means y1 + y2 = \$99.
+
+S15: But according to the first statement, y1 + y2 = x - 5.
+
+S16: So we can write x - 5 = 99.
+
+S17: So solving for x, we get x = 99 + 5 = 104.
+
+S18: So the boots cost \$104.
+
+S19 (Backtracking): Wait, but let me double-check.
+
+S20: Let me see if the problem is interpreted correctly.
+
+S21: The problem says: "two pairs of high heels that together cost five dollars less
+than the boots.
+
+S22: " So total cost of the two pairs of high heels is boots' cost minus 5.
+
+S23: So y1 + y2 = x - 5.
+
+S24: But also, it says one pair is \$33, the other is twice as much, so 33 and 66.
+
+S25: So total is 33 + 66 = 99, which is x - 5.
+
+S26: So x = 99 + 5 = 104.
+
+S27: So boots are \$104.
+
+S28: Yes, that makes sense.
+
+S29: So the answer should be \$104.
+
+S30: But wait, let me check the problem again.
+
+S31: "If one pair of heels costs \$33 and the other costs twice as much, how many
+dollars are the boots?
+
+S32: "  So the two pairs of high heels: 33 and 66.
+
+S33: Total is 99.
+
+S34: Which is equal to x - 5.
+
+S35: So x = 104.
+
+S36: Yes,

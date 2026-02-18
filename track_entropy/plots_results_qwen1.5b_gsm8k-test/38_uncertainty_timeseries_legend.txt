@@ -1,0 +1,74 @@
+S1: First, determine the total miles John runs each week.
+
+S2: Second, determine the total miles he runs each day.
+
+S3: Third, determine the speed at which he runs each day.
+
+S4: Fourth, determine the speed at which he runs on each day.
+
+S5 (Backtracking): Wait, no, the question is asking how fast he runs.
+
+S6: So, speed is distance over time.
+
+S7: So, he runs a certain number of miles each day, and each day he runs for a
+certain number of hours.
+
+S8: So, speed is miles per hour.
+
+S9: So, step one is to find the total miles he runs each week.
+
+S10: Step two is to find the total miles he runs each day.
+
+S11: Step three is to find the speed each day.
+
+S12 (Backtracking): Wait, but the question is asking for how fast he runs.
+
+S13: So, he runs for a certain number of hours each day, so to find the speed, we
+have to divide the total miles he runs each day by the number of hours he runs
+each day.
+
+S14: So, let's go step by step.
+
+S15: First, determine the total miles John runs each week.
+
+S16: John runs 60 miles a week.
+
+S17: That's given.
+
+S18: Second, determine the total miles he runs each day.
+
+S19: He runs 3 days a week, so total miles per day is 60 miles divided by 3 days,
+which is 20 miles per day.
+
+S20: Third, determine the speed at which he runs each day.
+
+S21: He runs 3 hours the first day and half as much the other two days he runs.
+
+S22: So, first day: 3 hours, 20 miles total.
+
+S23: Other two days: each day he runs half as much as the first day.
+
+S24 (Backtracking): Wait, half as much as the first day.
+
+S25: So, half of 3 hours is 1.
+
+S26: 5 hours per day for the other two days.
+
+S27: So, total miles for the other two days: 20 miles per day * 2 days = 40 miles.
+
+S28: Total miles for all three days: 20 + 40 = 60 miles, which matches the given
+total.
+
+S29 (Backtracking): Wait, so for the first day, 3 hours, 20 miles.
+
+S30: Second and third days: each day, 1.
+
+S31: 5 hours, 10 miles.
+
+S32 (Backtracking): Wait, because 20 miles per day divided by 2 is 10 miles per day.
+
+S33: So, each of the other two days, he runs 10 miles, but in 1.
+
+S34: 5 hours each.
+
+S35: So, speed for first

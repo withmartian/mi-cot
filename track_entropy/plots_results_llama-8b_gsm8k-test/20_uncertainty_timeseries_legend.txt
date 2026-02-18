@@ -1,0 +1,21 @@
+S1: What is the amount of water in the 10 liters of orange drink?
+
+S2: We can think of the orange drink as 6 liters of water and 4 liters of orange
+juice.
+
+S3: The 15 liters of pineapple drink is 9 liters of water and 6 liters of pineapple
+juice.
+
+S4: When I add the two drinks together, I get 15 liters of water and 10 liters of
+juice.
+
+S5: But I spill 1 liter of orange drink, so I have 24 liters of the two drinks
+together, but I have 1 liter less of juice.
+
+S6: How much water is in the 24 liters?
+
+S7: 15 liters of water.
+
+S8: So the answer is 15 liters of water.
+
+S9: The answer is 15 liters of water.

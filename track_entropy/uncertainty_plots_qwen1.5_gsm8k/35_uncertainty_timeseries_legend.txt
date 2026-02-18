@@ -1,0 +1,30 @@
+S1: First, the first 20 minutes, he scores 4 points.
+
+S2: In the second 20 minutes, he scores 25% more points.
+
+S3: So, in the second 20 minutes, he scores 4 * 1.
+
+S4: 25 = 5 points.
+
+S5: So, total points would be 4 + 5 = 9.
+
+S6 (Backtracking): Wait, but hold on.
+
+S7: I think I might be confusing the scoring here.
+
+S8: In ping pong, the scoring system is different from points in some games.
+
+S9: I remember that in ping pong, you get a point when you win a point, and the game
+is won when you have two more points than your opponent.
+
+S10: However, in the context of this problem, it says Mike scores points, so perhaps
+each point he gets is equivalent to one point in ping pong.
+
+S11: So, if in the first 20 minutes, he scores 4 points, and in the second 20
+minutes, he scores 25% more points, then 25% of 4 is 1, so 4 + 1 = 5 points.
+
+S12: Therefore, total points he scored would be 4 + 5 = 9 points.
+
+S13 (Backtracking): Wait, but let me think again.
+
+S14: Is the 25% increase

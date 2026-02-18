@@ -1,0 +1,44 @@
+S1: Step 1: Figure out the relationship between Suzy's iPhone and Ben's.
+
+S2: Step 2: Use that to find Ben's iPhone age.
+
+S3: Step 3: Use Ben's age to find Brandon's.
+
+S4: Step 4: Write equations for each step and solve.
+
+S5 (Backtracking): Wait, let me clarify the relationships first.
+
+S6: The problem states:  1.
+
+S7: Brandon's iPhone is four times as old as Ben's iPhone.
+
+S8: 2.
+
+S9: Ben's iPhone is two times older than Suzy's iPhone.
+
+S10: 3.
+
+S11: Suzy’s iPhone is 1 year old.
+
+S12: We need to find the age of Brandon’s iPhone.
+
+S13: Let me parse each sentence carefully.
+
+S14: First, it says that Suzy’s iPhone is 1 year old.
+
+S15: That’s straightforward.
+
+S16: Second, Ben's iPhone is two times older than Suzy's.
+
+S17: Since Suzy's is 1, Ben's is 2 * 1 = 2 years old.
+
+S18: Third, Brandon's iPhone is four times as old as Ben's.
+
+S19: Since Ben's is 2, then Brandon's is 4 * 2 = 8 years old.
+
+S20 (Backtracking): Wait, so that would make Brandon's iPhone 8 years old.
+
+S21: But let me think again, is "two times older" equivalent to doubling or something
+else?
+
+S22: For example, sometimes

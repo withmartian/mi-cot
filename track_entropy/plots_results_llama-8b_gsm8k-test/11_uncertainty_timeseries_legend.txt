@@ -1,0 +1,41 @@
+S1: First, we have to figure out how much each type of pastry cost.
+
+S2: We know that 3 dozen donuts cost \$68.
+
+S3: This means that each donut cost \$68 divided by 3 dozen or \$2.
+
+S4: 33.
+
+S5: So, we can write: 3 dozen donuts = 3 dozen x \$2.
+
+S6: 33 = \$6.
+
+S7: 99 2 dozen mini cupcakes cost \$80.
+
+S8: This means that each mini cupcake cost \$80 divided by 2 dozen or \$3.
+
+S9: 33.
+
+S10: So, we can write: 2 dozen mini cupcakes = 2 dozen x \$3.
+
+S11: 33 = \$6.
+
+S12: 66 6 dozen mini cheesecakes cost \$55.
+
+S13: This means that each mini cheesecake cost \$55 divided by 6 dozen or \$0.
+
+S14: 92.
+
+S15: So, we can write: 6 dozen mini cheesecakes = 6 dozen x \$0.
+
+S16: 92 = \$5.
+
+S17: 52 Let's now figure out the total cost.
+
+S18: We have to add the cost of the donuts, the cost of the mini cupcakes, and the
+cost of the mini cheesecakes.
+
+S19: To add, we have to add the number of donuts to the number of mini cupcakes and
+then add the number of mini cheesecakes.
+
+S20: So, we can

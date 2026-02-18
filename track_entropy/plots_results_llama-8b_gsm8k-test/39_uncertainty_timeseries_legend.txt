@@ -1,0 +1,24 @@
+S1: We know that Dana can skip at 3 miles per hour, but she can walk and run at
+different rates.
+
+S2: If we could find out how many miles she can walk and run in one hour, we could
+add the distances together to find out how far she could travel in six hours.
+
+S3: Let's write down the rates that Dana can walk, run, and skip in one hour.
+
+S4: \$3\$ miles per hour = rate of speed for skipping  Let's think about the
+distance that Dana can travel in one hour if she runs.
+
+S5: If Dana can run at a rate of speed four times faster than she can walk, we can
+say that the rate of speed for running is four times the rate of speed for
+walking.
+
+S6: We can write this relationship as a fraction.
+
+S7: \$\text { rate of speed for running }=\frac{4}{1}\text { rate of speed for
+walking }\$  If we know the rate of speed for walking and the rate of speed for
+running, we can find out the rate of speed for walking and running together.
+
+S8: \$\text { rate of speed for walking and running }=\text { rate of speed for
+walking }+\text { rate of speed for running }\$  \$\text { rate of speed for
+walking and running }=\text { rate of speed

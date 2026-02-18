@@ -1,0 +1,36 @@
+S1: First, we need to define variables.
+
+S2: Let b be the cost of the boots.
+
+S3: Let h1 be the cost of the first pair of high heels.
+
+S4: Let h2 be the cost of the second pair of high heels.
+
+S5: Now, according to the problem, the total cost of the two pairs of high heels is
+five dollars less than the cost of the boots.
+
+S6: So, h1 + h2 = b - 5.
+
+S7: We also know that one pair of high heels costs \$33, so h1 = 33.
+
+S8: The other pair costs twice as much, so h2 = 2 * h1 = 2 * 33 = 66.
+
+S9: Therefore, h1 + h2 = 33 + 66 = 99.
+
+S10: So, 99 = b - 5.
+
+S11: Solving for b, we add 5 to both sides: 99 + 5 = b.
+
+S12: So, b = 104.
+
+S13 (Backtracking): Wait, that seems like a big difference.
+
+S14: Let me check the calculations again.
+
+S15: h1 = 33, h2 = 66.
+
+S16: Sum is 99.
+
+S17: So, 99 = b - 5, so b = 104.
+
+S18: Yes,

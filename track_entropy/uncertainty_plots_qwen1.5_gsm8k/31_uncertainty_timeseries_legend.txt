@@ -1,0 +1,36 @@
+S1: First, I need to find the number each friend's guess is, then add them all
+together, and finally divide by the number of friends to get the average.
+
+S2: So, step one: find each friend's guess.
+
+S3: First friend: 80.
+
+S4: That's straightforward.
+
+S5: Second friend: says 20 more than half the first one.
+
+S6: So, half of 80 is 40, and 20 more than that is 60.
+
+S7: So, second friend is 60.
+
+S8: Third friend: says 25% more than the first one.
+
+S9: 25% of 80 is 20, so 80 + 20 is 100.
+
+S10: Third friend is 100.
+
+S11: Now, add them all together: 80 + 60 is 140, plus 100 is 240.
+
+S12 (Backtracking): Wait, but the question is about the average guess.
+
+S13: So, how many friends are there?
+
+S14: There are three friends: first, second, third.
+
+S15: So, we need to find the average of these three guesses.
+
+S16: So, total is 240, divided by 3.
+
+S17: 240 divided by 3 is 80.
+
+S18: So, the average

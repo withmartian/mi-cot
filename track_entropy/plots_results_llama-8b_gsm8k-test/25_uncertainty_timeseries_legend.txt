@@ -1,0 +1,43 @@
+S1: Let's say Marie ordered \$n\$ boxes of pizza.
+
+S2: We know that one box of pizza costs \$8.
+
+S3: 50.
+
+S4: We can write an expression for the cost of \$n\$ boxes of pizza.
+
+S5: \$8.
+
+S6: 50 \times n\$ We also know that the cost of the chicken meal is \$12, 5 packs of
+milk cost \$3 each, and 4 apples cost \$1.
+
+S7: 50 each.
+
+S8: \$12 + 5 \times 3 + 4 \times 1.
+
+S9: 50\$ We can write an expression for the total cost.
+
+S10: \$12 + 5 \times 3 + 4 \times 1.
+
+S11: 50 + 8.
+
+S12: 50 \times n\$ Now we can substitute \$n\$ with the number of boxes of pizza
+Marie ordered.
+
+S13: \$12 + 5 \times 3 + 4 \times 1.
+
+S14: 50 + 8.
+
+S15: 50 \times n\$ The total cost of everything Marie ordered is \$50.
+
+S16: \$50 = 12 + 5 \times 3 + 4 \times 1.
+
+S17: 50 + 8.
+
+S18: 50 \times n\$ We can simplify.
+
+S19: \$50 = 12 + 15 + 6 + 8.
+
+S20: 50 \times n\$ We can add.
+
+S21: \$50 =

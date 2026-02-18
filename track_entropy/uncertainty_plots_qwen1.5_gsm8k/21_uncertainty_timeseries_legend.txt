@@ -1,0 +1,37 @@
+S1: First, let's find out how old Samantha is now and how old Samantha was when she
+had the son.
+
+S2: Samantha is now 31, so when she had the son, she was 31 - x, where x is the age
+of the son.
+
+S3 (Backtracking): Wait, no.
+
+S4: Let me think again.
+
+S5: If the son is x years old now, then Samantha was x years old when the son was
+born.
+
+S6: So if Samantha is 31, then the son was x = 31 - 31 = 0?
+
+S7 (Backtracking): Wait, that can't be right.
+
+S8 (Backtracking): Wait, no.
+
+S9: Let me correct that.
+
+S10: If the son is x years old now, then when the son was born, Samantha was x years
+old.
+
+S11: Since Samantha is now 31, her age at the son's birth was 31 - x.
+
+S12: But that can't be, because if the son is x years old, then 31 - x is the son's
+age when he was born.
+
+S13 (Backtracking): Wait, perhaps I'm getting confused here.
+
+S14: Let me approach it differently.
+
+S15: If the son is x years old now, then Samantha's age when she had the son was x
+years old.
+
+S16: Since Samantha is now 31, her age at the son's birth was

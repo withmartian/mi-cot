@@ -1,0 +1,23 @@
+S1: First we need to find out how many hours John runs a week.
+
+S2: He runs 3 hours the first day and half as much the other two days he runs.
+
+S3: Half as much means 1.
+
+S4: 5 hours.
+
+S5: So, John runs 5 hours a week.
+
+S6: Next, we need to find out how many miles John runs a day.
+
+S7: He runs 60 miles a week and 3 days a week.
+
+S8: So, John runs 20 miles a day.
+
+S9: Now, we can find out how fast John runs.
+
+S10: He runs 20 miles in 5 hours.
+
+S11: So, he runs 4 miles an hour.
+
+S12: Final answer: 4 miles per hour

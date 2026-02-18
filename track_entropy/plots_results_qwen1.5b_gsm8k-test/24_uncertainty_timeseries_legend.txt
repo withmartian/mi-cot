@@ -1,0 +1,110 @@
+S1: Step 1: Determine the amount Kyle paid for the book.
+
+S2: Step 2: Determine the discount amount.
+
+S3: Step 3: Express the discount as a percentage.
+
+S4: Step 4: Calculate the original price.
+
+S5: Step 5: Final answer.
+
+S6: Let me try to work through this step by step.
+
+S7: Maybe I can make a mistake along the way, but I'll try to catch it.
+
+S8: Step 1: Kyle bought the book for \$19.
+
+S9: 50.
+
+S10: Okay, that's straightforward.
+
+S11: So the amount paid is \$19.
+
+S12: 50.
+
+S13: Step 2: This amount is after a 25% discount from the original price.
+
+S14: So, the \$19.
+
+S15: 50 is what you get after subtracting 25% from the original price.
+
+S16: Step 3: Expressing the discount as a percentage.
+
+S17: 25% discount.
+
+S18: So the discount is 25% of the original price.
+
+S19: Step 4: Calculate the original price.
+
+S20: Hmm, so we need to find the original price such that when you take away 25% of
+it, you get \$19.
+
+S21: 50.
+
+S22: So, let's denote the original price as P.
+
+S23: Then, Kyle paid 25% off P, so he paid 75% of P, right?
+
+S24: Because 100% - 25% = 75%.
+
+S25: So, Kyle paid 75% of P, and that's equal to \$19.
+
+S26: 50.
+
+S27: So, we can write the equation as:  0.
+
+S28: 75 * P = 19.
+
+S29: 50  We need to solve for P.
+
+S30: So, P = 19.
+
+S31: 50 / 0.
+
+S32: 75  Let me compute that.
+
+S33: 19.
+
+S34: 50 divided by 0.
+
+S35: 75.
+
+S36: Hmm, 0.
+
+S37: 75 is three-fourths, so dividing by 0.
+
+S38: 75 is same as multiplying by 4/3.
+
+S39: Alternatively, 19.
+
+S40: 50 divided by 0.
+
+S41: 75.
+
+S42: Let me do this step by step.
+
+S43: First, 0.
+
+S44: 75 goes into 19 how many times?
+
+S45: 0.
+
+S46: 75 times 20 is 15.
+
+S47: 0.
+
+S48: 75 times 26 is 19.
+
+S49: 5.
+
+S50 (Backtracking): Wait, 0.
+
+S51: 75 * 26 = 19.
+
+S52: 5.
+
+S53: So, 0.
+
+S54: 75 * 26 = 19.
+
+S55: 50.

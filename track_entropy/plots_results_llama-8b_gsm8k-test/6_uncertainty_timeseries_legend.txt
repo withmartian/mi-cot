@@ -1,0 +1,45 @@
+S1: Toulouse has twice as many sheep as Charleston.
+
+S2: Charleston has 4 times as many sheep as Seattle.
+
+S3: How many sheep do Toulouse, Charleston, and Seattle have together if Seattle has
+20 sheep?
+
+S4: I need to figure out how many sheep each city has.
+
+S5: Let's start with Seattle.
+
+S6: I know Seattle has 20 sheep.
+
+S7: Charleston has 4 times as many sheep as Seattle.
+
+S8: I can write 4 times 20 as \$4 \times 20\$.
+
+S9: That gives me 80 sheep for Charleston.
+
+S10: Charleston has 80 sheep.
+
+S11: Toulouse has twice as many sheep as Charleston.
+
+S12: I can write twice as many as 80 as \$2 \times 80\$.
+
+S13: That gives me 160 sheep for Toulouse.
+
+S14: Toulouse has 160 sheep.
+
+S15: Charleston has 80 sheep.
+
+S16: Seattle has 20 sheep.
+
+S17: Now I can find how many sheep they have together.
+
+S18: To find how many sheep they have together, I can add 160, 80, and 20.
+
+S19: I can write that as \$160 + 80 + 20\$.
+
+S20: That gives me 260 sheep.
+
+S21: Toulouse, Charleston, and Seattle have 260 sheep together if Seattle has 20
+sheep.
+
+S22: Final answer: 260 sheep  I can represent the problem with

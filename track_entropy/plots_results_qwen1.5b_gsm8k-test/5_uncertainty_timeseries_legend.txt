@@ -1,0 +1,56 @@
+S1: Step 1: Determine how many of each type of glass Kylar needs to buy.
+
+S2: Step 2: Calculate the total cost for each type.
+
+S3: Step 3: Add the two costs together to get the total amount Kylar needs to pay.
+
+S4: Step 4: Final answer.
+
+S5: Now, let's start solving this.
+
+S6: Step 1: Determine how many of each type of glass Kylar needs to buy.
+
+S7 (Backtracking): Wait, the problem says that every second glass costs 60% of the price.
+
+S8: So, does that mean that the second glass is 60%, the fourth is 60%, etc.
+
+S9: , or is it that every other glass is 60%?
+
+S10: I think it's the latter.
+
+S11: So, every second glass is 60%, meaning that the first glass is \$5, the second
+is \$3 (because 60% of \$5 is \$3), the third is \$5, the fourth is \$3, and so
+on.
+
+S12: So, for 16 glasses, that's 8 pairs.
+
+S13: Each pair consists of a \$5 and a \$3 glass.
+
+S14: Therefore, the total number of \$5 glasses is 8, and the total number of \$3
+glasses is 8.
+
+S15 (Backtracking): Wait, but 8 pairs times 16 glasses: no, wait, each pair is two glasses, so 16
+glasses would be 8 pairs.
+
+S16: So, each pair is one \$5 and one \$3.
+
+S17: So, total number of \$5 glasses is 8, and total number of \$3 glasses is 8.
+
+S18: But 8 + 8 is 16, which is correct.
+
+S19: Therefore, the total cost is (number of \$5 glasses) × \$5 + (number of \$3
+glasses) × \$3.
+
+S20: So, 8 × 5 = 40, and 8 × 3 = 24, so total cost is 40 + 24 = 64.
+
+S21 (Backtracking): Wait, that's 64.
+
+S22: But let me check again.
+
+S23 (Backtracking): Wait, 16 glasses: for each glass, if it's an odd position (1st, 3rd, 5th, etc.
+
+S24: ), it's \$5; if it's an even position (2nd, 4th, 6th, etc.
+
+S25: ), it's 60% of \$5, which is \$3.
+
+S26: So, for each pair, two glasses: one \$5

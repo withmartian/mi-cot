@@ -1,0 +1,70 @@
+S1: First, let's find out the total distance she has already walked.
+
+S2: She started with 4 miles, then 2 more miles, so total so far is 6 miles.
+
+S3: Therefore, she has 12 - 6 = 6 miles left to walk.
+
+S4: Okay, so she has 6 miles left, and she wants her average speed to be 4 miles per
+hour.
+
+S5: To find the total time she needs to complete the entire 12-mile trail, we can
+use the formula:  Average speed = Total distance / Total time.
+
+S6: Rearranged, Total time = Total distance / Average speed.
+
+S7: So, plugging in the numbers: Total time = 12 miles / 4 mph = 3 hours.
+
+S8 (Backtracking): Wait, so she wants to complete the entire trail in 3 hours.
+
+S9: She has already spent 1 hour on the first 4 miles, and another hour on the next
+2 miles, so that's a total of 2 hours.
+
+S10: Therefore, she has 3 - 2 = 1 hour left to complete the remaining 6 miles.
+
+S11: Hmm, so she needs to walk the remaining 6 miles in 1 hour.
+
+S12: That means her speed needs to be 6 miles per hour.
+
+S13: Let me double-check that.
+
+S14: If she walks 6 miles in 1 hour, then her speed is 6 mph.
+
+S15: Yes, that makes sense because 6 mph is equivalent to 6 miles per hour.
+
+S16: So, she needs to walk the remaining 6 miles at 6 mph to achieve her desired
+average speed.
+
+S17 (Backtracking): Wait, but let me verify another way.
+
+S18: Maybe by calculating her total distance and average speed.
+
+S19: She has 12 miles total.
+
+S20: She wants to have an average speed of 4 mph, so she needs to take 12 / 4 = 3
+hours in total.
+
+S21: She's already taken 2 hours, so she has 1 hour left.
+
+S22: She has 6 miles left, so 6 miles in 1 hour is 6 mph.
+
+S23: That seems correct.
+
+S24: Alternatively, maybe we can check by calculating her speed for each segment.
+
+S25: First segment: 4 miles in 1 hour.
+
+S26: So, speed is 4 mph.
+
+S27: Second segment: 2 miles in 1 hour.
+
+S28: So, speed is 2 mph.
+
+S29: Third segment: 6 miles left.
+
+S30: She has 1 hour left.
+
+S31: So, speed is 6 mph.
+
+S32: Yes, that seems consistent.
+
+S33: Alternatively, maybe the question is about the

@@ -1,0 +1,76 @@
+S1: First, what is Dana's walking speed?
+
+S2: Second, what is Dana's running speed?
+
+S3: Third, what is Dana's skipping speed?
+
+S4: Fourth, verify that the skipping speed is half the running speed.
+
+S5: Fifth, determine how many miles she can travel in six hours, given she spends
+one-third of the time running and two-thirds walking.
+
+S6: Let's take it step by step.
+
+S7: First, what is Dana's walking speed?
+
+S8: Second, what is Dana's running speed?
+
+S9: Third, what is Dana's skipping speed?
+
+S10: Fourth, check if skipping is half of running.
+
+S11: Fifth, compute total miles.
+
+S12: First, let's get the walking speed.
+
+S13: It says Dana can run at a rate of four times faster than she can walk.
+
+S14: Hmm, that's a bit ambiguous.
+
+S15: So, when it says "four times faster," does that mean four times the speed, or
+four times the rate?
+
+S16: In sports, "faster" usually refers to speed.
+
+S17: So, four times the walking speed is four times faster.
+
+S18: So, let's denote:  Walking speed = W  Running speed = 4W  Yes, that makes sense.
+
+S19: So, first question: What is Dana's walking speed?
+
+S20: To find W, we need to relate it to the skipping speed.
+
+S21: It says that Dana can skip at a rate of speed that is half as fast as she can
+run.
+
+S22: So, skipping speed = (1/2) * running speed  Given that she can skip at 3 mph, so
+3 = (1/2) * running speed.
+
+S23: Therefore, running speed = 3 * 2 = 6 mph.
+
+S24: So, running speed is 6 mph.
+
+S25: Therefore, walking speed is W = 6 / 4 = 1.
+
+S26: 5 mph.
+
+S27: So, walking speed is 1.
+
+S28: 5 mph.
+
+S29: Second question: What is Dana's running speed?
+
+S30: We just found that running speed is 6 mph.
+
+S31: Third question: What is Dana's skipping speed?
+
+S32: It's given as 3 mph, and we can verify that 3 is half of 6, so that's correct.
+
+S33: Fourth question: Check if skipping speed is half of running speed.
+
+S34: 3 is half of 6, so yes, that's correct.
+
+S35: Fifth question: Determine how many miles she can travel in six hours, given she
+spends one-third of the time running and two-thirds walking.
+
+S36: So, time spent running = (1/3)*6 = 2 hours  Time spent walking = (2

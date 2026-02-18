@@ -1,0 +1,75 @@
+S1: First, identify the regular rate and overtime rate.
+
+S2: Step 1: Determine the regular hourly rate.
+
+S3: Step 2: Determine the overtime hourly rate.
+
+S4: Step 3: Calculate the total earnings for the first 40 hours.
+
+S5: Step 4: Determine the number of overtime hours she worked.
+
+S6: Step 5: Calculate the total earnings for the overtime hours.
+
+S7: Step 6: Sum the two amounts to get the total earnings for the week.
+
+S8: Final answer: __________ Okay, so let's see.
+
+S9: Eliza works for 45 hours this week.
+
+S10: I need to figure out how much she earned for these hours.
+
+S11: The first 40 hours are regular, and the rest are overtime.
+
+S12: Regular pay is \$10 per hour, and overtime is 1.
+
+S13: 2 times that rate.
+
+S14: So, let me break this down step by step.
+
+S15: First, I need to find out her regular hourly rate.
+
+S16: The problem says her rate per hour for the first 40 hours is \$10.
+
+S17: So, that means regular rate is \$10 per hour.
+
+S18: That's straightforward.
+
+S19: Next, her overtime rate is 1.
+
+S20: 2 times her regular hourly rate.
+
+S21: So, to calculate that, I'll multiply \$10 by 1.
+
+S22: 2.
+
+S23: Let me write that down:  Regular rate = \$10/hour  Overtime rate = 1.
+
+S24: 2 * Regular rate = 1.
+
+S25: 2 * \$10/hour = \$12/hour  Okay, so her overtime pay is \$12 per hour.
+
+S26: Got that.
+
+S27: Now, Eliza worked for 45 hours.
+
+S28: The first 40 hours are at the regular rate, and the remaining 5 hours are
+overtime.
+
+S29: So, I need to calculate her earnings for the first 40 hours and then for the
+last 5 hours.
+
+S30: First, let's calculate her earnings for the first 40 hours:  Regular earnings =
+40 hours * \$10/hour = \$400  Alright, that seems simple.
+
+S31: She earned \$400 for the first 40 hours.
+
+S32: Now, for the overtime hours.
+
+S33: She worked 5 hours beyond the 40-hour mark.
+
+S34: So, her overtime earnings would be:  Overtime earnings = 5 hours * \$12/hour =
+\$60  Let me verify that: 5 * 12 is indeed 60.
+
+S35: So, that's correct.
+
+S36: Now, to find her total earnings

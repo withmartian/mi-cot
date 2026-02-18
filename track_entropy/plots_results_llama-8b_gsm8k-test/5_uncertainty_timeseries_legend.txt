@@ -1,0 +1,23 @@
+S1: • Kylar went to the store to buy 16 glasses.
+
+S2: • One glass costs \$5.
+
+S3: • Every second glass costs 60% of the price of a glass.
+
+S4: • We need to find out how much Kylar will pay for 16 glasses.
+
+S5: Let's use the formula of the sum of an arithmetic progression:  S_n =
+\frac{n(a_1 + a_n)}{2}  where S_n - sum of the first n terms, a_1 - the first
+term, a_n - the last term, n - the number of terms.
+
+S6: The first glass costs 5 dollars, and the second glass costs 60% of 5 dollars =
+0.
+
+S7: 6 × 5 = 3 dollars.
+
+S8: This means that the difference between the first term and the second term is 5 -
+3 = 2 dollars.
+
+S9: Let's calculate the sum of the first 16 terms of the arithmetic progression:
+S_{16} = \frac{16(5 + 3)}{2} = \frac{16 × 8}{2} = 64  Kylar will pay 64 dollars
+for 16 glasses.

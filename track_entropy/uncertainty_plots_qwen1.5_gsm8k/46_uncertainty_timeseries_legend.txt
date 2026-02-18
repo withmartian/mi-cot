@@ -1,0 +1,38 @@
+S1: Alright, so Candice starts with 80 post-it notes.
+
+S2: She goes to the store and buys a package, which I guess is another set of post-
+it notes.
+
+S3: Then, at work, she puts one on each of 220 cups of coffee.
+
+S4: So, she uses 220 notes for the coffee, but she has some remaining.
+
+S5: Then, overall, she has 23 left.
+
+S6: So, I need to find out how many were in the package she bought.
+
+S7 (Backtracking): Wait, let me make sure I understand the problem.
+
+S8: She starts with 80.
+
+S9: Then, she goes to the store and buys a package.
+
+S10: So, that package has some number of post-it notes.
+
+S11: Let's say the package has P notes.
+
+S12: So, after purchasing, she has 80 + P.
+
+S13: Then, at work, she puts one on each of 220 cups.
+
+S14: So, she uses 220 notes, so the remaining after that would be 80 + P - 220.
+
+S15: And the problem says she had 23 remaining overall.
+
+S16: So, 80 + P - 220 = 23.
+
+S17: So, I can solve for P.
+
+S18 (Backtracking): Wait, but hold on a second.
+
+S19: Did she

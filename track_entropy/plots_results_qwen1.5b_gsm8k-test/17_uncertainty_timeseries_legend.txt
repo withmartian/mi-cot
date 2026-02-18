@@ -1,0 +1,59 @@
+S1: First, find the total number of hours she works each week.
+
+S2 (Backtracking): Wait, so she has two jobs: teacher and cheerleading coach.
+
+S3: So, for each week, she works 35 hours as a teacher and 15 hours as a coach.
+
+S4: So, total weekly hours: 35 + 15 = 50 hours.
+
+S5: Hmm, that's interesting.
+
+S6: So, in a week, she's working 50 hours.
+
+S7: But she gets paid different rates for different jobs.
+
+S8: So, for teacher, it's \$20 per hour.
+
+S9: For coach, it's \$30 per hour.
+
+S10: So, her weekly earnings would be: (35 hours * \$20) + (15 hours * \$30).
+
+S11: Let me calculate that.
+
+S12: 35 * 20: 35 * 20 is 700.
+
+S13: 15 * 30: 15 * 30 is 450.
+
+S14: So, her weekly salary: 700 + 450 = 1150.
+
+S15: So, \$1150 per week.
+
+S16: But she works 50 weeks a year.
+
+S17: So, her annual salary is 1150 * 50.
+
+S18: Let me compute that.
+
+S19: 1150 * 50: 1150 * 5 is 5750, so times 10 is 57500.
+
+S20: So, \$57500 per year.
+
+S21 (Backtracking): Wait, let me verify.
+
+S22: Alternatively, compute it as:  Total hours per year: (35 + 15) * 50.
+
+S23: 35 + 15 is 50, so 50 * 50 = 2500 hours.
+
+S24 (Backtracking): Wait, that can't be right because 35 + 15 is 50, so 50 * 50 is 2500.
+
+S25 (Backtracking): Wait, no, that would be 50 weeks, each with 50 hours.
+
+S26 (Backtracking): Wait, that seems different.
+
+S27 (Backtracking): Wait, no, 35 hours as a teacher, 15 as a coach, so each week 50 hours.
+
+S28: 50 weeks per year: 50 * 50 = 2500.
+
+S29: But 35 + 15 is 50, so 50 hours per week.
+
+S30 (Backtracking): Wait, so 50 *

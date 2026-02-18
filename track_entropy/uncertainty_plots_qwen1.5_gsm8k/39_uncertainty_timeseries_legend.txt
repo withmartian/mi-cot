@@ -1,0 +1,41 @@
+S1: Step 1: Determine her walking speed.
+
+S2: Step 2: Determine her running speed.
+
+S3: Step 3: Determine her skipping speed.
+
+S4: Step 4: Check if the skipping speed matches the given.
+
+S5: Step 5: Calculate the distance for running and walking.
+
+S6: Step 6: Sum them to get total distance.
+
+S7: Step 7: Check if the total time adds up to six hours.
+
+S8: Now, let's proceed.
+
+S9: Step 1: Determine her walking speed.
+
+S10: She can run at a rate four times faster than she can walk.
+
+S11: So, running speed = 4 * walking speed.
+
+S12: Let's denote walking speed as W.
+
+S13: So, Running speed R = 4W.
+
+S14: Step 2: Determine her running speed.
+
+S15: She can skip at a rate half as fast as she can run.
+
+S16: Skipping speed S = (1/2) * R.
+
+S17: Given that she skips at 3 mph, so 3 = (1/2) * R.
+
+S18: Therefore, R = 3 * 2 = 6 mph.
+
+S19: So, running speed is 6 mph.
+
+S20: Step 3: Determine her walking speed.
+
+S21: Since R = 4W, and R = 6, then 6 = 4W => W = 6 / 4 = 1.

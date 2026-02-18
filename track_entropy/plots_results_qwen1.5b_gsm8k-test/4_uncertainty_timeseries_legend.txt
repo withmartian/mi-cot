@@ -1,0 +1,59 @@
+S1: First, Wendi feeds each chicken three cups of feed per meal.
+
+S2: Since each meal has three separate cups, each chicken gets three cups in each
+meal, and each meal is a different time of day.
+
+S3 (Backtracking): Wait, actually, the problem says she feeds each chicken three cups of mixed
+chicken feed every day.
+
+S4: It says that the feed is mixed, containing seeds, mealworms, and vegetables.
+
+S5: So, the feed is mixed, but Wendi feeds each chicken three cups of feed.
+
+S6 (Backtracking): Wait, perhaps she feeds each chicken three cups each, but she gives the chickens
+their feed in three separate meals each day.
+
+S7 (Backtracking): Wait, the problem says, " feeds each of her chickens three cups of mixed chicken
+feed, containing seeds, mealworms and vegetables to help keep them healthy.
+
+S8: She gives the chickens their feed in three separate meals.
+
+S9: In the morning, she gives her flock of chickens 15 cups of feed.
+
+S10: In the afternoon, she gives her chickens another 25 cups of feed.
+
+S11: How many cups of feed does she need to give her chickens in the final meal of
+the day if the size of Wendi's flock is 20 chickens?
+
+S12: "  So, each chicken gets three cups of feed each day, but she feeds the entire
+flock in three separate meals.
+
+S13 (Backtracking): Wait, but the problem says, " feeds each of her chickens three cups of mixed
+chicken feed, containing seeds, mealworms and vegetables to help keep them
+healthy.
+
+S14: She gives the chickens their feed in three separate meals.
+
+S15: In the morning, she gives her flock of chickens 15 cups of feed.
+
+S16: In the afternoon, she gives her chickens another 25 cups of feed.
+
+S17: How many cups of feed does she need to give her chickens in the final meal of
+the day if the size of Wendi's flock is 20 chickens?
+
+S18: "  So, each chicken gets three cups of feed each day.
+
+S19: The flock is 20 chickens.
+
+S20: So, total feed needed per day is 20 * 3 = 60 cups.
+
+S21: But she's giving the flock in three separate meals.
+
+S22: So, each meal is a different time, each serving the entire flock.
+
+S23: So, the total feed per day is 60 cups.
+
+S24 (Backtracking): Wait, but the problem says she gives the flock of chickens 15 cups in the
+morning, 25 cups in the afternoon, so total so far is 15 + 25 = 40 cups.
+
+S25: So, how many cups does she need in

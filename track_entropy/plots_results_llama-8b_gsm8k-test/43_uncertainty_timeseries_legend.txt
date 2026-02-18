@@ -1,0 +1,24 @@
+S1: Step 1: Determine how many calories you can eat.
+
+S2: We know that your daily calorie target is 2000.
+
+S3: You have already consumed 1800 calories, so you can eat 2000 - 1800 = 200
+calories.
+
+S4: Step 2: Determine how many servings of chips you can eat.
+
+S5: We know that there are 5 servings in a 300g bag of chips.
+
+S6: So, we can eat \$\frac{200}{250}\$ of a serving.
+
+S7: \$\frac{200}{250}\$ is a fraction that is equivalent to \$\frac{8}{10}\$, so we
+can eat \$\frac{8}{10}\$ of a serving.
+
+S8: There are 5 servings in a bag, so we can eat \$\frac{8}{10}\$ of a serving in
+\$\frac{5}{\frac{8}{10}}\$ of a bag, or \$\frac{5}{\frac{8}{10}} \times
+\frac{10}{5} = \frac{10}{\frac{8}{5}} = \frac{10}{\frac{4}{1}} = 2 \frac{1}{2}\$
+servings.
+
+S9: Step 3: Determine how many grams of chips you can eat.
+
+S10: We know that there are 5 servings

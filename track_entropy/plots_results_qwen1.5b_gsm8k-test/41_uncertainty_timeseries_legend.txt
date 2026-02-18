@@ -1,0 +1,58 @@
+S1: First, what is the distance that the dragon can reach with its fire?
+
+S2: It's 1000 feet.
+
+S3: Polly can throw the javelin for a certain distance.
+
+S4: Let me note down the key details:  - When Polly is not holding the gemstone, she
+can throw the javelin 400 feet.
+
+S5: - When Polly is holding the gemstone, she can throw the javelin three times
+farther than when not holding it.
+
+S6: So, the distance when holding the gemstone is 3 times 400 feet.
+
+S7 (Backtracking): Wait, so 400 feet is the distance when not holding, and when holding, it's 3
+times that.
+
+S8: So, 3 * 400 = 1200 feet.
+
+S9: But wait, the dragon is at 1000 feet.
+
+S10: So, if Polly throws the javelin 1200 feet when holding the gemstone, she would
+be 1200 - 1000 = 200 feet outside the reach of the dragon's flames.
+
+S11 (Backtracking): Wait, is that correct?
+
+S12 (Backtracking): Wait, let me think again.
+
+S13: If the dragon can reach 1000 feet, then Polly can throw it 1200 feet when she
+holds the gemstone.
+
+S14: So, 1200 feet is beyond 1000 feet, meaning she is 200 feet beyond the dragon's
+reach.
+
+S15: So, the distance outside the reach would be 1200 - 1000 = 200 feet.
+
+S16 (Backtracking): Wait, that seems straightforward, but let me verify.
+
+S17 (Backtracking): Wait, another way: when not holding the gemstone, she can throw it 400 feet.
+
+S18: When she holds it, she can throw it 3 times as far, so 1200 feet.
+
+S19: So, compared to the dragon's reach of 1000 feet, she is 1200 - 1000 = 200 feet
+beyond.
+
+S20: So, the answer should be 200 feet.
+
+S21 (Backtracking): Wait, but let me make sure that I'm not missing any other factors.
+
+S22: Is there any distance that the dragon can reach beyond that?
+
+S23: I think not, as the dragon can only reach up to 1000 feet.
+
+S24: So, any distance beyond that is 200 feet.
+
+S25: So, yeah, I think the answer is 200 feet.
+
+S26 (Backtracking): Wait, but hold

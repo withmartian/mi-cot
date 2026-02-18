@@ -1,0 +1,37 @@
+S1: First, the number of eggs in a day is 16.
+
+S2: Number of eggs eaten for breakfast: 3 per day.
+
+S3: Number of eggs baked for friends: 4 per day.
+
+S4: She sells the remainder at \$2 per egg.
+
+S5: So, first, let's calculate how many eggs she has in a day: 16.
+
+S6: Now, let's calculate how many eggs she eats for breakfast every day: 3.
+
+S7: Then, she bakes muffins for friends every day with 4 eggs.
+
+S8: So, total eggs eaten or used for breakfast and friends every day: 3 + 4 = 7.
+
+S9: Therefore, the number of eggs remaining for sale is 16 - 7 = 9.
+
+S10: She sells these 9 eggs at \$2 each.
+
+S11: So, total money made every day is 9 * 2 = \$18.
+
+S12 (Backtracking): Wait, let me check my calculations again.
+
+S13: Number of eggs per day: 16.
+
+S14: Eaten for breakfast: 3 per day.
+
+S15: Eaten for friends: 4 per day.
+
+S16: Total used for breakfast and friends: 3 + 4 = 7.
+
+S17: Thus, remaining eggs: 16 - 7 = 9.
+
+S18: She sells these 9 eggs at \$2 each.
+
+S19: So

@@ -1,0 +1,33 @@
+S1: Step 1: First, we have to figure out the ages of Raymond and Samantha.
+
+S2: Step 2: Then, we have to figure out how old Raymond was when his son was born.
+
+S3: Step 3: Finally, we have to figure out how many years ago Raymond's son was
+born.
+
+S4: Solve the problem.
+
+S5: Show your reasoning step by step and finish with 'Final answer: <number>'.
+
+S6: Question: Raymond and Samantha are cousins.
+
+S7: Raymond was born 6 years before Samantha.
+
+S8: Raymond had a son at the age of 23.
+
+S9: If Samantha is now 31, how many years ago was Raymond's son born?
+
+S10: Let's think step by step.
+
+S11: Step 1: First, we have to figure out the ages of Raymond and Samantha.
+
+S12: Step 2: Then, we have to figure out how old Raymond was when his son was born.
+
+S13: Step 3: Finally, we have to figure out how many years ago Raymond's son was
+born.
+
+S14: I'm not sure if I'm understanding this correctly but is it 6 years ago because
+Raymond was 23 when he had his son and Samantha was 31 when she was born so
+23-6=17?
+
+S15: I'm not sure if I'm understanding this correctly but is it 6 years ago because

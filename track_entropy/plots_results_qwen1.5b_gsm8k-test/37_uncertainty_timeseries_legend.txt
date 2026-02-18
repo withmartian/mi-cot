@@ -1,0 +1,64 @@
+S1: First, I need to find how much money John has after selling his lego sets.
+
+S2: So, he sells each lego set for \$15.
+
+S3: He has 13 lego sets.
+
+S4: So, the total money from selling lego sets is 13 * 15.
+
+S5: I should calculate that.
+
+S6: 13 times 15: 10*15=150, 3*15=45, so 150+45=195.
+
+S7: So, \$195.
+
+S8: He sells all 13 lego sets for \$195.
+
+S9: Then, he buys 8 video games, each for \$20.
+
+S10: So, total spent on video games is 8 * 20.
+
+S11: 8*20=160.
+
+S12: He buys 8 games, spends \$160.
+
+S13: He also has \$5 left after all this.
+
+S14: So, his total money after selling lego and buying games is:  He has \$195 from
+selling lego.
+
+S15: He spends \$160 on games, so \$195 - \$160 = \$35.
+
+S16: But he has \$5 left, so that must mean he had more money initially.
+
+S17 (Backtracking): Wait, maybe I'm missing something.
+
+S18 (Backtracking): Wait, let me think again.
+
+S19 (Backtracking): Wait, the question says he sells all his lego sets and uses the money to buy
+video games and has \$5 left.
+
+S20: So, the total money he has is: money from selling lego sets, minus the money
+spent on games, equals \$5.
+
+S21: So, money from selling lego sets: 13*15=195.
+
+S22: Money spent on games: 8*20=160.
+
+S23: Total after buying games: 195 - 160 = 35.
+
+S24: But he has \$5 left, which means he started with more money.
+
+S25 (Backtracking): Wait, maybe I need to figure out how much money he started with.
+
+S26 (Backtracking): Wait, the problem says: He plans to sell all his toys and use the money to buy
+video games.
+
+S27: He has 13 lego sets and sells them for \$15 each.
+
+S28: He ends up buying 8 video games for \$20 each and has \$5 left.
+
+S29: So, the total money he has is: from selling legos, he spends on games, and has
+\$5 left.
+
+S30: So, total after selling legos: 195

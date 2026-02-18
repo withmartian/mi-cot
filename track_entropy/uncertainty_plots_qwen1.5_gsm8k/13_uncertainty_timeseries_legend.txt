@@ -1,0 +1,33 @@
+S1: Step 1: Let’s denote the initial number of vacuum cleaners Melanie had as x.
+
+S2: Step 2: She sold a third of her vacuum cleaners at the green house.
+
+S3: So, she sold (x/3) at green house.
+
+S4: Step 3: Then, she sold 2 more at the red house.
+
+S5: So, she sold 2 more.
+
+S6: Step 4: Then, she sold half of what was left at the orange house.
+
+S7: After all this, she has 5 vacuum cleaners left.
+
+S8: We need to find x.
+
+S9: We can set up an equation accordingly.
+
+S10: But wait, let me double-check.
+
+S11: So, step 2: sold x/3, step 3: sold 2, so total sold so far is x/3 + 2.
+
+S12: Then, what's left is x - (x/3 + 2) = (2x/3 - 2).
+
+S13: Then, she sold half of that at the orange house.
+
+S14: So, sold (2x/3 - 2)/2.
+
+S15: So, total sold so far is x/3 + 2 + (2x/3 - 2)/2.
+
+S16 (Backtracking): Wait, this seems a bit complicated.
+
+S17: Alternatively, maybe we can think in terms of the quantities she sold at each

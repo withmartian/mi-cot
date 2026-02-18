@@ -1,0 +1,65 @@
+S1: First, list the guesses: 80, [something], [something else].
+
+S2: Then, add them up, divide by 3, and get the average.
+
+S3: But wait, the problem says: "A third says 25% more than the first one.
+
+S4: " So, perhaps I need to calculate each guess step by step.
+
+S5: So, let me try that.
+
+S6: First guess: 80.
+
+S7: Second guess: 20 more than half the first one.
+
+S8: Half of 80 is 40, then 20 more is 60.
+
+S9: Third guess: 25% more than the first one.
+
+S10: 25% of 80 is 20, so 80 + 20 = 100.
+
+S11: Now, the three guesses are 80, 60, 100.
+
+S12: Adding them up: 80 + 60 + 100 = 240.
+
+S13: Divide by 3: 240 / 3 = 80.
+
+S14: So the average guess is 80.
+
+S15 (Backtracking): Wait, but let me check my math.
+
+S16: Half of 80 is 40, adding 20 gives 60.
+
+S17: 25% of 80 is 20, so 80 + 20 is 100.
+
+S18: Adding 80 + 60 + 100: 80 + 60 is 140, plus 100 is 240.
+
+S19: 240 divided by 3 is indeed 80.
+
+S20: Alternatively, 80, 60, 100.
+
+S21: Compute the average:  Average = (80 + 60 + 100)/3 = 240/3 = 80.
+
+S22: So yes, the average is 80.
+
+S23: But wait, let me see if the problem is about average or something else.
+
+S24: The problem says: "What is their average guess?
+
+S25: ".
+
+S26: So, as per my calculation, it's 80.
+
+S27 (Backtracking): Wait, but another way: Let me recast each step.
+
+S28: First guess: 80.
+
+S29: Second guess: 20 more than half the first one.
+
+S30: Half of 80 is 40, 40 + 20 = 60.
+
+S31: Correct.
+
+S32: Third guess: 25% more than the first one.
+
+S33: 25% of 8

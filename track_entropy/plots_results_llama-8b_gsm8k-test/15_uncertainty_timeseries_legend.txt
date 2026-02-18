@@ -1,0 +1,28 @@
+S1: We have to calculate the expected profit for the merchant.
+
+S2: The expected profit is the weighted average of the two possible profits.
+
+S3: We have to determine the probability of the merchant choosing either jewelry or
+electronic gadgets.
+
+S4: We know that the probability of choosing jewelry is 0.
+
+S5: 5 because we have no reason to favor one choice over the other.
+
+S6: The probability of choosing electronic gadgets is also 0.
+
+S7: 5.
+
+S8: Now we can calculate the expected profit as follows:  Expected profit = 0.
+
+S9: 5(\$5,000)(1.
+
+S10: 025) + 0.
+
+S11: 5(\$8,000)(1.
+
+S12: 012) = 0.
+
+S13: 5(\$5,250) + 0.
+
+S14: 5(\$8,160) = \$6,705  Final answer: \$6,705

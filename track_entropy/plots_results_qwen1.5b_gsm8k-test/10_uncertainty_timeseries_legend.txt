@@ -1,0 +1,75 @@
+S1: First, determine the downloads in each month.
+
+S2: First month: 60.
+
+S3: Second month: three times as many as the first.
+
+S4: So 60 * 3.
+
+S5: Third month: reduced by 30% from the second month.
+
+S6: So, we need to calculate 70% of the second month's downloads.
+
+S7: Then, sum all three months' downloads to get the total.
+
+S8: Okay, let's do the math step by step.
+
+S9: First, the first month is straightforward: 60 downloads.
+
+S10: Second month: three times the first month.
+
+S11: So 60 * 3.
+
+S12: Let me calculate that: 60 * 3 is 180.
+
+S13: So, second month has 180 downloads.
+
+S14: Third month: it's reduced by 30% from the second month.
+
+S15: So, we need to find 70% of 180, because 100% - 30% = 70%.
+
+S16: Calculating 70% of 180: 180 * 0.
+
+S17: 7.
+
+S18: Let's compute that step by step.
+
+S19: 180 * 0.
+
+S20: 7 can be broken down into 180 * 0.
+
+S21: 7 = (100 * 0.
+
+S22: 7) + (80 * 0.
+
+S23: 7) = 70 + 56 = 126.
+
+S24: So, the third month has 126 downloads.
+
+S25: Now, we have all three months' downloads: 60, 180, and 126.
+
+S26: To find the total downloads over the three months, we add them up.
+
+S27: 60 + 180 + 126.
+
+S28: Let's compute this step by step.
+
+S29: First, 60 + 180 = 240.
+
+S30: Then, 240 + 126.
+
+S31: Let's add 240 + 126.
+
+S32: 240 + 126: 200 + 100 is 300, and 40 + 26 is 66.
+
+S33: So 300 + 66 is 366.
+
+S34: So, the total downloads over the three months are 366.
+
+S35 (Backtracking): Wait, let me verify each step to make sure I didn't make any calculation errors.
+
+S36: First month: 60 downloads.
+
+S37: Correct.
+
+S38: Second month: three times as many
