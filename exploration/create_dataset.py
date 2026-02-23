@@ -1,363 +1,35 @@
-# import torch
-# import torch.nn as nn
-# import torch.nn.functional as F
-# import torch.optim as optim
-# import numpy as np
-# import pickle
-# import os
-# import re
-# import gc
-# import matplotlib.pyplot as plt
-# from transformers import AutoTokenizer, AutoModelForCausalLM
-# from transformer_lens import HookedTransformer
-# from datasets import load_dataset
-# from tqdm import tqdm
+"""
+generate_dataset.py
 
-# device = "cuda" if torch.cuda.is_available() else "cpu"
-# checkpoint_dir = "rpc_dataset_layer28"  
-# os.makedirs(checkpoint_dir, exist_ok=True)
-# dtype = torch.bfloat16
-# SKIP_CACHE = False
+Generates CoT reasoning dataset with hidden state extractions.
+Supports resuming from existing files and appending new problems.
 
-# model_ft_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B" 
-# model_base_name = "Qwen/Qwen2.5-14B"
-# dataset_path = "openai/gsm8k"
-# number_cots = 500
+Usage:
+    python generate_dataset.py \
+        --model deepseek-ai/DeepSeek-R1-Distill-Qwen-14B \
+        --base Qwen/Qwen2.5-14B \
+        --dataset HuggingFaceH4/MATH-500 \
+        --layer 28 \
+        --n 500 \
+        --out /path/to/output \
+        --validate 20
+"""
 
-# ANCHOR_CLASSES = {
-#     "PROBLEM_SETUP": "Parsing or rephrasing the problem",
-#     "PLAN_GENERATION": "Stating or deciding on a plan of action",
-#     "FACT_RETRIEVAL": "Recalling facts, formulas, problem details",
-#     "ACTIVE_COMPUTATION": "Algebra, calculations, or manipulations",
-#     "UNCERTAINTY_MANAGEMENT": "Expressing confusion, re-evaluating",
-#     "RESULT_CONSOLIDATION": "Aggregating intermediate results",
-#     "SELF_CHECKING": "Verifying previous steps, checking",
-#     "FINAL_ANSWER_EMISSION": "Explicitly stating the final answer"
-# }
-
-
-# print(f"Model: {model_ft_name}")
-# print(f"Checkpoint: {checkpoint_dir}")
-
-# print("PHASE 1: LOAD MODELS & GENERATE CoTs")
-
-# print("Loading BASE model...", flush=True)
-# tokenizer = AutoTokenizer.from_pretrained(model_base_name, trust_remote_code=True)
-# hf_model = AutoModelForCausalLM.from_pretrained(
-#     model_ft_name, torch_dtype=dtype, device_map="cuda"
-# )
-# model_tl = HookedTransformer.from_pretrained_no_processing(
-#     model_base_name, hf_model=hf_model, device=device, dtype=dtype
-# )
-# del hf_model
-# torch.cuda.empty_cache()
-# gc.collect()
-# print("Finetuned Model loaded\n")
-
-# def split_into_sentences(text):
-#     sentences = re.split(r'(?<=[.!?])\s+', text)
-#     return [s.strip() for s in sentences if s.strip() and len(s.strip()) > 3]
-
-# def get_sentence_token_positions(text, sentences, tokenizer):
-#     input_ids = tokenizer.encode(text, return_tensors="pt").to(device)
-#     token_text = tokenizer.decode(input_ids[0], skip_special_tokens=True)
-    
-#     positions = []
-#     current_pos = 0
-#     token_offset = 0
-#     for sent in sentences:
-#         start = token_text.find(sent, current_pos)
-#         if start == -1:
-#             positions.append(set())
-#             continue
-#         sent_tokens = tokenizer.encode(sent, add_special_tokens=False)
-#         token_positions = set(range(token_offset, token_offset + len(sent_tokens)))
-#         positions.append(token_positions)
-#         token_offset += len(sent_tokens)
-#         current_pos = start + len(sent)
-#     return positions
-
-# def kl_divergence_batch(logits_p, logits_q):
-#     log_p = F.log_softmax(logits_p, dim=-1)
-#     log_q = F.log_softmax(logits_q, dim=-1)
-#     p = F.softmax(logits_p, dim=-1)
-#     kl = torch.sum(p * (log_p - log_q), dim=-1)
-#     return kl.mean().item()
-
-# def get_causal_matrix(model, tokenizer, cot, sentences, problem=""):
-#     M = len(sentences)
-#     full_text = problem + " " + cot if problem else cot
-#     input_ids = tokenizer.encode(full_text, return_tensors="pt").to(device)
-#     token_positions = get_sentence_token_positions(full_text, sentences, tokenizer)
-#     seq_len = input_ids.size(1)
-    
-#     causal_matrix = np.zeros((M, M))
-#     with torch.no_grad():
-#         logits_base, _ = model.run_with_cache(input_ids)
-#         logits_base = logits_base.cpu().float()
-#         torch.cuda.empty_cache()
-#         gc.collect()
-    
-#     for source_idx in range(M):
-#         source_positions = [p for p in token_positions[source_idx] if p < seq_len]
-#         if not source_positions:
-#             continue
-        
-#         def mask_attn(pattern, hook, positions=source_positions):
-#             masked = pattern.clone()
-#             masked[..., positions] = 0
-#             return masked / (masked.sum(dim=-1, keepdim=True) + 1e-8)
-        
-#         with torch.no_grad():
-#             logits_masked = model.run_with_hooks(
-#                 input_ids,
-#                 fwd_hooks=[(f"blocks.{i}.attn.hook_pattern", mask_attn) for i in range(len(model.blocks))]
-#             )
-#             logits_masked = logits_masked.cpu().float()
-#             torch.cuda.empty_cache()
-#             gc.collect()
-        
-#         for target_idx in range(source_idx + 1, M):
-#             target_positions = [p for p in token_positions[target_idx] if p < seq_len]
-#             if not target_positions:
-#                 continue
-#             kl = kl_divergence_batch(
-#                 logits_base[0, target_positions, :],
-#                 logits_masked[0, target_positions, :]
-#             )
-#             causal_matrix[source_idx, target_idx] = kl
-        
-#         del logits_masked
-#         torch.cuda.empty_cache()
-#         gc.collect()
-    
-#     for target_idx in range(M):
-#         prior = causal_matrix[0:target_idx, target_idx]
-#         if len(prior) > 0:
-#             causal_matrix[0:target_idx, target_idx] -= np.mean(prior)
-    
-#     return causal_matrix
-
-# print("LOADING DATASET & GENERATING CoTs")
-
-# dataset = load_dataset(dataset_path, 'main', split=f"train[:{number_cots}]")
-# problems = [item['question'] for item in dataset]
-# print(f"Loaded {len(problems)} problems\n")
-
-# ckpt_cot = f"{checkpoint_dir}/cot_data.pkl"
-# if os.path.exists(ckpt_cot) and not SKIP_CACHE:
-#     print(f"Loading cached CoT data...")
-#     all_cot_data_full = pickle.load(open(ckpt_cot, 'rb'))
-#     all_cot_data = {k: v for k, v in all_cot_data_full.items() if k < number_cots}
-#     print(f"Loaded {len(all_cot_data)} cached problems (limited to {number_cots})\n")
-# else:
-#     all_cot_data = {}
-#     for pid, problem in enumerate(problems):
-#         print(f"[{pid}] Generating CoT...", flush=True)
-#         input_ids = tokenizer.encode(problem, return_tensors='pt').to(device)
-#         with torch.no_grad():
-#             output_ids = model_tl.generate(
-#                 input_ids, max_new_tokens=500, temperature=0.6,
-#                 do_sample=True, top_p=0.9
-#             )
-#         full_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
-#         cot = full_text[len(problem):].strip() if full_text.startswith(problem) else full_text
-#         sentences = split_into_sentences(cot)
-        
-#         if len(sentences) < 2:
-#             print(f"  ✗ Only {len(sentences)} sentences, skipping")
-#             del output_ids, input_ids
-#             continue
-        
-#         print(f"  {len(sentences)} sentences, computing causal matrix...")
-#         causal_matrix = get_causal_matrix(model_tl, tokenizer, cot, sentences, problem)
-#         all_cot_data[pid] = {
-#             'problem': problem,
-#             'cot': cot,
-#             'sentences': sentences,
-#             'causal_matrix': causal_matrix
-#         }
-#         del output_ids, input_ids
-#         torch.cuda.empty_cache()
-#         gc.collect()
-    
-#     pickle.dump(all_cot_data, open(ckpt_cot, 'wb'))
-#     print(f"\n Saved CoT data for {len(all_cot_data)} problems\n")
-
-# print("PHASE 2: IDENTIFY ANCHORS & CLASSIFY SENTENCES")
-
-# del model_tl
-# torch.cuda.empty_cache()
-# gc.collect()
-
-# print("Loading base model for classification...")
-# model_base = AutoModelForCausalLM.from_pretrained(
-#     model_base_name, torch_dtype=dtype
-# ).to(device)
-# print(" Model loaded\n")
-
-# def classify_sentence(sentence):
-#     classes_list = "\n".join([f"- {k}: {v}" for k, v in ANCHOR_CLASSES.items()])
-#     prompt = f"""Classify this reasoning step into one of these categories:
-
-# {classes_list}
-
-# Sentence: "{sentence}"
-
-# Category:"""
-#     input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
-#     with torch.no_grad():
-#         output_ids = model_base.generate(
-#             input_ids, max_new_tokens=5, temperature=0.1, do_sample=False
-#         )
-#     response = tokenizer.decode(output_ids[0][len(input_ids[0]):], skip_special_tokens=True)
-#     category = response.strip().upper().split()[0]
-#     del input_ids, output_ids
-#     if category in ANCHOR_CLASSES:
-#         return category
-#     return "PLAN_GENERATION"
-
-# all_sentence_data = []
-# anchor_classes = {}
-
-# for pid, data in all_cot_data.items():
-#     sentences = data['sentences']
-#     causal_matrix = data['causal_matrix']
-    
-#     print(f"[Problem {pid}] Processing {len(sentences)} sentences...", flush=True)
-    
-#     outgoing = np.sum(np.abs(causal_matrix), axis=1)
-#     importance = outgoing
-#     threshold = np.percentile(importance[importance > 0], 50) if np.any(importance > 0) else 0
-    
-#     for sent_idx, sentence in enumerate(sentences):
-#         is_anchor = importance[sent_idx] > threshold
-        
-#         if is_anchor:
-#             stage = classify_sentence(sentence)
-#         else:
-#             stage = "NEUTRAL"
-        
-#         all_sentence_data.append({
-#             'problem_id': pid,
-#             'sentence_idx': sent_idx,
-#             'sentence': sentence,
-#             'stage': stage,
-#             'is_anchor': is_anchor,
-#             'importance': importance[sent_idx],
-#         })
-        
-#         if stage != "NEUTRAL":
-#             anchor_classes[stage] = anchor_classes.get(stage, 0) + 1
-    
-#     torch.cuda.empty_cache()
-#     gc.collect()
-
-# print(f"\n Processed {len(all_sentence_data)} total sentences\n")
-
-# print("Reasoning Stage Distribution (anchors only):")
-# for stage in sorted(ANCHOR_CLASSES.keys()):
-#     count = anchor_classes.get(stage, 0)
-#     print(f"  {stage:25s}: {count}")
-
-# del model_base
-# torch.cuda.empty_cache()
-# gc.collect()
-
-# print("PHASE 3: EXTRACT MEAN-POOLED ACTIVATIONS")
-
-# print("Reloading models for activation extraction...")
-# tokenizer = AutoTokenizer.from_pretrained(model_base_name, trust_remote_code=True)
-# hf_model = AutoModelForCausalLM.from_pretrained(
-#     model_ft_name, torch_dtype=dtype, device_map="cuda"
-# )
-# model_tl = HookedTransformer.from_pretrained_no_processing(
-#     model_base_name, hf_model=hf_model, device=device, dtype=dtype
-# )
-# del hf_model
-# torch.cuda.empty_cache()
-# gc.collect()
-# print("Models loaded\n")
-
-# def get_sentence_activation(problem, sentences, sent_idx, layer=-1):
-#     ctx = problem + " " + " ".join(sentences[:sent_idx])
-#     input_ids = tokenizer.encode(ctx, return_tensors="pt").to(device)
-    
-#     with torch.no_grad():
-#         _, cache = model_tl.run_with_cache(input_ids)
-#         hidden = cache["resid_post", layer][0, :, :].float().cpu()
-#         hidden = hidden.mean(dim=0).numpy()
-    
-#     del cache, input_ids
-#     torch.cuda.empty_cache()
-#     gc.collect()
-#     return hidden
-
-
-
-
-# ckpt_features = f"{checkpoint_dir}/all_sentences_features.pkl"
-# if os.path.exists(ckpt_features) and not SKIP_CACHE:
-#     print(f"Loading cached features...")
-#     all_features_full = pickle.load(open(ckpt_features, 'rb'))
-#     all_features = [f for f in all_features_full if f['problem_id'] < number_cots]
-#     print(f"Loaded {len(all_features)} cached features (limited to first {number_cots} problems)\n")
-# else:
-#     all_features = []
-    
-#     for item in tqdm(all_sentence_data, desc="Extracting activations"):
-#         pid = item['problem_id']
-#         sent_idx = item['sentence_idx']
-        
-#         problem = all_cot_data[pid]['problem']
-#         sentences = all_cot_data[pid]['sentences']
-        
-#         hidden_state = get_sentence_activation(problem, sentences, sent_idx, layer=28)
-        
-#         all_features.append({
-#             'hidden_state': hidden_state,
-#             'problem_id': pid,
-#             'sentence_idx': sent_idx,
-#             'sentence': item['sentence'],
-#             'stage': item['stage'],
-#             'is_anchor': item['is_anchor'],
-#             'importance': item['importance'],
-#         })
-    
-#     pickle.dump(all_features, open(ckpt_features, 'wb'))
-#     print(f"\nExtracted and saved {len(all_features)} features\n")
-
-# del model_tl
-# torch.cuda.empty_cache()
-# gc.collect()
-
-import torch
-import torch.nn.functional as F
-import numpy as np
-import pickle
 import os
 import re
 import gc
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from transformer_lens import HookedTransformer
-from datasets import load_dataset
+import pickle
+import argparse
+import torch
+import numpy as np
 from tqdm import tqdm
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
-checkpoint_dir = "rpc_dataset_math500_layer28_500"
-os.makedirs(checkpoint_dir, exist_ok=True)
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 dtype = torch.bfloat16
 
-model_ft_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
-model_base_name = "Qwen/Qwen2.5-14B"
-dataset_path = "HuggingFaceH4/MATH-500" #"openai/gsm8k" 
-number_cots = 500
-EXTRACT_LAYER = 28
-BATCH_SIZE_CLASSIFY = 4
-
 CLASSES_ORDERED = [
-    "NEUTRAL",
-    "PROBLEM_SETUP", 
+    "PROBLEM_SETUP",
     "FACT_RETRIEVAL",
     "PLAN_GENERATION",
     "UNCERTAINTY_MANAGEMENT",
@@ -367,269 +39,319 @@ CLASSES_ORDERED = [
     "FINAL_ANSWER_EMISSION"
 ]
 
-print(f"Model: {model_ft_name}")
-print(f"Target: {number_cots} problems")
+# ── ARGS ────────────────────────────────────────────────────
 
-# --- LOAD MODEL ONCE ---
-print("Loading model...")
-tokenizer = AutoTokenizer.from_pretrained(model_base_name, trust_remote_code=True)
-if tokenizer.pad_token is None:
-    tokenizer.pad_token = tokenizer.eos_token
+def parse_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("--model",    default="deepseek-ai/DeepSeek-R1-Distill-Qwen-14B")
+    p.add_argument("--base",     default="Qwen/Qwen2.5-14B")
+    p.add_argument("--clf",      default="Qwen/Qwen2.5-7B-Instruct")
+    p.add_argument("--dataset",  default="HuggingFaceH4/MATH-500")
+    p.add_argument("--split",    default="test")
+    p.add_argument("--layer",    type=int, default=28)
+    p.add_argument("--n",        type=int, default=500)
+    p.add_argument("--out",      default="./dataset_output")
+    p.add_argument("--batch",    type=int, default=4)
+    p.add_argument("--validate", type=int, default=20, help="Print class sequences for first N problems")
+    p.add_argument("--max_new_tokens", type=int, default=1024)
+    return p.parse_args()
 
-hf_model = AutoModelForCausalLM.from_pretrained(model_ft_name, torch_dtype=dtype, device_map="cuda")
-model = HookedTransformer.from_pretrained_no_processing(model_base_name, hf_model=hf_model, device=device, dtype=dtype)
-del hf_model
-torch.cuda.empty_cache()
-print("Model loaded\n")
+# ── HELPERS ─────────────────────────────────────────────────
 
 def split_into_sentences(text):
+    # strip <think> tags common in DeepSeek outputs
+    text = re.sub(r'<think>|</think>', '', text)
     sentences = re.split(r'(?<=[.!?])\s+', text)
-    return [s.strip() for s in sentences if s.strip() and len(s.strip()) > 3]
+    return [s.strip() for s in sentences if s.strip() and len(s.strip()) > 10]
 
 @torch.no_grad()
 def get_sentence_token_ranges(full_text, sentences, tokenizer):
     full_ids = tokenizer.encode(full_text, add_special_tokens=False)
-    ranges = []
-    
     tokens = [tokenizer.decode([tid]) for tid in full_ids]
+
     cumulative_chars = 0
     char_to_token = {}
     for i, tok in enumerate(tokens):
         for _ in range(len(tok)):
             char_to_token[cumulative_chars] = i
             cumulative_chars += 1
-    
+
+    ranges = []
     current_char = 0
     for sent in sentences:
         start_char = full_text.find(sent, current_char)
         if start_char == -1:
-            start_char = full_text.find(sent.strip(), current_char)
-        if start_char == -1:
             start_char = current_char
-        
         end_char = start_char + len(sent)
         start_tok = char_to_token.get(start_char, 0)
-        end_tok = char_to_token.get(min(end_char - 1, max(char_to_token.keys()) if char_to_token else 0), len(full_ids) - 1) + 1
-        
+        end_tok = char_to_token.get(min(end_char - 1, max(char_to_token.keys())), len(full_ids) - 1) + 1
         ranges.append((start_tok, min(end_tok, len(full_ids))))
         current_char = end_char
-    
     return ranges
 
+# ── PHASE 1: CoT GENERATION + ACTIVATION EXTRACTION ─────────
+
 @torch.no_grad()
-def process_single_problem(problem, model, tokenizer, extract_layer=28):
-    input_ids = tokenizer.encode(problem, return_tensors='pt').to(device)
-    
-    output_ids = model.generate(input_ids, max_new_tokens=500, temperature=0.6, do_sample=True, top_p=0.9)
+def process_problem(problem, model, tokenizer, extract_layer):
+    input_ids = tokenizer.encode(problem, return_tensors='pt').to(DEVICE)
+    output_ids = model.generate(
+        input_ids, max_new_tokens=1024, temperature=0.6,
+        do_sample=True, top_p=0.9, pad_token_id=tokenizer.eos_token_id
+    )
     full_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
     cot = full_text[len(problem):].strip() if full_text.startswith(problem) else full_text
     sentences = split_into_sentences(cot)
-    
+
     if len(sentences) < 2:
         return None
-    
+
     full_prompt = problem + " " + cot
-    prompt_ids = tokenizer.encode(full_prompt, return_tensors="pt").to(device)
+    prompt_ids = tokenizer.encode(full_prompt, return_tensors="pt").to(DEVICE)
     seq_len = prompt_ids.size(1)
-    
-    _, cache = model.run_with_cache(prompt_ids, names_filter=lambda n: f"blocks.{extract_layer}" in n and "resid_post" in n)
-    
-    hidden = cache[f"blocks.{extract_layer}.hook_resid_post"][0].float().cpu()
-    
-    del cache
-    torch.cuda.empty_cache()
-    
+
+    hidden_states = {}
+    def hook_fn(module, input, output):
+        h = output[0] if isinstance(output, tuple) else output
+        hidden_states['h'] = h[0].float().cpu()  # [seq, d]
+
+    handle = model.model.layers[extract_layer].register_forward_hook(hook_fn)
+    model(prompt_ids)
+    handle.remove()
+
+    hidden = hidden_states['h']
     sentence_ranges = get_sentence_token_ranges(full_prompt, sentences, tokenizer)
-    
+
     sentence_features = []
     for sent_idx, (start, end) in enumerate(sentence_ranges):
         if start >= seq_len:
             continue
         end = min(end, seq_len)
-        ctx_end = end
-        if ctx_end <= 0:
+        if end <= 0:
             continue
-            
-        mean_pooled = hidden[:ctx_end].mean(dim=0).numpy()
-        last_token = hidden[ctx_end - 1].numpy()
-        
         sentence_features.append({
             'sentence_idx': sent_idx,
             'sentence': sentences[sent_idx],
-            'hidden_state': mean_pooled,
-            'hidden_state_last': last_token,
+            'hidden_state': hidden[:end].mean(dim=0).numpy(),
+            'hidden_state_last': hidden[end - 1].numpy(),
             'token_range': (start, end),
         })
-    
-    return {
-        'problem': problem,
-        'cot': cot,
-        'sentences': sentences,
-        'sentence_features': sentence_features,
-    }
 
-def get_classification_prompt(sentence):
-    return f"""Classify this reasoning step.
-If multiple categories apply, choose the one lowest in this list (the most 'active' one).
+    return {'problem': problem, 'cot': cot, 'sentences': sentences, 'sentence_features': sentence_features}
 
-1. NEUTRAL: Filler, conversational bridges, or irrelevant text.
-2. PROBLEM_SETUP: Re-stating facts or identifying variables.
-3. FACT_RETRIEVAL: Recalling formulas (e.g., "Area is pi*r^2").
-4. PLAN_GENERATION: Stating what to do next.
-5. UNCERTAINTY_MANAGEMENT: Expressing confusion or re-evaluating.
-6. SELF_CHECKING: Verifying if a previous step was correct.
-7. RESULT_CONSOLIDATION: Summarizing intermediate steps.
-8. ACTIVE_COMPUTATION: Performing actual math or algebraic manipulation.
-9. FINAL_ANSWER_EMISSION: The definitive final answer statement.
+# ── PHASE 2: CLASSIFICATION ──────────────────────────────────
+
+def get_classification_prompt(sentence, clf_tokenizer):
+    messages = [
+        {"role": "system", "content": "You are a classifier. Reply with ONLY the category name, nothing else."},
+        {"role": "user", "content": f"""Classify this reasoning step into exactly one category:
+
+PROBLEM_SETUP: Re-stating facts or identifying variables
+FACT_RETRIEVAL: Recalling formulas or facts
+PLAN_GENERATION: Stating what to do next
+UNCERTAINTY_MANAGEMENT: Expressing confusion or re-evaluating
+SELF_CHECKING: Verifying a previous step
+RESULT_CONSOLIDATION: Summarizing intermediate steps
+ACTIVE_COMPUTATION: Performing actual math
+FINAL_ANSWER_EMISSION: The definitive final answer
 
 Sentence: "{sentence[:300]}"
-Category:"""
+
+Reply with ONLY the category name."""}
+    ]
+    return clf_tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
 
 @torch.no_grad()
-def classify_all_sentences(sentences, batch_size=4):
-    from transformers import AutoModelForCausalLM, AutoTokenizer as AT
-    
-    print("  Loading Qwen-7B classifier...")
-    clf_name = "Qwen/Qwen2.5-7B-Instruct"
-    clf_tokenizer = AT.from_pretrained(clf_name, trust_remote_code=True)
-    clf_tokenizer.pad_token = clf_tokenizer.eos_token
-    classifier = AutoModelForCausalLM.from_pretrained(clf_name, torch_dtype=dtype, device_map="cuda", trust_remote_code=True)
-    classifier.eval()
-    
+def classify_sentences(sentences, clf_tokenizer, classifier, batch_size=4):
     results = []
     for i in tqdm(range(0, len(sentences), batch_size), desc="  Classifying"):
         batch = sentences[i:i + batch_size]
-        prompts = [get_classification_prompt(s) for s in batch]
-        
-        inputs = clf_tokenizer(prompts, return_tensors="pt", padding=True, truncation=True, max_length=512).to(device)
+        prompts = [get_classification_prompt(s, clf_tokenizer) for s in batch]
+        inputs = clf_tokenizer(
+            prompts, return_tensors="pt", padding=True,
+            truncation=True, max_length=512
+        ).to(DEVICE)
         outputs = classifier.generate(
-            inputs['input_ids'], 
-            attention_mask=inputs['attention_mask'],
-            max_new_tokens=5, 
-            do_sample=False, 
-            pad_token_id=clf_tokenizer.pad_token_id
+            inputs['input_ids'], attention_mask=inputs['attention_mask'],
+            max_new_tokens=10, do_sample=False, pad_token_id=clf_tokenizer.pad_token_id
         )
-        
         for out in outputs:
-            response = clf_tokenizer.decode(out[inputs['input_ids'].shape[1]:], skip_special_tokens=True)
-            response_clean = response.strip().upper()
-            
+            response = clf_tokenizer.decode(
+                out[inputs['input_ids'].shape[1]:], skip_special_tokens=True
+            ).strip().upper()
             matched = "NEUTRAL"
             for cls in reversed(CLASSES_ORDERED):
-                if cls in response_clean:
+                if cls in response:
                     matched = cls
                     break
             results.append(matched)
-        
         if (i // batch_size) % 50 == 0:
             torch.cuda.empty_cache()
-    
-    del classifier, clf_tokenizer
-    torch.cuda.empty_cache()
-    gc.collect()
     return results
 
-# --- MAIN EXTRACTION ---
-print("Loading dataset...")
-dataset = load_dataset(dataset_path, 'main', split=f"train[:{number_cots}]")
-problems = [item['problem'] for item in dataset]
-print(f"Loaded {len(problems)} problems\n")
+# ── VALIDATION PRINT ─────────────────────────────────────────
 
-# Phase 1: Generate CoT and extract activations
-print("="*60)
-print("PHASE 1: Generating CoTs and extracting activations...")
-print("="*60)
+def print_validation(all_extractions, n=20):
+    print(f"\n{'='*60}")
+    print(f"VALIDATION: class sequences for first {n} problems")
+    print('='*60)
+    pids = sorted(all_extractions.keys())[:n]
+    for pid in pids:
+        data = all_extractions[pid]
+        stages = [f['stage'] for f in data['sentence_features'] if 'stage' in f]
+        print(f"\n[Problem {pid}] {data['problem'][:60]}...")
+        print(f"  Sentences: {len(stages)}")
+        print(f"  Classes:   {stages}")
 
-ckpt_raw = f"{checkpoint_dir}/raw_extractions.pkl"
-if os.path.exists(ckpt_raw):
-    print("Loading cached extractions...")
-    all_extractions = pickle.load(open(ckpt_raw, 'rb'))
-    print(f"Loaded {len(all_extractions)} cached problems\n")
-else:
-    all_extractions = {}
-    for pid, problem in enumerate(tqdm(problems, desc="Processing")):
-        result = process_single_problem(problem, model, tokenizer, extract_layer=EXTRACT_LAYER)
-        if result:
-            all_extractions[pid] = result
-        
-        if (pid + 1) % 50 == 0:
-            pickle.dump(all_extractions, open(ckpt_raw, 'wb'))
-            torch.cuda.empty_cache()
-            gc.collect()
-    
-    pickle.dump(all_extractions, open(ckpt_raw, 'wb'))
-    print(f"\nExtracted {len(all_extractions)} problems\n")
+# ── MAIN ─────────────────────────────────────────────────────
 
-# Free VRAM before classification
-del model
-torch.cuda.empty_cache()
-gc.collect()
+def main():
+    args = parse_args()
+    os.makedirs(args.out, exist_ok=True)
 
-# Phase 2: Classify ALL sentences with semantic LLM
-print("="*60)
-print("PHASE 2: Semantic classification of ALL sentences...")
-print("="*60)
+    ckpt_raw      = os.path.join(args.out, "raw_extractions.pkl")
+    ckpt_features = os.path.join(args.out, "all_sentences_features.pkl")
+    ckpt_with_neu = os.path.join(args.out, "all_sentences_features_with_neutral.pkl")
+    ckpt_cot      = os.path.join(args.out, "cot_data.pkl")
 
-all_sentences = []
-sentence_refs = []
-for pid, data in all_extractions.items():
-    for i, feat in enumerate(data['sentence_features']):
-        all_sentences.append(feat['sentence'])
-        sentence_refs.append((pid, i))
+    # ── load dataset ──
+    from datasets import load_dataset
+    print(f"Loading dataset {args.dataset}...")
+    ds = load_dataset(args.dataset, 'default' if 'MATH' in args.dataset else 'main',
+                      split=f"{args.split}[:{args.n}]")
+    key = 'problem' if 'problem' in ds[0] else 'question'
+    problems = [item[key] for item in ds]
+    print(f"Loaded {len(problems)} problems\n")
 
-print(f"Total sentences to classify: {len(all_sentences)}")
+    # ── resume: load existing extractions ──
+    if os.path.exists(ckpt_raw):
+        print(f"Resuming from {ckpt_raw}...")
+        all_extractions = pickle.load(open(ckpt_raw, 'rb'))
+        done_pids = set(all_extractions.keys())
+        print(f"  Already done: {len(done_pids)} problems")
+    else:
+        all_extractions = {}
+        done_pids = set()
 
-classifications = classify_all_sentences(all_sentences, batch_size=BATCH_SIZE_CLASSIFY)
+    remaining = [(pid, prob) for pid, prob in enumerate(problems) if pid not in done_pids]
+    print(f"  Remaining: {len(remaining)} problems\n")
 
-# Apply classifications
-for (pid, feat_idx), cls in zip(sentence_refs, classifications):
-    all_extractions[pid]['sentence_features'][feat_idx]['stage'] = cls
-    all_extractions[pid]['sentence_features'][feat_idx]['is_anchor'] = (cls != "NEUTRAL")
+    # ── phase 1: generation + extraction ──
+    if remaining:
+        print("Loading generation model...")
+        tokenizer = AutoTokenizer.from_pretrained(args.base, trust_remote_code=True)
+        if tokenizer.pad_token is None:
+            tokenizer.pad_token = tokenizer.eos_token
 
-# Save updated extractions
-pickle.dump(all_extractions, open(ckpt_raw, 'wb'))
+        model = AutoModelForCausalLM.from_pretrained(
+            args.model, torch_dtype=dtype, low_cpu_mem_usage=True
+        ).to(DEVICE)
+        model.eval()
+        print("Model loaded\n")
 
-# Flatten to features
-print("\nFlattening to final format...")
-all_features = []
-all_features_with_neutral = []
+        print("="*60)
+        print("PHASE 1: Generating CoTs + extracting activations")
+        print("="*60)
 
-for pid, data in all_extractions.items():
-    for feat in data['sentence_features']:
-        entry = {
-            'hidden_state': feat['hidden_state'],
-            'hidden_state_last': feat['hidden_state_last'],
-            'problem_id': pid,
-            'sentence_idx': feat['sentence_idx'],
-            'sentence': feat['sentence'],
-            'text': feat['sentence'],
-            'stage': feat['stage'],
-            'is_anchor': feat['is_anchor'],
-        }
-        all_features_with_neutral.append(entry)
-        if feat['stage'] != "NEUTRAL":
-            all_features.append(entry)
+        for pid, problem in tqdm(remaining, desc="Problems"):
+            result = process_problem(problem, model, tokenizer, args.layer)
+            if result:
+                all_extractions[pid] = result
+            if (pid + 1) % 25 == 0:
+                pickle.dump(all_extractions, open(ckpt_raw, 'wb'))
+                torch.cuda.empty_cache()
+                gc.collect()
 
-# Save
-ckpt_features = f"{checkpoint_dir}/all_sentences_features.pkl"
-pickle.dump(all_features, open(ckpt_features, 'wb'))
-pickle.dump(all_features_with_neutral, open(f"{checkpoint_dir}/all_sentences_features_with_neutral.pkl", 'wb'))
+        pickle.dump(all_extractions, open(ckpt_raw, 'wb'))
+        print(f"\nExtracted {len(all_extractions)} problems total\n")
 
-cot_data = {pid: {'problem': d['problem'], 'cot': d['cot'], 'sentences': d['sentences']} 
-            for pid, d in all_extractions.items()}
-pickle.dump(cot_data, open(f"{checkpoint_dir}/cot_data.pkl", 'wb'))
+        del model
+        torch.cuda.empty_cache()
+        gc.collect()
 
-print(f"\n{'='*60}")
-print(f"DONE!")
-print(f"  Non-neutral features: {len(all_features)} -> all_sentences_features.pkl")
-print(f"  All features: {len(all_features_with_neutral)} -> all_sentences_features_with_neutral.pkl")
-print(f"{'='*60}")
+    # ── phase 2: classify unclassified sentences ──
+    unclassified = []
+    unclassified_refs = []
+    for pid, data in all_extractions.items():
+        for i, feat in enumerate(data['sentence_features']):
+            if 'stage' not in feat:
+                unclassified.append(feat['sentence'])
+                unclassified_refs.append((pid, i))
 
-# Stats
-stage_counts = {}
-for cls in classifications:
-    stage_counts[cls] = stage_counts.get(cls, 0) + 1
+    if unclassified:
+        print("="*60)
+        print(f"PHASE 2: Classifying {len(unclassified)} sentences")
+        print("="*60)
 
-print("\nStage distribution:")
-for cls in CLASSES_ORDERED:
-    print(f"  {cls}: {stage_counts.get(cls, 0)}")
+        print("Loading classifier...")
+        clf_tokenizer = AutoTokenizer.from_pretrained(args.clf, trust_remote_code=True)
+        clf_tokenizer.pad_token = clf_tokenizer.eos_token
+        clf_tokenizer.padding_side = "left"
+        classifier = AutoModelForCausalLM.from_pretrained(
+            args.clf, torch_dtype=dtype, low_cpu_mem_usage=True
+        ).to(DEVICE)
+        classifier.eval()
+        print("Classifier loaded\n")
+
+        classifications = classify_sentences(
+            unclassified, clf_tokenizer, classifier, batch_size=args.batch
+        )
+
+        for (pid, feat_idx), cls in zip(unclassified_refs, classifications):
+            all_extractions[pid]['sentence_features'][feat_idx]['stage'] = cls
+            all_extractions[pid]['sentence_features'][feat_idx]['is_anchor'] = (cls != "NEUTRAL")
+
+        pickle.dump(all_extractions, open(ckpt_raw, 'wb'))
+
+        del classifier, clf_tokenizer
+        torch.cuda.empty_cache()
+        gc.collect()
+    else:
+        print("All sentences already classified, skipping phase 2\n")
+
+    # ── validation print ──
+    print_validation(all_extractions, n=args.validate)
+
+    # ── flatten to final format ──
+    print("\nFlattening to final format...")
+    all_features, all_features_with_neutral = [], []
+
+    for pid, data in all_extractions.items():
+        for feat in data['sentence_features']:
+            if 'stage' not in feat:
+                continue
+            entry = {
+                'hidden_state':      feat['hidden_state'],
+                'hidden_state_last': feat['hidden_state_last'],
+                'problem_id':        pid,
+                'sentence_idx':      feat['sentence_idx'],
+                'sentence':          feat['sentence'],
+                'stage':             feat['stage'],
+                'is_anchor':         feat.get('is_anchor', feat['stage'] != 'NEUTRAL'),
+            }
+            all_features_with_neutral.append(entry)
+            if feat['stage'] != "NEUTRAL":
+                all_features.append(entry)
+
+    pickle.dump(all_features,              open(ckpt_features, 'wb'))
+    pickle.dump(all_features_with_neutral, open(ckpt_with_neu, 'wb'))
+    pickle.dump({pid: {'problem': d['problem'], 'cot': d['cot'], 'sentences': d['sentences']}
+                 for pid, d in all_extractions.items()},
+                open(ckpt_cot, 'wb'))
+
+    # ── stats ──
+    stage_counts = {}
+    for f in all_features_with_neutral:
+        stage_counts[f['stage']] = stage_counts.get(f['stage'], 0) + 1
+
+    print(f"\n{'='*60}")
+    print("DONE!")
+    print(f"  Non-neutral features : {len(all_features)}")
+    print(f"  All features         : {len(all_features_with_neutral)}")
+    print(f"  Output dir           : {args.out}")
+    print(f"\nStage distribution:")
+    for cls in CLASSES_ORDERED:
+        print(f"  {cls:30s}: {stage_counts.get(cls, 0)}")
+    print('='*60)
+
+if __name__ == "__main__":
+    main()
