@@ -1,0 +1,39 @@
+S1: 1.
+
+S2: First, determine the total amount of feed Wendi uses each day.
+
+S3: 2.
+
+S4: Then, subtract the amounts given in the morning and afternoon from the total.
+
+S5: 3.
+
+S6: Finally, divide by the number of chickens to find the cups per chicken.
+
+S7: 4.
+
+S8: Multiply by the number of chickens to find the total.
+
+S9 (Backtracking): Wait, no, perhaps step 3 is: subtract the amount given in the morning and
+afternoon from the total, then divide by the number of chickens to get the cups
+per chicken, then multiply by the number of chickens to find the total.
+
+S10 (Backtracking): Wait, no, the problem is asking for the number of cups she needs to give her
+chickens in the final meal of the day.
+
+S11: So, perhaps the answer is (Total cups - morning - afternoon) / number of
+chickens.
+
+S12: But wait, let me read the problem again.
+
+S13: Question: Every day, Wendi feeds each of her chickens three cups of mixed
+chicken feed, containing seeds, mealworms and vegetables to help keep them
+healthy.
+
+S14: She gives the chickens their feed in three separate meals.
+
+S15: In the morning, she gives her flock of chickens 15 cups of feed.
+
+S16: In the afternoon, she gives her chickens another 25 cups of feed.
+
+S17: How many cups of feed does she need to give her

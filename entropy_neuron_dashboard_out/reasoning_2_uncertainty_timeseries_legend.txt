@@ -1,0 +1,33 @@
+S1: First, the original cost is \$80,000.
+
+S2: He buys the house for \$80,000.
+
+S3: Then he puts in \$50,000 in repairs.
+
+S4: So, the total cost becomes \$80,000 + \$50,000 = \$130,000.
+
+S5 (Backtracking): Wait, but the problem says "this increased the value of the house by 150%.
+
+S6: " Hmm, so is it 150% of the original or 150% of the total cost?
+
+S7: I think it's 150% of the total cost because it says "this increased the value of
+the house by 150%.
+
+S8: " So, the increased value is 150% of the repairs or the original?
+
+S9 (Backtracking): Wait, no.
+
+S10: Let me think.
+
+S11: When they say the value increased by 150%, that is 150% of the original value.
+
+S12: So, if the value was V before, now it's V + 1.
+
+S13: 5V = 2.
+
+S14: 5V.
+
+S15: Alternatively, it could be 150% of the total cost, but in that case, it would be
+1.
+
+S16: 5 times the total cost.

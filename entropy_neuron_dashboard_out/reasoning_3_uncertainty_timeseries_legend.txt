@@ -1,0 +1,29 @@
+S1: First, determine the number of sprints James runs each week.
+
+S2: He runs 3 sprints each week.
+
+S3: Each sprint is 60 meters.
+
+S4: To find the total meters he runs, multiply the number of sprints by the distance
+per sprint.
+
+S5: 60 meters/sprint * 3 sprints/week = 180 meters/week.
+
+S6: Is this correct?
+
+S7: Let me double-check.
+
+S8: He runs 3 times a week, each time doing a 60m sprint.
+
+S9: So 3 * 60 = 180.
+
+S10: Yes, that seems right.
+
+S11: So, the total meters he runs in a week is 180.
+
+S12: Final answer: \boxed{180} </think>  James decides to run 3 sprints 3 times a
+week, with each sprint being 60 meters.
+
+S13: To find the total meters he runs in a week, we multiply the number of sprints by
+the distance per sprint:  \[ 60 \text{ meters/sprint} \times 3 \text{
+sprints/week} = 180 \text{ meters/week} \]  ### Final answer: \boxed{180}
