@@ -1,0 +1,11 @@
+# Core model + tracing
+nnsight>=0.5
+transformers>=4.40
+
+# PyTorch (installing the best CUDA build is environment-specific; see note below)
+torch>=2.1
+
+# Utilities
+numpy>=1.26
+pandas>=2.1
+tqdm>=4.66

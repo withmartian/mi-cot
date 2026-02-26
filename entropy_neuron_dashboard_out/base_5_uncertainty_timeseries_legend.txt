@@ -1,0 +1,37 @@
+S1: Step 1: Determine how many of the first type (full price) and how many of the
+second type (discounted) Kylar needs.
+
+S2: Step 2: Calculate the total cost.
+
+S3: Step 3: Check if the total cost is less than or equal to the amount he has.
+
+S4: Step 4: If needed, add the remaining amount to pay.
+
+S5: But in this problem, it's not mentioned whether Kylar has a certain amount of
+money.
+
+S6: So, how is this problem structured?
+
+S7: Is it just about calculating the total cost?
+
+S8: Or is the problem expecting to use the amount of money Kylar has?
+
+S9 (Backtracking): Wait, the original problem is just to calculate the total cost based on the
+number of glasses and their pricing.
+
+S10: So, maybe the problem is just about finding the total cost without considering
+if Kylar has enough money or not.
+
+S11: But let me check the problem again.
+
+S12: Question: Kylar went to the store to buy glasses for his new apartment.
+
+S13: One glass costs \$5, but every second glass costs only 60% of the price.
+
+S14: Kylar wants to buy 16 glasses.
+
+S15: How much does he need to pay for them?
+
+S16: So, the question is about calculating the total cost for 16 glasses.
+
+S17: The

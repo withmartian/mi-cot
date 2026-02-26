@@ -1,0 +1,45 @@
+S1: First, figure out Eliza's regular pay for the first 40 hours.
+
+S2: Second, calculate the overtime pay for the remaining 5 hours.
+
+S3: Third, add them together to get the total earnings.
+
+S4: Step 1: Regular hours are 40.
+
+S5: Regular pay rate is \$10 per hour.
+
+S6: So regular pay is 40 * 10 = \$400.
+
+S7: Step 2: Overtime hours are 5.
+
+S8: Overtime pay rate is 1.
+
+S9: 2 * regular rate = 1.
+
+S10: 2 * 10 = \$12 per hour.
+
+S11: So overtime pay is 5 * 12 = \$60.
+
+S12: Step 3: Total earnings are regular pay + overtime pay = 400 + 60 = \$460.
+
+S13: Final answer: \$460.
+
+S14: Yes, that seems right.
+
+S15: But let me double-check each step.
+
+S16: Regular pay: 40 hours * \$10/hour = \$400.
+
+S17: That looks correct.
+
+S18: Overtime pay: She works 5 hours beyond the regular 40.
+
+S19: The overtime rate is 1.
+
+S20: 2 times her regular rate.
+
+S21: So, 1.
+
+S22: 2 * \$10 = \$12 per hour.
+
+S23: Then, 5 hours

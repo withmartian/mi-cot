@@ -1,0 +1,39 @@
+S1: Alright, so I need to figure out how many sheep Toulouse, Charleston, and
+Seattle have together.
+
+S2: The problem gives me some relationships between their numbers.
+
+S3: Let me parse this step by step.
+
+S4: First, it says Toulouse has twice as many sheep as Charleston.
+
+S5: So, if I let T be the number of sheep Toulouse has, and C be the number of sheep
+Charleston has, then T = 2 * C.
+
+S6: Got that.
+
+S7: Second, it says Charleston has 4 times as many sheep as Seattle.
+
+S8: So, if S is the number of sheep Seattle has, then C = 4 * S.
+
+S9: The problem also gives me that Seattle has 20 sheep, so S = 20.
+
+S10: That should help me find C.
+
+S11: Third, it asks how many sheep T, C, and S have together.
+
+S12: So, I need to find T + C + S.
+
+S13: Let me start with the information about Seattle.
+
+S14: It's given directly that S = 20.
+
+S15: So, C = 4 * S = 4 * 20.
+
+S16: Let me compute that: 4 * 20 = 80.
+
+S17: So, C = 80.
+
+S18: That means Charleston has 80 sheep.
+
+S19: Now, going back to the relationship between
