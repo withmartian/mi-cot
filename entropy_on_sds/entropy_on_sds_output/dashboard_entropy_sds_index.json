@@ -1,0 +1,1694 @@
+{
+  "problems": [
+    {
+      "problem_id": 0,
+      "n_sentences": 40,
+      "trajectory": [
+        {
+          "sentence_idx": 0,
+          "entropy_mean": 0.0913,
+          "entropy_last": 0.2779,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 1,
+          "entropy_mean": 0.0966,
+          "entropy_last": 0.083,
+          "state": 1,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 2,
+          "entropy_mean": 0.422,
+          "entropy_last": 0.0001,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 3,
+          "entropy_mean": 0.2842,
+          "entropy_last": 0.2108,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 4,
+          "entropy_mean": 0.4094,
+          "entropy_last": 0.0012,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 5,
+          "entropy_mean": 0.343,
+          "entropy_last": 1.0228,
+          "state": 1,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 6,
+          "entropy_mean": 0.3377,
+          "entropy_last": 0.0,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 7,
+          "entropy_mean": 0.2039,
+          "entropy_last": 0.0,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 8,
+          "entropy_mean": 0.5711,
+          "entropy_last": 0.0,
+          "state": 3,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 9,
+          "entropy_mean": 0.1508,
+          "entropy_last": 0.0,
+          "state": 2,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 10,
+          "entropy_mean": 0.5783,
+          "entropy_last": 0.8214,
+          "state": 2,
+          "is_transition": false,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 11,
+          "entropy_mean": 0.2816,
+          "entropy_last": 0.0468,
+          "state": 1,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 12,
+          "entropy_mean": 0.3419,
+          "entropy_last": 0.0001,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 13,
+          "entropy_mean": 0.51,
+          "entropy_last": 0.5271,
+          "state": 3,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 14,
+          "entropy_mean": 0.3062,
+          "entropy_last": 0.0902,
+          "state": 1,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 15,
+          "entropy_mean": 0.5625,
+          "entropy_last": 0.1205,
+          "state": 2,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 16,
+          "entropy_mean": 0.222,
+          "entropy_last": 0.0,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 17,
+          "entropy_mean": 0.3158,
+          "entropy_last": 0.3981,
+          "state": 0,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 18,
+          "entropy_mean": 0.2786,
+          "entropy_last": 0.7544,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 19,
+          "entropy_mean": 0.5936,
+          "entropy_last": 0.7741,
+          "state": 2,
+          "is_transition": false,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 20,
+          "entropy_mean": 0.4239,
+          "entropy_last": 0.0,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 21,
+          "entropy_mean": 0.3742,
+          "entropy_last": 0.0,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 22,
+          "entropy_mean": 0.8727,
+          "entropy_last": 0.9747,
+          "state": 0,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 23,
+          "entropy_mean": 0.3343,
+          "entropy_last": 0.1594,
+          "state": 2,
+          "is_transition": true,
+          "stage": "RESULT_CONSOLIDATION"
+        },
+        {
+          "sentence_idx": 24,
+          "entropy_mean": 0.4823,
+          "entropy_last": 1.3727,
+          "state": 1,
+          "is_transition": true,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 25,
+          "entropy_mean": 0.953,
+          "entropy_last": 0.5431,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 26,
+          "entropy_mean": 0.5349,
+          "entropy_last": 1.1325,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 27,
+          "entropy_mean": 0.4157,
+          "entropy_last": 0.0,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 28,
+          "entropy_mean": 0.4342,
+          "entropy_last": 0.5479,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 29,
+          "entropy_mean": 0.7099,
+          "entropy_last": 0.0001,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 30,
+          "entropy_mean": 0.6112,
+          "entropy_last": 0.2588,
+          "state": 3,
+          "is_transition": true,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 31,
+          "entropy_mean": 0.8949,
+          "entropy_last": 0.0074,
+          "state": 3,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 32,
+          "entropy_mean": 0.5993,
+          "entropy_last": 0.1029,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FINAL_ANSWER_EMISSION"
+        },
+        {
+          "sentence_idx": 33,
+          "entropy_mean": 0.0713,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": true,
+          "stage": "FINAL_ANSWER_EMISSION"
+        },
+        {
+          "sentence_idx": 34,
+          "entropy_mean": 0.2108,
+          "entropy_last": 0.0156,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 35,
+          "entropy_mean": 0.0565,
+          "entropy_last": 0.0004,
+          "state": 2,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 36,
+          "entropy_mean": 0.018,
+          "entropy_last": 0.0001,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 37,
+          "entropy_mean": 0.097,
+          "entropy_last": 0.4751,
+          "state": 0,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 38,
+          "entropy_mean": 0.1798,
+          "entropy_last": 0.5965,
+          "state": 0,
+          "is_transition": false,
+          "stage": "FINAL_ANSWER_EMISSION"
+        },
+        {
+          "sentence_idx": 39,
+          "entropy_mean": 0.0467,
+          "entropy_last": 0.0003,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FINAL_ANSWER_EMISSION"
+        }
+      ],
+      "trajectory_plot": "exp6_trajectory_pid_0.png",
+      "mean_entropy": 0.3805
+    },
+    {
+      "problem_id": 1,
+      "n_sentences": 18,
+      "trajectory": [
+        {
+          "sentence_idx": 0,
+          "entropy_mean": 0.0606,
+          "entropy_last": 0.9551,
+          "state": 3,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 1,
+          "entropy_mean": 0.517,
+          "entropy_last": 0.0012,
+          "state": 3,
+          "is_transition": false,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 2,
+          "entropy_mean": 0.2454,
+          "entropy_last": 1.2166,
+          "state": 3,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 3,
+          "entropy_mean": 0.4834,
+          "entropy_last": 1.1053,
+          "state": 3,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 4,
+          "entropy_mean": 0.1806,
+          "entropy_last": 1.7396,
+          "state": 3,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 5,
+          "entropy_mean": 0.5241,
+          "entropy_last": 0.3817,
+          "state": 3,
+          "is_transition": false,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 6,
+          "entropy_mean": 0.2636,
+          "entropy_last": 0.565,
+          "state": 3,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 7,
+          "entropy_mean": 0.2085,
+          "entropy_last": 1.2896,
+          "state": 3,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 8,
+          "entropy_mean": 0.236,
+          "entropy_last": 0.9389,
+          "state": 3,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 9,
+          "entropy_mean": 0.0989,
+          "entropy_last": 0.85,
+          "state": 3,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 10,
+          "entropy_mean": 0.2409,
+          "entropy_last": 0.7042,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 11,
+          "entropy_mean": 0.1097,
+          "entropy_last": 1.6336,
+          "state": 1,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 12,
+          "entropy_mean": 0.073,
+          "entropy_last": 1.6397,
+          "state": 3,
+          "is_transition": true,
+          "stage": "RESULT_CONSOLIDATION"
+        },
+        {
+          "sentence_idx": 13,
+          "entropy_mean": 1.2697,
+          "entropy_last": 0.6947,
+          "state": 3,
+          "is_transition": false,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 14,
+          "entropy_mean": 0.4857,
+          "entropy_last": 0.2777,
+          "state": 1,
+          "is_transition": true,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 15,
+          "entropy_mean": 0.3445,
+          "entropy_last": 0.0008,
+          "state": 1,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 16,
+          "entropy_mean": 0.2844,
+          "entropy_last": 0.0001,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 17,
+          "entropy_mean": 0.2351,
+          "entropy_last": 0.0238,
+          "state": 2,
+          "is_transition": true,
+          "stage": "PLAN_GENERATION"
+        }
+      ],
+      "trajectory_plot": "exp6_trajectory_pid_1.png",
+      "mean_entropy": 0.3256
+    },
+    {
+      "problem_id": 2,
+      "n_sentences": 56,
+      "trajectory": [
+        {
+          "sentence_idx": 0,
+          "entropy_mean": 0.1297,
+          "entropy_last": 0.4191,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 1,
+          "entropy_mean": 0.4809,
+          "entropy_last": 0.0033,
+          "state": 0,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 2,
+          "entropy_mean": 0.5182,
+          "entropy_last": 0.1924,
+          "state": 0,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 3,
+          "entropy_mean": 0.6654,
+          "entropy_last": 0.671,
+          "state": 2,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 4,
+          "entropy_mean": 0.3101,
+          "entropy_last": 0.9088,
+          "state": 0,
+          "is_transition": true,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 5,
+          "entropy_mean": 0.2573,
+          "entropy_last": 0.0597,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 6,
+          "entropy_mean": 0.2107,
+          "entropy_last": 0.0004,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 7,
+          "entropy_mean": 0.151,
+          "entropy_last": 0.0259,
+          "state": 3,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 8,
+          "entropy_mean": 0.3046,
+          "entropy_last": 1.6583,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 9,
+          "entropy_mean": 0.3614,
+          "entropy_last": 1.3331,
+          "state": 0,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 10,
+          "entropy_mean": 0.2556,
+          "entropy_last": 0.6031,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 11,
+          "entropy_mean": 0.5269,
+          "entropy_last": 1.4625,
+          "state": 0,
+          "is_transition": true,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 12,
+          "entropy_mean": 0.124,
+          "entropy_last": 0.0002,
+          "state": 1,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 13,
+          "entropy_mean": 0.1555,
+          "entropy_last": 0.0006,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 14,
+          "entropy_mean": 0.0336,
+          "entropy_last": 0.2431,
+          "state": 0,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 15,
+          "entropy_mean": 0.1807,
+          "entropy_last": 1.704,
+          "state": 1,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 16,
+          "entropy_mean": 0.3487,
+          "entropy_last": 1.9209,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 17,
+          "entropy_mean": 0.2641,
+          "entropy_last": 1.2891,
+          "state": 0,
+          "is_transition": true,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 18,
+          "entropy_mean": 0.0969,
+          "entropy_last": 0.0018,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 19,
+          "entropy_mean": 0.0748,
+          "entropy_last": 0.0001,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 20,
+          "entropy_mean": 0.0237,
+          "entropy_last": 0.2635,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 21,
+          "entropy_mean": 0.2432,
+          "entropy_last": 2.4289,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 22,
+          "entropy_mean": 0.3178,
+          "entropy_last": 0.9682,
+          "state": 0,
+          "is_transition": false,
+          "stage": "RESULT_CONSOLIDATION"
+        },
+        {
+          "sentence_idx": 23,
+          "entropy_mean": 0.1495,
+          "entropy_last": 0.5933,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 24,
+          "entropy_mean": 0.5834,
+          "entropy_last": 0.5754,
+          "state": 2,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 25,
+          "entropy_mean": 0.2061,
+          "entropy_last": 0.5875,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 26,
+          "entropy_mean": 0.3419,
+          "entropy_last": 0.3054,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 27,
+          "entropy_mean": 0.2697,
+          "entropy_last": 0.5656,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 28,
+          "entropy_mean": 0.1314,
+          "entropy_last": 0.7563,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 29,
+          "entropy_mean": 0.6402,
+          "entropy_last": 0.8511,
+          "state": 0,
+          "is_transition": false,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 30,
+          "entropy_mean": 0.9719,
+          "entropy_last": 1.8532,
+          "state": 0,
+          "is_transition": false,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 31,
+          "entropy_mean": 0.4026,
+          "entropy_last": 1.6684,
+          "state": 0,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 32,
+          "entropy_mean": 0.6127,
+          "entropy_last": 0.8967,
+          "state": 0,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 33,
+          "entropy_mean": 0.2494,
+          "entropy_last": 0.7272,
+          "state": 0,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 34,
+          "entropy_mean": 0.1853,
+          "entropy_last": 0.2379,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 35,
+          "entropy_mean": 0.041,
+          "entropy_last": 0.4261,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 36,
+          "entropy_mean": 0.1458,
+          "entropy_last": 1.4728,
+          "state": 3,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 37,
+          "entropy_mean": 0.6325,
+          "entropy_last": 1.1221,
+          "state": 0,
+          "is_transition": true,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 38,
+          "entropy_mean": 0.2377,
+          "entropy_last": 1.566,
+          "state": 0,
+          "is_transition": false,
+          "stage": "RESULT_CONSOLIDATION"
+        },
+        {
+          "sentence_idx": 39,
+          "entropy_mean": 0.6643,
+          "entropy_last": 0.0364,
+          "state": 0,
+          "is_transition": false,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 40,
+          "entropy_mean": 0.833,
+          "entropy_last": 1.2123,
+          "state": 0,
+          "is_transition": false,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 41,
+          "entropy_mean": 0.226,
+          "entropy_last": 0.0002,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 42,
+          "entropy_mean": 0.2284,
+          "entropy_last": 0.664,
+          "state": 2,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 43,
+          "entropy_mean": 0.3494,
+          "entropy_last": 1.4873,
+          "state": 3,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 44,
+          "entropy_mean": 0.015,
+          "entropy_last": 0.0002,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 45,
+          "entropy_mean": 0.0328,
+          "entropy_last": 0.0084,
+          "state": 3,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 46,
+          "entropy_mean": 0.06,
+          "entropy_last": 0.432,
+          "state": 1,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 47,
+          "entropy_mean": 0.0331,
+          "entropy_last": 0.0,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 48,
+          "entropy_mean": 0.0203,
+          "entropy_last": 0.0178,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 49,
+          "entropy_mean": 0.0132,
+          "entropy_last": 0.0246,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 50,
+          "entropy_mean": 0.3685,
+          "entropy_last": 2.0465,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 51,
+          "entropy_mean": 0.2924,
+          "entropy_last": 2.3192,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 52,
+          "entropy_mean": 1.1096,
+          "entropy_last": 1.7837,
+          "state": 0,
+          "is_transition": false,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 53,
+          "entropy_mean": 0.8707,
+          "entropy_last": 1.8098,
+          "state": 0,
+          "is_transition": false,
+          "stage": "FINAL_ANSWER_EMISSION"
+        },
+        {
+          "sentence_idx": 54,
+          "entropy_mean": 0.0543,
+          "entropy_last": 0.8835,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FINAL_ANSWER_EMISSION"
+        },
+        {
+          "sentence_idx": 55,
+          "entropy_mean": 0.0989,
+          "entropy_last": 0.0001,
+          "state": 3,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        }
+      ],
+      "trajectory_plot": "exp6_trajectory_pid_2.png",
+      "mean_entropy": 0.3055
+    },
+    {
+      "problem_id": 3,
+      "n_sentences": 52,
+      "trajectory": [
+        {
+          "sentence_idx": 0,
+          "entropy_mean": 0.6233,
+          "entropy_last": 0.7024,
+          "state": 1,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 1,
+          "entropy_mean": 0.1757,
+          "entropy_last": 1.2335,
+          "state": 0,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 2,
+          "entropy_mean": 0.31,
+          "entropy_last": 0.7408,
+          "state": 1,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 3,
+          "entropy_mean": 0.2811,
+          "entropy_last": 1.0685,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 4,
+          "entropy_mean": 0.2519,
+          "entropy_last": 0.5797,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 5,
+          "entropy_mean": 0.2633,
+          "entropy_last": 1.128,
+          "state": 0,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 6,
+          "entropy_mean": 0.2426,
+          "entropy_last": 0.1052,
+          "state": 1,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 7,
+          "entropy_mean": 0.4676,
+          "entropy_last": 0.5396,
+          "state": 1,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 8,
+          "entropy_mean": 0.1457,
+          "entropy_last": 0.9179,
+          "state": 1,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 9,
+          "entropy_mean": 0.2645,
+          "entropy_last": 0.2819,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 10,
+          "entropy_mean": 0.1306,
+          "entropy_last": 0.5844,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 11,
+          "entropy_mean": 0.0,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": true,
+          "stage": "FINAL_ANSWER_EMISSION"
+        },
+        {
+          "sentence_idx": 12,
+          "entropy_mean": 0.3207,
+          "entropy_last": 0.0002,
+          "state": 1,
+          "is_transition": false,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 13,
+          "entropy_mean": 0.3599,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 14,
+          "entropy_mean": 0.5441,
+          "entropy_last": 0.5365,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 15,
+          "entropy_mean": 0.1838,
+          "entropy_last": 0.0052,
+          "state": 3,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 16,
+          "entropy_mean": 0.1938,
+          "entropy_last": 0.0001,
+          "state": 1,
+          "is_transition": true,
+          "stage": "RESULT_CONSOLIDATION"
+        },
+        {
+          "sentence_idx": 17,
+          "entropy_mean": 0.5237,
+          "entropy_last": 0.0,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 18,
+          "entropy_mean": 0.8905,
+          "entropy_last": 1.5282,
+          "state": 3,
+          "is_transition": false,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 19,
+          "entropy_mean": 0.236,
+          "entropy_last": 0.0024,
+          "state": 3,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 20,
+          "entropy_mean": 0.3192,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 21,
+          "entropy_mean": 0.3891,
+          "entropy_last": 0.2645,
+          "state": 2,
+          "is_transition": true,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 22,
+          "entropy_mean": 0.2978,
+          "entropy_last": 0.0003,
+          "state": 1,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 23,
+          "entropy_mean": 0.1829,
+          "entropy_last": 0.4531,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 24,
+          "entropy_mean": 0.1466,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 25,
+          "entropy_mean": 0.3413,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 26,
+          "entropy_mean": 0.3895,
+          "entropy_last": 0.0004,
+          "state": 1,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 27,
+          "entropy_mean": 0.2325,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 28,
+          "entropy_mean": 0.1513,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FINAL_ANSWER_EMISSION"
+        },
+        {
+          "sentence_idx": 29,
+          "entropy_mean": 0.4945,
+          "entropy_last": 0.126,
+          "state": 1,
+          "is_transition": false,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 30,
+          "entropy_mean": 0.3489,
+          "entropy_last": 0.0494,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 31,
+          "entropy_mean": 0.2056,
+          "entropy_last": 0.0,
+          "state": 3,
+          "is_transition": true,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 32,
+          "entropy_mean": 0.154,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 33,
+          "entropy_mean": 0.1495,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FINAL_ANSWER_EMISSION"
+        },
+        {
+          "sentence_idx": 34,
+          "entropy_mean": 1.0456,
+          "entropy_last": 0.017,
+          "state": 2,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 35,
+          "entropy_mean": 1.1353,
+          "entropy_last": 0.5854,
+          "state": 1,
+          "is_transition": true,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 36,
+          "entropy_mean": 0.4439,
+          "entropy_last": 0.8682,
+          "state": 1,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 37,
+          "entropy_mean": 0.6601,
+          "entropy_last": 0.0331,
+          "state": 1,
+          "is_transition": false,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 38,
+          "entropy_mean": 0.6309,
+          "entropy_last": 0.0496,
+          "state": 3,
+          "is_transition": true,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 39,
+          "entropy_mean": 0.1904,
+          "entropy_last": 0.0027,
+          "state": 1,
+          "is_transition": true,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 40,
+          "entropy_mean": 0.2038,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "RESULT_CONSOLIDATION"
+        },
+        {
+          "sentence_idx": 41,
+          "entropy_mean": 0.4326,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 42,
+          "entropy_mean": 0.5423,
+          "entropy_last": 0.6518,
+          "state": 2,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 43,
+          "entropy_mean": 0.53,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 44,
+          "entropy_mean": 0.161,
+          "entropy_last": 0.0004,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 45,
+          "entropy_mean": 0.091,
+          "entropy_last": 0.0003,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 46,
+          "entropy_mean": 0.0339,
+          "entropy_last": 0.0003,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 47,
+          "entropy_mean": 0.2429,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 48,
+          "entropy_mean": 0.1166,
+          "entropy_last": 0.0001,
+          "state": 1,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 49,
+          "entropy_mean": 0.493,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 50,
+          "entropy_mean": 0.8901,
+          "entropy_last": 0.0074,
+          "state": 1,
+          "is_transition": false,
+          "stage": "SELF_CHECKING"
+        },
+        {
+          "sentence_idx": 51,
+          "entropy_mean": 0.5452,
+          "entropy_last": 0.0589,
+          "state": 0,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        }
+      ],
+      "trajectory_plot": "exp6_trajectory_pid_3.png",
+      "mean_entropy": 0.3577
+    },
+    {
+      "problem_id": 4,
+      "n_sentences": 40,
+      "trajectory": [
+        {
+          "sentence_idx": 0,
+          "entropy_mean": 0.2642,
+          "entropy_last": 0.4985,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 1,
+          "entropy_mean": 0.6122,
+          "entropy_last": 0.836,
+          "state": 0,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 2,
+          "entropy_mean": 0.6373,
+          "entropy_last": 0.0734,
+          "state": 3,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 3,
+          "entropy_mean": 0.3211,
+          "entropy_last": 0.6422,
+          "state": 2,
+          "is_transition": true,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 4,
+          "entropy_mean": 0.3266,
+          "entropy_last": 1.3244,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 5,
+          "entropy_mean": 0.5982,
+          "entropy_last": 0.771,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 6,
+          "entropy_mean": 0.5319,
+          "entropy_last": 1.602,
+          "state": 3,
+          "is_transition": true,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 7,
+          "entropy_mean": 0.4415,
+          "entropy_last": 0.2147,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 8,
+          "entropy_mean": 0.6282,
+          "entropy_last": 1.8252,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 9,
+          "entropy_mean": 0.9938,
+          "entropy_last": 1.3098,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 10,
+          "entropy_mean": 0.231,
+          "entropy_last": 1.8931,
+          "state": 1,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 11,
+          "entropy_mean": 1.3785,
+          "entropy_last": 2.1008,
+          "state": 2,
+          "is_transition": true,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 12,
+          "entropy_mean": 0.9323,
+          "entropy_last": 1.4298,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 13,
+          "entropy_mean": 0.1959,
+          "entropy_last": 0.0,
+          "state": 0,
+          "is_transition": true,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 14,
+          "entropy_mean": 0.4353,
+          "entropy_last": 1.621,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 15,
+          "entropy_mean": 0.3309,
+          "entropy_last": 0.6347,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 16,
+          "entropy_mean": 0.5777,
+          "entropy_last": 1.6767,
+          "state": 1,
+          "is_transition": true,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 17,
+          "entropy_mean": 0.387,
+          "entropy_last": 1.3747,
+          "state": 2,
+          "is_transition": true,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 18,
+          "entropy_mean": 0.8792,
+          "entropy_last": 0.0,
+          "state": 1,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 19,
+          "entropy_mean": 0.5153,
+          "entropy_last": 0.9819,
+          "state": 2,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 20,
+          "entropy_mean": 0.534,
+          "entropy_last": 0.9459,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 21,
+          "entropy_mean": 0.6138,
+          "entropy_last": 1.8344,
+          "state": 0,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 22,
+          "entropy_mean": 0.4029,
+          "entropy_last": 1.046,
+          "state": 3,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 23,
+          "entropy_mean": 0.416,
+          "entropy_last": 1.3804,
+          "state": 3,
+          "is_transition": false,
+          "stage": "PROBLEM_SETUP"
+        },
+        {
+          "sentence_idx": 24,
+          "entropy_mean": 0.5286,
+          "entropy_last": 1.4333,
+          "state": 2,
+          "is_transition": true,
+          "stage": "UNCERTAINTY_MANAGEMENT"
+        },
+        {
+          "sentence_idx": 25,
+          "entropy_mean": 0.6669,
+          "entropy_last": 1.1022,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 26,
+          "entropy_mean": 0.6416,
+          "entropy_last": 1.382,
+          "state": 2,
+          "is_transition": false,
+          "stage": "FACT_RETRIEVAL"
+        },
+        {
+          "sentence_idx": 27,
+          "entropy_mean": 0.4049,
+          "entropy_last": 1.1537,
+          "state": 2,
+          "is_transition": false,
+          "stage": "PLAN_GENERATION"
+        },
+        {
+          "sentence_idx": 28,
+          "entropy_mean": 0.4447,
+          "entropy_last": 0.6089,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 29,
+          "entropy_mean": 0.1418,
+          "entropy_last": 1.4177,
+          "state": 2,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 30,
+          "entropy_mean": 0.1721,
+          "entropy_last": 0.5611,
+          "state": 2,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 31,
+          "entropy_mean": 0.3235,
+          "entropy_last": 0.0027,
+          "state": 3,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 32,
+          "entropy_mean": 0.4703,
+          "entropy_last": 1.8027,
+          "state": 2,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 33,
+          "entropy_mean": 0.0918,
+          "entropy_last": 0.0965,
+          "state": 2,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 34,
+          "entropy_mean": 0.2824,
+          "entropy_last": 0.0592,
+          "state": 3,
+          "is_transition": true,
+          "stage": "RESULT_CONSOLIDATION"
+        },
+        {
+          "sentence_idx": 35,
+          "entropy_mean": 0.1337,
+          "entropy_last": 1.64,
+          "state": 3,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 36,
+          "entropy_mean": 0.3082,
+          "entropy_last": 1.1153,
+          "state": 0,
+          "is_transition": true,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 37,
+          "entropy_mean": 0.1173,
+          "entropy_last": 0.2699,
+          "state": 0,
+          "is_transition": false,
+          "stage": "ACTIVE_COMPUTATION"
+        },
+        {
+          "sentence_idx": 38,
+          "entropy_mean": 0.0797,
+          "entropy_last": 0.0614,
+          "state": 3,
+          "is_transition": true,
+          "stage": "RESULT_CONSOLIDATION"
+        },
+        {
+          "sentence_idx": 39,
+          "entropy_mean": 0.0002,
+          "entropy_last": 0.0,
+          "state": 0,
+          "is_transition": true,
+          "stage": "FACT_RETRIEVAL"
+        }
+      ],
+      "trajectory_plot": "exp6_trajectory_pid_4.png",
+      "mean_entropy": 0.4498
+    }
+  ],
+  "K": 4,
+  "n_sentences": 206
+}
