@@ -94,6 +94,8 @@ def build_dashboard(out_dir: str, features_path: str = None) -> None:
         "exp3_entropy_by_transition_type.png",
         "exp4_regime_entropy_correlation.png",
         "exp5_stage_regime_entropy.png",
+        "exp7_scatter_base_vs_finetuned.png",
+        "exp7_entropy_reduction_by_regime.png",
     ]:
         if os.path.exists(os.path.join(out_dir, name)):
             exp_images.append({"name": name.replace(".png", "").replace("_", " ").title(), "file": name})
@@ -181,9 +183,18 @@ function showSummary() {{
   document.getElementById('panel-summary').style.display = 'block';
   document.getElementById('panel-problem').style.display = 'none';
   const el = document.getElementById('summary-legend');
+  let exp7Text = '';
+  if (summary.exp7_base_vs_finetuned && summary.exp7_base_vs_finetuned.mean_entropy_reduction_overall != null) {{
+    exp7Text = 'Base vs fine-tuned: mean entropy reduction (base − finetuned) = ' + Number(summary.exp7_base_vs_finetuned.mean_entropy_reduction_overall).toFixed(4);
+    if (summary.exp7_base_vs_finetuned.entropy_reduction_by_regime && summary.exp7_base_vs_finetuned.entropy_reduction_by_regime.length) {{
+      exp7Text += ' | By regime: [' + summary.exp7_base_vs_finetuned.entropy_reduction_by_regime.map(function(x) {{ return Number(x).toFixed(3); }}).join(', ') + ']';
+    }}
+    exp7Text += '<br/>';
+  }}
   el.innerHTML = 'K = ' + (summary.K || '') + ' regimes | n = ' + (summary.n_sentences || '') + ' sentences<br/>' +
     (summary.exp2 ? 'Mean entropy at transition: ' + Number(summary.exp2.mean_entropy_at_transition).toFixed(4) + '<br/>Mean entropy (non-transition): ' + Number(summary.exp2.mean_entropy_non_transition).toFixed(4) + '<br/>' : '') +
-    (summary.exp4_correlation != null ? 'Correlation (transition entropy vs sentence entropy): ' + Number(summary.exp4_correlation).toFixed(4) : '');
+    (summary.exp4_correlation != null ? 'Correlation (transition entropy vs sentence entropy): ' + Number(summary.exp4_correlation).toFixed(4) + '<br/>' : '') +
+    exp7Text;
   const container = document.getElementById('summary-exp-images');
   container.innerHTML = '';
   expImages.forEach(exp => {{

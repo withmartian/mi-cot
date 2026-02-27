@@ -141,16 +141,18 @@ def main():
     parser = argparse.ArgumentParser(description="Extract sentence-level entropy for SDS alignment")
     parser.add_argument("--features", default="rpc_dataset/all_sentences_features.pkl", help="Path to all_sentences_features.pkl")
     parser.add_argument("--cot", default="rpc_dataset/cot_data.pkl", help="Path to cot_data.pkl")
-    parser.add_argument("--model", default="deepseek-ai/DeepSeek-R1-Distill-Qwen-14B", help="HuggingFace model id")
+    parser.add_argument("--model", default="deepseek-ai/DeepSeek-R1-Distill-Qwen-14B", help="HuggingFace model id (fine-tuned/CoT)")
+    parser.add_argument("--base-model", default=None, help="Optional base model id; if set, also extract entropy and save sentence_entropy_base.pkl")
     parser.add_argument("--out", default="entropy_on_sds_output", help="Output directory")
     parser.add_argument("--limit-problems", type=int, default=None, help="Only use problem_id < N")
     parser.add_argument("--max-length", type=int, default=2048, help="Max token length per prompt")
     args = parser.parse_args()
 
+    # Resolve paths: relative paths are relative to cwd (so output stays next to entropy_on_sds when run from here)
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     features_path = os.path.abspath(args.features) if os.path.isabs(args.features) else os.path.join(repo_root, args.features)
     cot_path = os.path.abspath(args.cot) if os.path.isabs(args.cot) else os.path.join(repo_root, args.cot)
-    out_dir = os.path.abspath(args.out) if os.path.isabs(args.out) else os.path.join(repo_root, args.out)
+    out_dir = os.path.abspath(args.out) if os.path.isabs(args.out) else os.path.abspath(args.out)
     os.makedirs(out_dir, exist_ok=True)
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -182,6 +184,30 @@ def main():
         w.writeheader()
         w.writerows(table)
     print(f"Saved {csv_path}")
+
+    # Optional: extract with base model for base vs fine-tuned comparison
+    if args.base_model and args.base_model != args.model:
+        # Free fine-tuned model first to avoid OOM when loading base model
+        del model, tokenizer
+        if device == "cuda":
+            torch.cuda.empty_cache()
+        print(f"Extracting base model entropy with {args.base_model}...")
+        base_tokenizer = AutoTokenizer.from_pretrained(args.base_model, trust_remote_code=True)
+        base_model = AutoModelForCausalLM.from_pretrained(
+            args.base_model,
+            torch_dtype=torch.bfloat16 if device == "cuda" else torch.float32,
+            device_map="auto" if device == "cuda" else None,
+        )
+        if device == "cpu":
+            base_model = base_model.to(device)
+        base_table = extract_sentence_entropy(base_model, base_tokenizer, all_features, ckpt_cot, device=device, max_length=args.max_length)
+        base_path = os.path.join(out_dir, "sentence_entropy_base.pkl")
+        with open(base_path, "wb") as f:
+            pickle.dump(base_table, f)
+        print(f"Saved {len(base_table)} rows to {base_path}")
+        del base_model, base_tokenizer
+        if device == "cuda":
+            torch.cuda.empty_cache()
 
 
 if __name__ == "__main__":

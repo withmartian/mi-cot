@@ -111,7 +111,9 @@ def main():
     parser.add_argument("--save-model", action="store_true", help="Save SDS model state dict and scaler")
     args = parser.parse_args()
 
-    os.makedirs(args.out, exist_ok=True)
+    # Resolve relative --out against cwd so output dir is consistent with run_pipeline
+    out_dir = os.path.abspath(args.out) if not os.path.isabs(args.out) else args.out
+    os.makedirs(out_dir, exist_ok=True)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     features_path = args.features if os.path.isabs(args.features) else os.path.join(REPO_ROOT, args.features)
 
@@ -128,7 +130,7 @@ def main():
         for i, f in enumerate(all_features)
     ]
 
-    out_path = os.path.join(args.out, "sds_states.pkl")
+    out_path = os.path.join(out_dir, "sds_states.pkl")
     with open(out_path, "wb") as f:
         pickle.dump({"states": states, "result": result, "K": args.K}, f)
     print(f"Saved states (K={args.K}) to {out_path}")
@@ -141,7 +143,7 @@ def main():
             "scaler_scale": scaler.scale_,
             "K": args.K,
             "d_in": len(scaler.mean_),
-        }, os.path.join(args.out, "sds_model.pt"))
+        }, os.path.join(out_dir, "sds_model.pt"))
         print("Saved SDS model to sds_model.pt")
 
 

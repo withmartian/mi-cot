@@ -16,8 +16,8 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO_ROOT)
 
 
-def load_data(out_dir: str, features_path: str = None):
-    """Load sentence entropy, SDS states, and optionally features for stage."""
+def load_data(out_dir: str, features_path: str = None, load_base: bool = True):
+    """Load sentence entropy, SDS states, and optionally features for stage and base entropy."""
     with open(os.path.join(out_dir, "sentence_entropy.pkl"), "rb") as f:
         entropy_table = pickle.load(f)
     with open(os.path.join(out_dir, "sds_states.pkl"), "rb") as f:
@@ -28,6 +28,19 @@ def load_data(out_dir: str, features_path: str = None):
     # Build dataframe in same order (all tables are aligned by index)
     df = pd.DataFrame(entropy_table)
     df["state"] = states
+
+    # Optional: merge base model entropy for base vs fine-tuned comparison
+    base_path = os.path.join(out_dir, "sentence_entropy_base.pkl")
+    if load_base and os.path.exists(base_path):
+        with open(base_path, "rb") as f:
+            base_table = pickle.load(f)
+        base_df = pd.DataFrame(base_table)
+        if len(base_df) == len(df):
+            df["sent_entropy_mean_base"] = base_df["sent_entropy_mean"].values
+            df["sent_entropy_last_base"] = base_df["sent_entropy_last"].values
+        else:
+            df["sent_entropy_mean_base"] = np.nan
+            df["sent_entropy_last_base"] = np.nan
 
     # is_transition: state != previous state within same problem
     df["is_transition"] = False
@@ -208,6 +221,91 @@ def run_experiments(df: pd.DataFrame, K: int, out_dir: str):
             plt.savefig(os.path.join(out_dir, f"exp6_trajectory_pid_{pid}.png"), dpi=150)
             plt.close()
 
+    # ----- Exp 7: Base vs fine-tuned entropy comparison (and persistence-like: reduction by regime) -----
+    exp7 = {}
+    if "sent_entropy_mean_base" in df.columns:
+        valid_both = (
+            df["sent_entropy_mean"].notna() & np.isfinite(df["sent_entropy_mean"])
+            & df["sent_entropy_mean_base"].notna() & np.isfinite(df["sent_entropy_mean_base"])
+        )
+        if valid_both.any():
+            # Entropy reduction = base - finetuned (positive => fine-tuned more confident)
+            df["entropy_reduction"] = np.nan
+            df.loc[valid_both, "entropy_reduction"] = (
+                df.loc[valid_both, "sent_entropy_mean_base"] - df.loc[valid_both, "sent_entropy_mean"]
+            )
+            mean_reduction = float(df.loc[valid_both, "entropy_reduction"].mean())
+            exp7["mean_entropy_reduction_overall"] = mean_reduction
+            exp7["n_valid_pairs"] = int(valid_both.sum())
+
+            # Per-regime: mean base, mean finetuned, mean entropy reduction (persistence-like: differs by regime)
+            exp7_rows = []
+            for k in range(K):
+                mask = valid_both & (df["state"] == k)
+                if mask.sum() == 0:
+                    exp7_rows.append({
+                        "regime": k,
+                        "mean_entropy_base": np.nan,
+                        "mean_entropy_finetuned": np.nan,
+                        "mean_entropy_reduction": np.nan,
+                        "count": 0,
+                    })
+                else:
+                    exp7_rows.append({
+                        "regime": k,
+                        "mean_entropy_base": float(df.loc[mask, "sent_entropy_mean_base"].mean()),
+                        "mean_entropy_finetuned": float(df.loc[mask, "sent_entropy_mean"].mean()),
+                        "mean_entropy_reduction": float(df.loc[mask, "entropy_reduction"].mean()),
+                        "count": int(mask.sum()),
+                    })
+            exp7_df = pd.DataFrame(exp7_rows)
+            exp7_df.to_csv(os.path.join(out_dir, "exp7_base_vs_finetuned_by_regime.csv"), index=False)
+            exp7["entropy_reduction_by_regime"] = exp7_df["mean_entropy_reduction"].tolist()
+            print("Exp 7: Base vs fine-tuned entropy")
+            print(f"  Mean entropy reduction (base - finetuned) overall: {mean_reduction:.4f}")
+            print(exp7_df.to_string())
+
+            if plt is not None:
+                # Scatter: base vs fine-tuned (per sentence)
+                fig, ax = plt.subplots(figsize=(6, 6))
+                ax.scatter(
+                    df.loc[valid_both, "sent_entropy_mean_base"],
+                    df.loc[valid_both, "sent_entropy_mean"],
+                    alpha=0.4,
+                    s=12,
+                )
+                lims = [
+                    min(ax.get_xlim()[0], ax.get_ylim()[0]),
+                    max(ax.get_xlim()[1], ax.get_ylim()[1]),
+                ]
+                ax.plot(lims, lims, "k--", alpha=0.5, label="y=x")
+                ax.set_xlabel("Base model sentence entropy (mean)")
+                ax.set_ylabel("Fine-tuned model sentence entropy (mean)")
+                ax.set_title("Base vs fine-tuned entropy per sentence")
+                ax.legend()
+                ax.set_aspect("equal")
+                plt.savefig(os.path.join(out_dir, "exp7_scatter_base_vs_finetuned.png"), dpi=150)
+                plt.close()
+
+                # Bar chart: entropy reduction by regime (persistence-like)
+                fig, ax = plt.subplots(figsize=(6, 4))
+                regimes = exp7_df["regime"].astype(int)
+                reductions = exp7_df["mean_entropy_reduction"].values
+                colors = ["#2ecc71" if r > 0 else "#e74c3c" for r in reductions]
+                ax.bar(regimes, reductions, color=colors, alpha=0.8)
+                ax.axhline(0, color="k", linewidth=0.5)
+                ax.set_xlabel("Regime")
+                ax.set_ylabel("Mean entropy reduction (base − fine-tuned)")
+                ax.set_title("Entropy reduction by regime (positive = fine-tuned more confident)")
+                plt.savefig(os.path.join(out_dir, "exp7_entropy_reduction_by_regime.png"), dpi=150)
+                plt.close()
+        else:
+            exp7["mean_entropy_reduction_overall"] = None
+            exp7["entropy_reduction_by_regime"] = None
+            print("Exp 7: Skipped (no valid base/fine-tuned pairs)")
+    else:
+        print("Exp 7: Skipped (no sentence_entropy_base.pkl)")
+
     # Summary
     def _convert(obj):
         if hasattr(obj, "item") and callable(obj.item):
@@ -230,6 +328,7 @@ def run_experiments(df: pd.DataFrame, K: int, out_dir: str):
         "exp1_entropy_by_regime": _convert(summary_by_state.to_dict()),
         "exp2": exp2,
         "exp4_correlation": float(corr),
+        "exp7_base_vs_finetuned": _convert(exp7) if exp7 else None,
     }
     import json
     with open(os.path.join(out_dir, "analysis_summary.json"), "w") as f:

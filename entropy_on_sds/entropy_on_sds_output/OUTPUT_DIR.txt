@@ -1,0 +1,4 @@
+Entropy-on-SDS pipeline output
+Full path: /home/ubuntu/mi-cot/entropy_on_sds/entropy_on_sds_output
+
+In the file tree, this folder is: mi-cot/entropy_on_sds/entropy_on_sds_output

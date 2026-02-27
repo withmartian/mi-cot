@@ -41,7 +41,9 @@ For a faster test (fewer problems):
 python run_pipeline.py --limit-problems 100
 ```
 
-Outputs go to `entropy_on_sds_output/` by default (or `--out DIR`).
+Outputs go to **`entropy_on_sds_output/`** by default (or `--out DIR`).
+
+**Where to find the output folder:** It is always **inside** `entropy_on_sds`, i.e. `mi-cot/entropy_on_sds/entropy_on_sds_output`. In your file tree, expand **entropy_on_sds** → **entropy_on_sds_output**. The pipeline also writes `OUTPUT_DIR.txt` there with the full path and prints it at the end. If the folder appears empty, refresh the tree or open the path printed by the script.
 
 ## Running Steps Individually
 
