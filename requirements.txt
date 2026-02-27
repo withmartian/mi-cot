@@ -1,0 +1,15 @@
+torch>=2.0.0
+numpy
+tqdm
+transformers>=4.30.0
+datasets
+
+# avoid FileLock(mode=...) errors when loading datasets
+filelock>=3.12.0
+huggingface_hub>=0.20.0
+
+transformer_lens
+scikit-learn
+matplotlib
+seaborn
+pandas
