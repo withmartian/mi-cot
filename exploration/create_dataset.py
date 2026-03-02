@@ -54,6 +54,7 @@ def parse_args():
     p.add_argument("--batch",    type=int, default=4)
     p.add_argument("--validate", type=int, default=20, help="Print class sequences for first N problems")
     p.add_argument("--max_new_tokens", type=int, default=1024)
+    p.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility (e.g. generation with temperature)")
     return p.parse_args()
 
 # ── HELPERS ─────────────────────────────────────────────────
@@ -207,6 +208,9 @@ def print_validation(all_extractions, n=20):
 def main():
     args = parse_args()
     os.makedirs(args.out, exist_ok=True)
+
+    torch.manual_seed(args.seed)
+    np.random.seed(args.seed)
 
     ckpt_raw      = os.path.join(args.out, "raw_extractions.pkl")
     ckpt_features = os.path.join(args.out, "all_sentences_features.pkl")

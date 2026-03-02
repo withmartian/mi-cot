@@ -52,6 +52,7 @@ def parse_args():
         default=8,
         help="Number of GPUs to use (default 8 for 8x A100)",
     )
+    p.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility (passed to workers)")
     return p.parse_args()
 
 
@@ -94,6 +95,7 @@ def main():
         "clf": args.clf,
         "layer": args.layer,
         "batch": args.batch,
+        "seed": args.seed,
     }
 
     script_dir = os.path.dirname(os.path.abspath(__file__))

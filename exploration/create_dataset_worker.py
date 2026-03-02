@@ -64,6 +64,8 @@ def run_worker(rank: int, start_idx: int, end_idx: int, args_dict: dict):
         print(f"[Rank {rank}] No problems in range [{start_idx}, {end_idx})")
         return
 
+    seed = args_dict.get("seed", 42)
+
     if os.path.exists(ckpt_raw):
         all_extractions = pickle.load(open(ckpt_raw, "rb"))
         done_pids = set(all_extractions.keys()) & set(my_pids)
@@ -87,6 +89,8 @@ def run_worker(rank: int, start_idx: int, end_idx: int, args_dict: dict):
         model.eval()
 
         for pid, problem in tqdm(remaining, desc=f"Rank {rank} Phase1"):
+            torch.manual_seed(seed + pid)
+            np.random.seed(seed + pid)
             result = process_problem(problem, model, tokenizer, args_dict["layer"])
             if result:
                 all_extractions[pid] = result
