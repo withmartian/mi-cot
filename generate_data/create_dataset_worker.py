@@ -28,6 +28,8 @@ from create_dataset import (
     process_problem,
     get_classification_prompt,
     classify_sentences,
+    get_dataset_config,
+    get_problem_from_row,
 )
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -54,10 +56,9 @@ def run_worker(rank: int, start_idx: int, end_idx: int, args_dict: dict):
     dataset_name = args_dict["dataset"]
     split = args_dict["split"]
     n = args_dict["n"]
-    config = "default" if "MATH" in dataset_name else "main"
+    config = get_dataset_config(dataset_name)
     ds = load_dataset(dataset_name, config, split=f"{split}[:{n}]")
-    key = "problem" if "problem" in ds[0] else "question"
-    problems = [ds[i][key] for i in range(len(ds))]
+    problems = [get_problem_from_row(ds[i], dataset_name) for i in range(len(ds))]
 
     my_pids = list(range(start_idx, min(end_idx, len(problems))))
     if not my_pids:
