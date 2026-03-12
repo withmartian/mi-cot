@@ -28,6 +28,7 @@ from create_dataset import (
     CLASSES_ORDERED,
     parse_args as base_parse_args,
     print_validation,
+    get_dataset_config,
 )
 
 
@@ -64,9 +65,8 @@ def main():
     # Load dataset once to get size and validate
     from datasets import load_dataset
 
-    config = "default" if "MATH" in args.dataset else "main"
+    config = get_dataset_config(args.dataset)
     ds = load_dataset(args.dataset, config, split=f"{args.split}[:{args.n}]")
-    key = "problem" if "problem" in ds[0] else "question"
     n_problems = len(ds)
     print(f"Dataset: {args.dataset} {args.split}, {n_problems} problems")
     print(f"Sharding across {args.ngpus} GPUs\n")

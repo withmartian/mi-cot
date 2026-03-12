@@ -19,3 +19,14 @@ We compare base and fine-tuned models to identify where they diverge, then analy
 
 ## Status
 Active research. Details and findings will be shared as work progresses.
+
+## Setup
+
+```bash
+git clone https://github.com/withmartian/mi-cot.git
+cd mi-cot
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```

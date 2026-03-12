@@ -57,6 +57,49 @@ def parse_args():
     p.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility (e.g. generation with temperature)")
     return p.parse_args()
 
+# ── DATASET FORMAT HELPERS ─────────────────────────────────
+# Map dataset id to HuggingFace load_dataset config name.
+def get_dataset_config(dataset_name: str) -> str:
+    name_lower = dataset_name.lower()
+    if "MATH" in dataset_name:
+        return "default"
+    if "humaneval" in name_lower:
+        return "openai_humaneval"  # openai/openai_humaneval has this config
+    if "svamp" in name_lower or "mmlu" in name_lower:
+        return "default"
+    if "hotpot" in name_lower:
+        return "distractor"  # hotpot_qa has configs: distractor, fullwiki
+    return "main"
+
+
+def get_problem_from_row(row: dict, dataset_name: str) -> str:
+    """Extract the problem/prompt string from a dataset row. Handles:
+    - openai/openai_humaneval: 'prompt' column
+    - garrethlee/svamp: 'question' column
+    - TIGER-Lab/MMLU-Pro: 'question' + 'options' (formatted as A. ... B. ...)
+    - default: 'problem' or 'question' column
+    """
+    name_lower = dataset_name.lower()
+    if "humaneval" in name_lower and "prompt" in row:
+        return row["prompt"]
+    if "mmlu" in name_lower and "question" in row:
+        q = row["question"]
+        if "options" in row and row["options"]:
+            opts = row["options"]
+            if isinstance(opts, (list, tuple)):
+                letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                parts = [f"{letters[i]}. {opts[i]}" for i in range(min(len(letters), len(opts)))]
+                return q + "\n\n" + "\n".join(parts)
+        return q
+    if "problem" in row:
+        return row["problem"]
+    if "question" in row:
+        return row["question"]
+    raise KeyError(
+        f"No problem/question/prompt column found for dataset {dataset_name}. Keys: {list(row.keys())}"
+    )
+
+
 # ── HELPERS ─────────────────────────────────────────────────
 
 def split_into_sentences(text):
@@ -220,10 +263,9 @@ def main():
     # ── load dataset ──
     from datasets import load_dataset
     print(f"Loading dataset {args.dataset}...")
-    ds = load_dataset(args.dataset, 'default' if 'MATH' in args.dataset else 'main',
-                      split=f"{args.split}[:{args.n}]")
-    key = 'problem' if 'problem' in ds[0] else 'question'
-    problems = [item[key] for item in ds]
+    config = get_dataset_config(args.dataset)
+    ds = load_dataset(args.dataset, config, split=f"{args.split}[:{args.n}]")
+    problems = [get_problem_from_row(ds[i], args.dataset) for i in range(len(ds))]
     print(f"Loaded {len(problems)} problems\n")
 
     # ── resume: load existing extractions ──
