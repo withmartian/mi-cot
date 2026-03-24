@@ -1,17 +1,10 @@
 """
-CEBRA-EM steering that imports CEBRA+EM utilities from `cebra_EM.py`.
-CEBRA embedding training and SLDS EM: init / E-step / M-step
+CEBRA-EM steering on top of ``cebra_EM.py``: train CEBRA latents, fit an SLDS with EM, then steer via a
+KL-tilted next-regime law (q* vs p) and map Δz into activation space (Δx) for edits.
 
-This file steers the CEBRA-EM model by:
-  - KL-regularized target-state policy q*(k) ∝ p(k) exp(β r(k))
-  - steering delta Δz_t = μ_steered(z_t) - μ_orig(z_t)
-
-If `SteerConfig.data_path` does not exist locally and `hf_auto_download_if_missing` is True,
-`run_pipeline` uses ``hf_steering_data_io.resolve_hf_subset_data_path`` to download/cache
-from the configured Hub dataset (defaults in ``sds_train_gsm8k_hf``).
-
-Dataset layout and ``--model`` presets: ``sds_train_gsm8k_hf.py``. Hub download/subset/CLI:
-``hf_steering_data_io.py``.
+**Docs:** CLI flags, data sources, example commands, **outputs**, and **how to analyze** them are in
+``README_cebra_em_steering_inputDep.md`` (same directory as this file). From that folder, run
+``python cebra_em_steering_inputDep.py --help`` for full argparse text.
 
 Notation (glossary → symbol):
   x_t, X_raw   Hidden state in the *original* activation space (one vector per sentence).
@@ -149,6 +142,9 @@ class SteerConfig:
     hf_fallback_cache_name: str = "sds_hf100_default_qwen15b_reasoning_l27.pkl"
 
 
+# ---------------------------------------------------------------------------
+# File Parsing / CLI Configuration
+# ---------------------------------------------------------------------------
 def build_cli_parser() -> argparse.ArgumentParser:
     _epilog = (
         "Examples:\n"
@@ -216,6 +212,9 @@ def config_from_cli_args(cfg: SteerConfig, args: argparse.Namespace) -> SteerCon
     return c
 
 
+# ---------------------------------------------------------------------------
+# Steering Core + Evaluation
+# ---------------------------------------------------------------------------
 def fit_latent_to_activation_decoder(z_flat: np.ndarray, x_scaled_flat: np.ndarray) -> np.ndarray:
     """
     Learn a *linear bridge* from CEBRA latents z to standardized activations x_scaled.
@@ -336,103 +335,6 @@ def diffusion_postprocess_placeholder(acts_edit: np.ndarray) -> np.ndarray:
     Here: identity so the pipeline runs without an extra model.
     """
     return acts_edit
-
-
-def compute_steering_reports(
-    steering_cache: Dict[int, dict],
-    x_raw: np.ndarray,
-) -> dict:
-    """
-    Aggregate *policy-level* and *magnitude* metrics per sample, then bucket by target / transfer.
-
-    Metric definitions used here:
-      steerability(%): 100 * mean[argmax(q*) == target_k]
-      coherence_penalty: mean(||delta_x_raw|| / ||x_raw||)
-      target_prob_lift: mean(q*[target] - p[target])
-      kl_q_p: mean(KL(q* || p))
-
-    Per-sample fields (from steering_cache + x_raw):
-      p, q     Same p(k), q*(k) as in compute_steering_delta — “natural vs steered” next regime law.
-      dx, x    Δx_raw and original x — how big the nudge is relative to the vector norm.
-
-    Report scalars (meaning):
-      steerability_pct — Did q* actually *privilege* the chosen target (argmax hits target_k)?
-      target_prob_lift — How much probability mass moved onto target under q* vs p?
-      kl_q_p            — Control cost: how far we moved the categorical law (bits-scale divergence).
-      l1_policy_shift   — Total probability moved between bins (L1 distance p vs q*).
-      coherence_penalty — ‖Δx‖/‖x‖: relative size of activation edit (physical “how loud” the nudge).
-    """
-    if not steering_cache:
-        return {
-            "global": {},
-            "by_target": {},
-            "by_transfer": {},
-        }
-
-    eps = 1e-12
-    rows = []
-    for idx, entry in steering_cache.items():
-        s = int(entry["source_state"])  # s_t for this row
-        t = int(entry["target_state"])  # k* (reward vertex) for this row
-        p = np.asarray(entry["p_next"], dtype=np.float64)  # natural next-regime law
-        q = np.asarray(entry["q_next"], dtype=np.float64)  # steered q* (Gibbs tilt of p)
-        dx = np.asarray(entry["delta_x_raw"], dtype=np.float64)  # activation-space push Δx
-        x = np.asarray(x_raw[idx], dtype=np.float64)  # original x_t (denominator for relative norm)
-
-        # lift: extra mass on the chosen target bin; kl: information cost of replacing p by q*.
-        lift = float(q[t] - p[t])
-        kl = float(np.sum(q * (np.log(q + eps) - np.log(p + eps))))
-        coh_pen = float(np.linalg.norm(dx) / (np.linalg.norm(x) + eps))
-        success = int(np.argmax(q) == t)
-        l1_shift = float(np.sum(np.abs(q - p)))
-
-        rows.append(
-            {
-                "idx": int(idx),
-                "source_state": s,
-                "target_state": t,
-                "lift": lift,
-                "kl_q_p": kl,
-                "coherence_penalty": coh_pen,
-                "success": success,
-                "l1_policy_shift": l1_shift,
-            }
-        )
-
-    def _agg(items: List[dict]) -> dict:
-        arr_lift = np.array([r["lift"] for r in items], dtype=np.float64)
-        arr_kl = np.array([r["kl_q_p"] for r in items], dtype=np.float64)
-        arr_cp = np.array([r["coherence_penalty"] for r in items], dtype=np.float64)
-        arr_success = np.array([r["success"] for r in items], dtype=np.float64)
-        arr_shift = np.array([r["l1_policy_shift"] for r in items], dtype=np.float64)
-        return {
-            "count": int(len(items)),
-            "steerability_pct": float(100.0 * arr_success.mean()),
-            "coherence_penalty": float(arr_cp.mean()),
-            "target_prob_lift": float(arr_lift.mean()),
-            "kl_q_p": float(arr_kl.mean()),
-            "l1_policy_shift": float(arr_shift.mean()),
-        }
-
-    global_stats = _agg(rows)
-
-    by_target: Dict[int, dict] = {}
-    for t in sorted({r["target_state"] for r in rows}):
-        group = [r for r in rows if r["target_state"] == t]
-        by_target[int(t)] = _agg(group)
-
-    by_transfer: Dict[str, dict] = {}
-    pairs = sorted({(r["source_state"], r["target_state"]) for r in rows})
-    for s, t in pairs:
-        group = [r for r in rows if r["source_state"] == s and r["target_state"] == t]
-        by_transfer[f"{s}->{t}"] = _agg(group)
-
-    return {
-        "global": global_stats,
-        "by_target": by_target,
-        "by_transfer": by_transfer,
-        "rows": rows,
-    }
 
 
 def run_logit_lens_evaluation(
@@ -599,6 +501,106 @@ def run_logit_lens_evaluation(
     }
 
 
+# ---------------------------------------------------------------------------
+# File Output / Reporting
+# ---------------------------------------------------------------------------
+def compute_steering_reports(
+    steering_cache: Dict[int, dict],
+    x_raw: np.ndarray,
+) -> dict:
+    """
+    Aggregate *policy-level* and *magnitude* metrics per sample, then bucket by target / transfer.
+
+    Metric definitions used here:
+      steerability(%): 100 * mean[argmax(q*) == target_k]
+      coherence_penalty: mean(||delta_x_raw|| / ||x_raw||)
+      target_prob_lift: mean(q*[target] - p[target])
+      kl_q_p: mean(KL(q* || p))
+
+    Per-sample fields (from steering_cache + x_raw):
+      p, q     Same p(k), q*(k) as in compute_steering_delta — “natural vs steered” next regime law.
+      dx, x    Δx_raw and original x — how big the nudge is relative to the vector norm.
+
+    Report scalars (meaning):
+      steerability_pct — Did q* actually *privilege* the chosen target (argmax hits target_k)?
+      target_prob_lift — How much probability mass moved onto target under q* vs p?
+      kl_q_p            — Control cost: how far we moved the categorical law (bits-scale divergence).
+      l1_policy_shift   — Total probability moved between bins (L1 distance p vs q*).
+      coherence_penalty — ‖Δx‖/‖x‖: relative size of activation edit (physical “how loud” the nudge).
+    """
+    if not steering_cache:
+        return {
+            "global": {},
+            "by_target": {},
+            "by_transfer": {},
+        }
+
+    eps = 1e-12
+    rows = []
+    for idx, entry in steering_cache.items():
+        s = int(entry["source_state"])  # s_t for this row
+        t = int(entry["target_state"])  # k* (reward vertex) for this row
+        p = np.asarray(entry["p_next"], dtype=np.float64)  # natural next-regime law
+        q = np.asarray(entry["q_next"], dtype=np.float64)  # steered q* (Gibbs tilt of p)
+        dx = np.asarray(entry["delta_x_raw"], dtype=np.float64)  # activation-space push Δx
+        x = np.asarray(x_raw[idx], dtype=np.float64)  # original x_t (denominator for relative norm)
+
+        # lift: extra mass on the chosen target bin; kl: information cost of replacing p by q*.
+        lift = float(q[t] - p[t])
+        kl = float(np.sum(q * (np.log(q + eps) - np.log(p + eps))))
+        coh_pen = float(np.linalg.norm(dx) / (np.linalg.norm(x) + eps))
+        success = int(np.argmax(q) == t)
+        l1_shift = float(np.sum(np.abs(q - p)))
+
+        rows.append(
+            {
+                "idx": int(idx),
+                "source_state": s,
+                "target_state": t,
+                "lift": lift,
+                "kl_q_p": kl,
+                "coherence_penalty": coh_pen,
+                "success": success,
+                "l1_policy_shift": l1_shift,
+            }
+        )
+
+    def _agg(items: List[dict]) -> dict:
+        arr_lift = np.array([r["lift"] for r in items], dtype=np.float64)
+        arr_kl = np.array([r["kl_q_p"] for r in items], dtype=np.float64)
+        arr_cp = np.array([r["coherence_penalty"] for r in items], dtype=np.float64)
+        arr_success = np.array([r["success"] for r in items], dtype=np.float64)
+        arr_shift = np.array([r["l1_policy_shift"] for r in items], dtype=np.float64)
+        return {
+            "count": int(len(items)),
+            "steerability_pct": float(100.0 * arr_success.mean()),
+            "coherence_penalty": float(arr_cp.mean()),
+            "target_prob_lift": float(arr_lift.mean()),
+            "kl_q_p": float(arr_kl.mean()),
+            "l1_policy_shift": float(arr_shift.mean()),
+        }
+
+    global_stats = _agg(rows)
+
+    by_target: Dict[int, dict] = {}
+    for t in sorted({r["target_state"] for r in rows}):
+        group = [r for r in rows if r["target_state"] == t]
+        by_target[int(t)] = _agg(group)
+
+    by_transfer: Dict[str, dict] = {}
+    pairs = sorted({(r["source_state"], r["target_state"]) for r in rows})
+    for s, t in pairs:
+        group = [r for r in rows if r["source_state"] == s and r["target_state"] == t]
+        by_transfer[f"{s}->{t}"] = _agg(group)
+
+    return {
+        "global": global_stats,
+        "by_target": by_target,
+        "by_transfer": by_transfer,
+        "rows": rows,
+    }
+
+
 def write_logit_lens_report(save_dir: str, report: dict, cfg: SteerConfig) -> None:
     """Persist logit-lens steering report as JSON + text."""
     os.makedirs(save_dir, exist_ok=True)
@@ -698,6 +700,68 @@ def write_steering_report(
         f.write("- If coherence_penalty is high, reduce steer_alpha or add denoising postprocess.\n")
 
 
+def write_judge_report(save_dir: str, judge_report: dict, cfg: SteerConfig) -> None:
+    """Persist LLM judge JSON + human-readable summary (behavior/state/coherence rates)."""
+    os.makedirs(save_dir, exist_ok=True)
+    with open(os.path.join(save_dir, "steering_judge_summary.json"), "w", encoding="utf-8") as f:
+        json.dump(judge_report, f, indent=2)
+
+    txt_path = os.path.join(save_dir, "steering_judge_report.txt")
+    with open(txt_path, "w", encoding="utf-8") as f:
+        f.write("Steering Judge Report (behavior + latent state)\n")
+        f.write("=" * 80 + "\n\n")
+
+        f.write("SECTION 1: INPUTS\n")
+        f.write("-" * 80 + "\n")
+        f.write(f"- enable_openai_judge: {cfg.enable_openai_judge}\n")
+        f.write(f"- judge_model: {cfg.judge_model}\n")
+        f.write(f"- judge_max_samples: {cfg.judge_max_samples}\n")
+        f.write(f"- reasoning stage types (from cebra_EM.STAGES): {cebra_mod.STAGES}\n")
+        f.write("- API key: from environment variable OPENAI_API_KEY only\n\n")
+
+        f.write("SECTION 2: OUTPUTS\n")
+        f.write("-" * 80 + "\n")
+        summ = judge_report.get("summary") or {}
+        for k, v in summ.items():
+            f.write(f"- {k}: {v}\n")
+        if not judge_report.get("enabled"):
+            f.write(f"- note: {judge_report.get('reason', '')}\n")
+        f.write("\n")
+
+        f.write("SECTION 3: WHAT THEY MEAN\n")
+        f.write("-" * 80 + "\n")
+        f.write(
+            "- behavior_steerability_success_pct: fraction of judged samples where the model says "
+            "the text's reasoning behavior matches the target regime's typical behavior (see target_stage_prior).\n"
+        )
+        f.write(
+            "- state_steerability_success_pct: fraction where the judge says p->q reflects successful "
+            "steering toward target regime id k*.\n"
+        )
+        f.write(
+            "- coherence_success_pct: fraction where behavior, policy shift, and logit-lens evidence are "
+            "internally coherent.\n"
+        )
+        f.write(
+            "- overall_success_pct: behavior, state, and coherence all judged true (strict bundle).\n"
+        )
+        f.write(
+            "- Per-row `numeric_policy` + `numeric_logit_lens` are objective views; compare to judge fields.\n\n"
+        )
+
+        f.write("SECTION 4: HOW TO ANALYZE\n")
+        f.write("-" * 80 + "\n")
+        f.write("- If policy steerability (from steering_eval) is high but judge state success is low, "
+                "the discrete policy may not match human-intuitive 'regime' semantics.\n")
+        f.write("- If judge state success is high but behavior success is low, dynamics shifted "
+                "but the sentence still reads like the wrong reasoning stage.\n")
+        f.write("- If coherence_success is low, steering cues disagree across text/policy/logit-lens signals.\n")
+        f.write("- Use by-transfer slices in steering_eval + judge rows to find reliable source->target routes.\n")
+
+
+# ---------------------------------------------------------------------------
+# Judging
+# ---------------------------------------------------------------------------
 def build_state_behavior_profiles(
     all_features: List[dict],
     per_sample_state: np.ndarray,
@@ -982,65 +1046,9 @@ Definitions:
     }
 
 
-def write_judge_report(save_dir: str, judge_report: dict, cfg: SteerConfig) -> None:
-    """Persist LLM judge JSON + human-readable summary (behavior/state/coherence rates)."""
-    os.makedirs(save_dir, exist_ok=True)
-    with open(os.path.join(save_dir, "steering_judge_summary.json"), "w", encoding="utf-8") as f:
-        json.dump(judge_report, f, indent=2)
-
-    txt_path = os.path.join(save_dir, "steering_judge_report.txt")
-    with open(txt_path, "w", encoding="utf-8") as f:
-        f.write("Steering Judge Report (behavior + latent state)\n")
-        f.write("=" * 80 + "\n\n")
-
-        f.write("SECTION 1: INPUTS\n")
-        f.write("-" * 80 + "\n")
-        f.write(f"- enable_openai_judge: {cfg.enable_openai_judge}\n")
-        f.write(f"- judge_model: {cfg.judge_model}\n")
-        f.write(f"- judge_max_samples: {cfg.judge_max_samples}\n")
-        f.write(f"- reasoning stage types (from cebra_EM.STAGES): {cebra_mod.STAGES}\n")
-        f.write("- API key: from environment variable OPENAI_API_KEY only\n\n")
-
-        f.write("SECTION 2: OUTPUTS\n")
-        f.write("-" * 80 + "\n")
-        summ = judge_report.get("summary") or {}
-        for k, v in summ.items():
-            f.write(f"- {k}: {v}\n")
-        if not judge_report.get("enabled"):
-            f.write(f"- note: {judge_report.get('reason', '')}\n")
-        f.write("\n")
-
-        f.write("SECTION 3: WHAT THEY MEAN\n")
-        f.write("-" * 80 + "\n")
-        f.write(
-            "- behavior_steerability_success_pct: fraction of judged samples where the model says "
-            "the text's reasoning behavior matches the target regime's typical behavior (see target_stage_prior).\n"
-        )
-        f.write(
-            "- state_steerability_success_pct: fraction where the judge says p->q reflects successful "
-            "steering toward target regime id k*.\n"
-        )
-        f.write(
-            "- coherence_success_pct: fraction where behavior, policy shift, and logit-lens evidence are "
-            "internally coherent.\n"
-        )
-        f.write(
-            "- overall_success_pct: behavior, state, and coherence all judged true (strict bundle).\n"
-        )
-        f.write(
-            "- Per-row `numeric_policy` + `numeric_logit_lens` are objective views; compare to judge fields.\n\n"
-        )
-
-        f.write("SECTION 4: HOW TO ANALYZE\n")
-        f.write("-" * 80 + "\n")
-        f.write("- If policy steerability (from steering_eval) is high but judge state success is low, "
-                "the discrete policy may not match human-intuitive 'regime' semantics.\n")
-        f.write("- If judge state success is high but behavior success is low, dynamics shifted "
-                "but the sentence still reads like the wrong reasoning stage.\n")
-        f.write("- If coherence_success is low, steering cues disagree across text/policy/logit-lens signals.\n")
-        f.write("- Use by-transfer slices in steering_eval + judge rows to find reliable source->target routes.\n")
-
-
+# ---------------------------------------------------------------------------
+# Pipeline Orchestration
+# ---------------------------------------------------------------------------
 def run_pipeline(cfg: SteerConfig) -> Tuple[str, dict]:
     """
     End-to-end: raw activations → z_t (CEBRA) → SLDS EM → (p,q*,Δz,Δx) → reports + saved payload.
