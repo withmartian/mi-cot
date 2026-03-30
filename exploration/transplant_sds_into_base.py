@@ -640,6 +640,12 @@ def _dataset_defaults(dataset: str, model_size: str) -> Tuple[str, str, str]:
     ds = dataset.strip().lower()
     ms = model_size.strip().lower()
     if ds == "gsm8k":
+        if ms == "llama8b":
+            return (
+                SDS_TRAIN_GSM8K_REPO_ID,
+                "llama_8b_reasoning/layer_31/all_sentences_features.pkl",
+                "llama_8B_base/layer_31/all_sentences_features.pkl",
+            )
         family = "qwen_1.5b" if ms == "1.5b" else "qwen_14b"
         source_rel = default_hub_features_relpath(family=family, role="reasoning")
         target_rel = default_hub_features_relpath(family=family, role="base")
@@ -651,6 +657,50 @@ def _dataset_defaults(dataset: str, model_size: str) -> Tuple[str, str, str]:
                 repo,
                 "Qwen_1_5B_reasoning/layer_27/all_sentences_features.pkl",
                 "Qwen_1_5B_base/layer_27/all_sentences_features.pkl",
+            )
+        if ms == "llama8b":
+            return (
+                repo,
+                "Llama_8B_reasoning/layer_31/all_sentences_features.pkl",
+                "Llama_8B_base/layer_31/all_sentences_features.pkl",
+            )
+        return (
+            repo,
+            "Qwen_14B_reasoning/layer_47/all_sentences_features.pkl",
+            "Qwen_14B_base/layer_47/all_sentences_features.pkl",
+        )
+    if ds in {"mmlu-pro", "mmlu_pro"}:
+        repo = "withmartian/SDS_train_mmlu-pro"
+        if ms == "1.5b":
+            return (
+                repo,
+                "qwen1.5b/layer_27/all_sentences_features.pkl",
+                "qwen1.5b_base/layer_27/all_sentences_features.pkl",
+            )
+        if ms == "llama8b":
+            return (
+                repo,
+                "llama8b/layer_31/all_sentences_features.pkl",
+                "llama8b_base/layer_31/all_sentences_features.pkl",
+            )
+        return (
+            repo,
+            "qwen14b/layer_47/all_sentences_features.pkl",
+            "qwen14b_base/layer_47/all_sentences_features.pkl",
+        )
+    if ds == "svamp":
+        repo = "withmartian/SDS_train_svamp"
+        if ms == "1.5b":
+            return (
+                repo,
+                "Qwen_1_5B_reasoning/layer_27/all_sentences_features.pkl",
+                "Qwen_1_5B_base/layer_27/all_sentences_features.pkl",
+            )
+        if ms == "llama8b":
+            return (
+                repo,
+                "Llama_8B_reasoning/layer_31/all_sentences_features.pkl",
+                "Llama_8B_base/layer_31/all_sentences_features.pkl",
             )
         return (
             repo,
@@ -671,13 +721,18 @@ def main() -> int:
         description="Train CEBRA-EM on reasoning features and evaluate transfer on base features.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    ap.add_argument("--dataset", type=str, default="gsm8k", choices=["gsm8k", "math500"])
+    ap.add_argument(
+        "--dataset",
+        type=str,
+        default="gsm8k",
+        choices=["gsm8k", "math500", "mmlu-pro", "mmlu_pro", "svamp"],
+    )
     ap.add_argument("--dataset-repo", type=str, default=None)
     ap.add_argument("--source-relpath", type=str, default=None, help="HF dataset relpath for source features pickle.")
     ap.add_argument("--target-relpath", type=str, default=None, help="HF dataset relpath for target features pickle.")
     ap.add_argument("--source-features-pkl", type=str, default=None)
     ap.add_argument("--target-features-pkl", type=str, default=None)
-    ap.add_argument("--model-size", type=str, default="1.5b", choices=["1.5b", "14b"])
+    ap.add_argument("--model-size", type=str, default="1.5b", choices=["1.5b", "14b", "llama8b"])
     ap.add_argument("--limit-problems", type=int, default=8)
     ap.add_argument("--all-problems", action="store_true")
     ap.add_argument("--max-triplets-per-pid", type=int, default=10)
@@ -695,7 +750,12 @@ def main() -> int:
 
     _seed_everything(int(args.seed))
 
-    family = "qwen_1.5b" if args.model_size == "1.5b" else "qwen_14b"
+    if args.model_size == "1.5b":
+        family = "qwen_1.5b"
+    elif args.model_size == "llama8b":
+        family = "llama_8b"
+    else:
+        family = "qwen_14b"
     default_repo, source_rel, target_rel = _dataset_defaults(args.dataset, args.model_size)
     dataset_repo = args.dataset_repo or default_repo
     if args.source_relpath:
@@ -726,7 +786,12 @@ def main() -> int:
         raise RuntimeError("No source/target features after non-neutral and problem filters.")
 
     stamp = datetime.now().strftime("%m%d_%H%M%S")
-    model_tag = "q15b" if args.model_size == "1.5b" else "q14b"
+    if args.model_size == "1.5b":
+        model_tag = "q15b"
+    elif args.model_size == "llama8b":
+        model_tag = "llama8b"
+    else:
+        model_tag = "q14b"
     ns_tag = f"s{len(source_features)}t{len(target_features)}"
     run_dir_name = f"xfer_{args.dataset}_{model_tag}_{ns_tag}_{stamp}"
     out_dir = os.path.join(out_root, run_dir_name)

@@ -233,13 +233,18 @@ def main() -> int:
         description="Run SDS transplant in one or both directions and compare outcomes.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    ap.add_argument("--dataset", type=str, default="gsm8k", choices=["gsm8k", "math500"])
+    ap.add_argument(
+        "--dataset",
+        type=str,
+        default="gsm8k",
+        choices=["gsm8k", "math500", "mmlu-pro", "mmlu_pro", "svamp"],
+    )
     ap.add_argument("--dataset-repo", type=str, default=None)
     ap.add_argument("--reasoning-relpath", type=str, default=None)
     ap.add_argument("--base-relpath", type=str, default=None)
     ap.add_argument("--reasoning-features-pkl", type=str, default=None)
     ap.add_argument("--base-features-pkl", type=str, default=None)
-    ap.add_argument("--model-size", type=str, default="1.5b", choices=["1.5b", "14b"])
+    ap.add_argument("--model-size", type=str, default="1.5b", choices=["1.5b", "14b", "llama8b"])
     ap.add_argument(
         "--run-directions",
         type=str,
@@ -259,6 +264,12 @@ def main() -> int:
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--out-dir", type=str, default="transplant_sds_artifacts")
     ap.add_argument("--out-name", type=str, default="bidirectional_transplant_summary.json")
+    ap.add_argument(
+        "--only-problem-ids",
+        type=str,
+        default=None,
+        help="Comma-separated problem_id ints to keep (after non-NEUTRAL filter). Both reasoning and base rows are restricted to this set.",
+    )
     args = ap.parse_args()
 
     base_mod._seed_everything(int(args.seed))
@@ -274,6 +285,10 @@ def main() -> int:
     limit_problems: Optional[int] = None if args.all_problems else int(args.limit_problems)
     reasoning_rows = base_mod._subset_non_neutral_by_problem(base_mod._load_pickle_list(reasoning_path), limit_problems)
     base_rows = base_mod._subset_non_neutral_by_problem(base_mod._load_pickle_list(base_path), limit_problems)
+    if args.only_problem_ids:
+        allowed = {int(x.strip()) for x in str(args.only_problem_ids).split(",") if x.strip()}
+        reasoning_rows = [r for r in reasoning_rows if int(r["problem_id"]) in allowed]
+        base_rows = [r for r in base_rows if int(r["problem_id"]) in allowed]
 
     stamp = datetime.now().strftime("%m%d_%H%M%S")
     run_id = f"bi_{args.dataset}_{args.model_size.replace('.', '')}_{stamp}"
@@ -351,6 +366,7 @@ def main() -> int:
         "dataset_repo": dataset_repo,
         "config": {
             "model_size": args.model_size,
+            "only_problem_ids": args.only_problem_ids,
             "run_directions": args.run_directions,
             "all_problems": bool(args.all_problems),
             "limit_problems": None if args.all_problems else int(args.limit_problems),
