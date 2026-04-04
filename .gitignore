@@ -1,1 +1,7 @@
+exploration/data_llama.py
+data/*.pkl
+results/**/*.npz
+results/**/*.pt
+*.pkl
+*.npz
 *.pkl
