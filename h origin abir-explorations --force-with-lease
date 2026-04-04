@@ -1,0 +1,35 @@
+[33m9adb14a[m[33m ([m[1;36mHEAD -> [m[1;32mabir-explorations[m[33m, [m[1;31morigin/abir-explorations[m[33m)[m HEAD@{0}: commit: add pkl files to gitignore
+[33m3818f0b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: checkout: moving from abir-explorations to abir-explorations
+[33m3818f0b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: reset: moving to origin/main
+[33mb7d5638[m HEAD@{3}: commit: remove large data files from tracking
+[33m5ee159c[m HEAD@{4}: commit: remove data
+[33m3114e11[m HEAD@{5}: commit: refactor: reorganize repo structure for paper release
+[33m9c5a92e[m HEAD@{6}: reset: moving to HEAD
+[33m9c5a92e[m HEAD@{7}: checkout: moving from main to abir-explorations
+[33mb4be39d[m[33m ([m[1;32mmain[m[33m)[m HEAD@{8}: checkout: moving from abir-explorations to main
+[33m9c5a92e[m HEAD@{9}: reset: moving to HEAD
+[33m9c5a92e[m HEAD@{10}: commit: new tests
+[33mf6670e6[m HEAD@{11}: commit (amend): necessity evals
+[33md9c19d5[m HEAD@{12}: rebase (finish): returning to refs/heads/abir-explorations
+[33md9c19d5[m HEAD@{13}: rebase (continue): necessity evals
+[33m0852f84[m HEAD@{14}: pull --rebase origin abir-explorations (pick): fix models
+[33m77de232[m HEAD@{15}: pull --rebase origin abir-explorations (start): checkout 77de23216635128c94f01ede9cd8d4263f273b1e
+[33m3a052b6[m HEAD@{16}: reset: moving to HEAD
+[33m3a052b6[m HEAD@{17}: commit: necessity evals
+[33md3cdcd6[m HEAD@{18}: commit: fix models
+[33mf57565d[m HEAD@{19}: pull --rebase origin abir-explorations (finish): returning to refs/heads/abir-explorations
+[33mf57565d[m HEAD@{20}: pull --rebase origin abir-explorations (pick): Add cebra_MoE, pca_EM, and cebra_EM exploration scripts
+[33mf92f527[m HEAD@{21}: pull --rebase origin abir-explorations (start): checkout f92f527da28a3f67bc91adeeee57bec014b9d1ed
+[33meabf271[m HEAD@{22}: reset: moving to HEAD
+[33meabf271[m HEAD@{23}: commit: Add cebra_MoE, pca_EM, and cebra_EM exploration scripts
+[33m645e73c[m HEAD@{24}: commit: dataset creation
+[33mf4259b5[m HEAD@{25}: commit: steering
+[33mbb28061[m HEAD@{26}: commit: cebra
+[33m9e56310[m HEAD@{27}: commit: dataset and sds
+[33mdcfa272[m HEAD@{28}: commit: gen rpc
+[33m5aa2720[m HEAD@{29}: commit (merge): Merge branch 'main' of https://github.com/withmartian/mi-cot into abir-explorations
+[33m9b2432c[m HEAD@{30}: commit: rpc
+[33m07e86f6[m HEAD@{31}: commit: generative reasoning latent
+[33m2e2a941[m HEAD@{32}: commit: initial experiments
+[33mb4be39d[m[33m ([m[1;32mmain[m[33m)[m HEAD@{33}: checkout: moving from main to abir-explorations
+[33mb4be39d[m[33m ([m[1;32mmain[m[33m)[m HEAD@{34}: clone: from https://github.com/withmartian/mi-cot.git
