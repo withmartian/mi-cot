@@ -38,8 +38,16 @@ def _metric_at_k(summary: dict, k: int, order: str, field: str) -> float | None:
                 return float(row[field])
         return None
     for comp in summary["comparison"]:
-        if comp["K"] == k:
-            return float(comp["shuffled"][f"{field}_mean"])
+        if comp["K"] != k:
+            continue
+        shuf = comp["shuffled"]
+        if field == "delta_r2":
+            if "regime_r2_mean" in shuf:
+                return float(shuf["regime_r2_mean"]) - float(summary["ar_r2"])
+            key = f"{field}_mean"
+            return float(shuf[key]) if key in shuf else None
+        key = f"{field}_mean"
+        return float(shuf[key]) if key in shuf else None
     return None
 
 

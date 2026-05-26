@@ -343,13 +343,22 @@ STAGES = [
     "ACTIVE_COMPUTATION", "FINAL_ANSWER_EMISSION"
 ]
 
-def load_and_prepare_cebra(path, mode='temporal', limit_problems=500, max_triplets=25):
+def load_and_prepare_cebra(
+    path,
+    mode='temporal',
+    limit_problems=500,
+    max_triplets=25,
+    allowed_problem_ids=None,
+):
     if not os.path.exists(path):
         raise FileNotFoundError(f"Could not find {path}.")
     print(f"Loading data for CEBRA-{mode}...", flush=True)
     with open(path, 'rb') as f:
         all_features = pickle.load(f)
     all_features = [f for f in all_features if f['problem_id'] < limit_problems]
+    if allowed_problem_ids is not None:
+        allowed = set(allowed_problem_ids)
+        all_features = [f for f in all_features if f['problem_id'] in allowed]
     p_map = defaultdict(list)
     for i, f in enumerate(all_features):
         p_map[f['problem_id']].append(i)
