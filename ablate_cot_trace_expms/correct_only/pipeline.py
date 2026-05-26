@@ -16,6 +16,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from exploration.cebra_EM import (  # noqa: E402
     K_SWEEP,
+    PCA_DIM,
     fit_and_evaluate,
     linear_ar_r2,
     load_and_prepare_cebra,
@@ -85,11 +86,18 @@ def execute_correct_subset(
             limit_problems=limit_problems,
             allowed_problem_ids=allowed_list,
         )
-        if len(all_f) < 10:
-            raise ValueError(
-                f"Too few features ({len(all_f)}) for subset {subset_name}; "
-                f"check allowed_problem_ids and limit_problems."
+        if len(all_f) < PCA_DIM:
+            log(
+                f"[{model_tag}] SKIP subset {subset_name}: "
+                f"{len(all_f)} sentence features < PCA_DIM={PCA_DIM}"
             )
+            return {
+                "subset": subset_name,
+                "skipped": True,
+                "reason": f"insufficient_features ({len(all_f)} < {PCA_DIM})",
+                "n_allowed_pids": len(allowed_list),
+                "per_k": [],
+            }
         log(f"[{model_tag}] Training CEBRA ({len(all_f)} steps, {len(triplets)} triplets)...")
         cebra_seqs, pca_seqs, labels = train_cebra_projection(all_f, triplets)
         ar_r2 = linear_ar_r2(pca_seqs)

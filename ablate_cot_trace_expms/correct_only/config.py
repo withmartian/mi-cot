@@ -13,12 +13,42 @@ HF_REPOS: dict[str, str] = {
     "math500": "withmartian/SDS_math500_test",
 }
 
-# Short model family key -> (base folder, rft folder) under each HF repo
+# Short model family key -> (base folder, rft folder) under train HF repos
 MODEL_PAIRS: dict[str, tuple[str, str]] = {
     "llama8": ("llama_8B_base", "llama_8b_reasoning"),
     "qwen14": ("qwen_14B_base", "qwen_14b_reasoning"),
     "qwen1.5": ("qwen_1.5B_base", "qwen1.5b_reasoning"),
 }
+
+# Per-repo folder names (train repos differ from SDS_math500_test layout)
+MODEL_PAIRS_BY_REPO: dict[str, dict[str, tuple[str, str]]] = {
+    "withmartian/SDS_math500_test": {
+        "llama8": ("Llama_8B_base", "Llama_8B_reasoning"),
+        "qwen14": ("Qwen_14B_base", "Qwen_14B_reasoning"),
+        "qwen1.5": ("Qwen_1_5B_base", "Qwen_1_5B_reasoning"),
+    },
+    "withmartian/SDS_train_svamp": {
+        "llama8": ("Llama_8B_base", "Llama_8B_reasoning"),
+        "qwen14": ("Qwen_14B_base", "Qwen_14B_reasoning"),
+        "qwen1.5": ("Qwen_1_5B_base", "Qwen_1_5B_reasoning"),
+    },
+    "withmartian/SDS_train_mmlu-pro": {
+        "llama8": ("llama8b_base", "llama8b"),
+        "qwen14": ("qwen14b_base", "qwen14b"),
+        "qwen1.5": ("qwen1.5b_base", "qwen1.5b"),
+    },
+}
+
+
+def model_pair_folders(
+    model_family: str,
+    *,
+    hf_repo: str,
+) -> tuple[str, str]:
+    pairs = MODEL_PAIRS_BY_REPO.get(hf_repo, MODEL_PAIRS)
+    if model_family not in pairs:
+        raise KeyError(f"Unknown model_family {model_family!r} for repo {hf_repo!r}")
+    return pairs[model_family]
 
 DEFAULT_LAYER: dict[str, int] = {
     "llama8": 22,
@@ -75,7 +105,8 @@ def resolve_paths(
 
     layer = layer if layer is not None else DEFAULT_LAYER[model_family]
     repo = hf_repo or HF_REPOS[dataset_key]
-    folder = MODEL_PAIRS[model_family][0 if variant == "base" else 1]
+    base_folder, rft_folder = model_pair_folders(model_family, hf_repo=repo)
+    folder = base_folder if variant == "base" else rft_folder
     layer_dir = f"layer_{layer}"
     root = hf_root if hf_root is not None else Path(repo.replace("/", "__"))
 

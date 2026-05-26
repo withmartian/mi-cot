@@ -81,7 +81,6 @@ def _run_model_subsets(
             limit_problems=limit,
             base_manifest=base_manifest,
             rft_manifest=rft_manifest,
-            reference_manifest=manifest,
         )
         print(f"  [{variant}] subset={subset}: n_pids={len(pids)}", flush=True)
         if len(pids) < 3:

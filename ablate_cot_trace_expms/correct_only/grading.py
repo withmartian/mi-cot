@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import math
 from typing import Any
 
 DATASET_CFG: dict[str, dict[str, Any]] = {
@@ -38,10 +39,12 @@ def _normalize_number(s: str) -> str:
     s = re.sub(r"^\$|\$$", "", s)
     try:
         v = float(s)
+        if not math.isfinite(v):
+            return s.strip().lower()
         if abs(v - round(v)) < 1e-9:
             return str(int(round(v)))
         return str(v)
-    except ValueError:
+    except (ValueError, OverflowError):
         return s.strip().lower()
 
 

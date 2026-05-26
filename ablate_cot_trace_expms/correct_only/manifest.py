@@ -10,7 +10,7 @@ import shutil
 from pathlib import Path
 from typing import Any
 
-from .grading import DATASET_CFG, _extract_answer_from_cot, is_correct_answer, load_benchmark_rows
+from grading import DATASET_CFG, _extract_answer_from_cot, is_correct_answer, load_benchmark_rows
 
 DEFAULT_MANIFEST_CACHE_DIR = Path(__file__).resolve().parent / "manifest_cache"
 
@@ -253,7 +253,7 @@ def get_or_build_paired_index(
 
     Returns (problem_ids, cache_path or None, from_cache).
     """
-    from .subsets import pids_paired_correct
+    from subsets import pids_paired_correct
 
     cache_dir = cache_dir or DEFAULT_MANIFEST_CACHE_DIR
     paired_dir = cache_dir / "paired"
