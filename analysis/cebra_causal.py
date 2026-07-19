@@ -518,7 +518,7 @@ def nce_loss(z, p, n, temp=0.05):
 
 
 def train_and_eval_k(K_val, features, X_torch, triplets, epochs=50):
-    print(f"\n--- Evaluating K={K_val} ---", flush=True)
+    print(f"\n--- Evaluating K={K_val} (epochs={epochs}) ---", flush=True)
     d_h = 32
     model = CEBRA_MoE_Encoder(X_torch.shape[1], d_h, K_val).to(device)
     dyn = DynamicsMoE(K_val, d_h).to(device)
@@ -835,310 +835,405 @@ def perform_causal_intervention(tl_model, tokenizer, regime_centroid, prompt, la
     }
 
 
-# --- MAIN PIPELINE ---
 
-print("Loading data...")
-all_features, triplets = load_and_balance_data(f"{checkpoint_dir}/all_sentences_features.pkl")
-X_raw = np.array([f['hidden_state'] for f in all_features])
-X_torch = torch.from_numpy(StandardScaler().fit_transform(X_raw)).float().to(device)
+def _stack_hidden(f):
+    """Prefer SDS ``hidden_state_last``; fall back to legacy ``hidden_state``."""
+    if "hidden_state_last" in f:
+        return np.asarray(f["hidden_state_last"], dtype=np.float32)
+    return np.asarray(f["hidden_state"], dtype=np.float32)
 
-print("Running K-sweep...")
-k_values = [2, 3, 4, 5, 6, 8]
-results = []
-best_k = None
-best_model = None
-best_dyn = None
-best_states = None
 
-for k in k_values:
-    persistence, final_mse, model, dyn, states = train_and_eval_k(k, all_features, X_torch, triplets)
-    results.append((k, persistence, final_mse))
-    print(f"K={k}: Persistence={persistence:.2%}, MSE={final_mse:.6f}")
+def run_causal_pipeline(
+    data_path: str,
+    limit_problems: int,
+    output_dir: str = "rpc_final_pipeline",
+    skip_transformer_lens: bool = False,
+    train_epochs: int = 50,
+    k_values: tuple = (2, 3, 4, 5, 6, 8),
+    analysis_k: int = 4,
+):
+    """Run K-sweep, logit-lens semantics, alignment, optional TransformerLens causal block."""
+    global checkpoint_save
+    import os
+
+    os.makedirs(output_dir, exist_ok=True)
+    checkpoint_save = output_dir
+    print("Loading data...")
+    print(f"  data_path={data_path!r}  limit_problems={limit_problems}")
+    all_features, triplets = load_and_balance_data(data_path, limit_problems=limit_problems)
+    X_raw = np.array([_stack_hidden(f) for f in all_features])
+    X_torch = torch.from_numpy(StandardScaler().fit_transform(X_raw)).float().to(device)
+
     
-    if best_k is None or (persistence > 0.5 and final_mse < 0.1):
-        best_k = k
-        best_model = model
-        best_dyn = dyn
-        best_states = states
+    
+    print("Running K-sweep...")
+    k_list_run = list(k_values)
+    results = []
+    best_k = None
+    best_model = None
+    best_dyn = None
+    best_states = None
+    
+    for k in k_list_run:
+        persistence, final_mse, model, dyn, states = train_and_eval_k(
+            k, all_features, X_torch, triplets, epochs=train_epochs
+        )
+        results.append((k, persistence, final_mse))
+        print(f"K={k}: Persistence={persistence:.2%}, MSE={final_mse:.6f}")
+    
+        if best_k is None or (persistence > 0.5 and final_mse < 0.1):
+            best_k = k
+            best_model = model
+            best_dyn = dyn
+            best_states = states
+    
+    k_list, p_list, m_list = zip(*results)
+    
+    fig, ax1 = plt.subplots()
+    ax1.set_xlabel('Number of Regimes (K)')
+    ax1.set_ylabel('Persistence (Stability)', color='tab:blue')
+    ax1.plot(k_list, p_list, marker='o', color='tab:blue')
+    ax2 = ax1.twinx()
+    ax2.set_ylabel('Dynamics MSE (Accuracy)', color='tab:red')
+    ax2.plot(k_list, m_list, marker='s', color='tab:red')
+    plt.title("K-Sweep: Identifying Optimal Regime Count")
+    plt.savefig(f"{checkpoint_save}/k_sweep.png")
+    plt.close()
+    
+    print(f"\n✓ Best K (heuristic from sweep): {best_k}")
 
-k_list, p_list, m_list = zip(*results)
-
-fig, ax1 = plt.subplots()
-ax1.set_xlabel('Number of Regimes (K)')
-ax1.set_ylabel('Persistence (Stability)', color='tab:blue')
-ax1.plot(k_list, p_list, marker='o', color='tab:blue')
-ax2 = ax1.twinx()
-ax2.set_ylabel('Dynamics MSE (Accuracy)', color='tab:red')
-ax2.plot(k_list, m_list, marker='s', color='tab:red')
-plt.title("K-Sweep: Identifying Optimal Regime Count")
-plt.savefig(f"{checkpoint_save}/k_sweep.png")
-plt.close()
-
-print(f"\n✓ Best K: {best_k}")
-
-visualize_persistence_cliff(list(k_list), list(p_list))
-
-print("\nLoading DeepSeek model for logit lens...")
-ds_model = None
-try:
-    tokenizer = AutoTokenizer.from_pretrained("deepseek-ai/DeepSeek-R1-Distill-Qwen-14B", trust_remote_code=True)
-    ds_model = AutoModelForCausalLM.from_pretrained(
-        "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B", torch_dtype=torch.float16, device_map="auto"
+    # Downstream logit-lens / alignment uses a fixed K (PDF emphasizes K=4).
+    print(f"\n--- Refitting MoE for analysis at K={analysis_k} (matches early PDF regime count) ---")
+    _, _, best_model, best_dyn, best_states = train_and_eval_k(
+        analysis_k, all_features, X_torch, triplets, epochs=train_epochs
     )
-    W_U = ds_model.lm_head.weight.data.detach().clone()
-    print(f"  ✓ Loaded unembedding: {W_U.shape}")
-except Exception as e:
-    print(f"  ✗ Failed: {e}")
-    W_U = None
-    tokenizer = None
 
-analyze_regime_semantics(best_model, X_torch, best_states, W_U=W_U, tokenizer=tokenizer)
-
-if ds_model is not None:
-    del ds_model
-    torch.cuda.empty_cache()
-
-if all_features and hasattr(all_features[0], '__getitem__'):
-    possible_stage_keys = ['stage', 'reasoning_stage', 'phase', 'step_type']
-    stage_key = None
-    for key in possible_stage_keys:
-        if key in all_features[0]:
-            stage_key = key
-            break
+    visualize_persistence_cliff(list(k_list), list(p_list))
     
-    if stage_key:
-        alignment_df, alignment_norm = build_semantic_alignment_matrix(all_features, best_states, stage_key)
-        
-        alignment_json = {
-            'raw_counts': alignment_df.iloc[:-1, :-1].to_dict(),
-            'normalized': alignment_norm.to_dict(),
-            'analysis': {
-                f'Regime_{i}': {
-                    'most_specialized_stage': str(alignment_norm.iloc[i].idxmax()),
-                    'specialization_score': float(alignment_norm.iloc[i].max()),
-                    'top_3_stages': {str(k): float(v) for k, v in alignment_norm.iloc[i].nlargest(3).items()}
-                }
-                for i in range(len(alignment_norm))
-            }
-        }
-        with open(f"{checkpoint_save}/alignment_matrix_summary.json", 'w') as f:
-            json.dump(alignment_json, f, indent=2)
-        print(f"\n✓ Alignment matrix saved to alignment_matrix_summary.json")
-    else:
-        print("\nWarning: No reasoning stage labels found in features. Skipping alignment matrix.")
-
-print("\n" + "-"*60)
-print("Cleaning GPU memory for TransformerLens...")
-print("-"*60)
-del X_raw, all_features, triplets, results, k_list, p_list, m_list
-del best_model, best_dyn
-torch.cuda.empty_cache()
-torch.cuda.reset_peak_memory_stats()
-import gc
-gc.collect()
-print("✓ GPU memory cleaned and reset")
-
-# --- CAUSAL INTERVENTION (TransformerLens) ---
-print("\n" + "="*60)
-print("CAUSAL INTERVENTION EXPERIMENTS")
-print("="*60)
-
-if tokenizer is not None and HookedTransformer is not None:
+    print("\nLoading DeepSeek model for logit lens...")
+    ds_model = None
     try:
-        print("Setting up TransformerLens model...")
-        model_base_name = "Qwen/Qwen2.5-14B"
-        model_ft_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
-        
-        print("Loading fine-tuned model for TransformerLens...")
-        hf_model = AutoModelForCausalLM.from_pretrained(
-            model_ft_name, torch_dtype=torch.float16, device_map="cuda"
+        tokenizer = AutoTokenizer.from_pretrained("deepseek-ai/DeepSeek-R1-Distill-Qwen-14B", trust_remote_code=True)
+        ds_model = AutoModelForCausalLM.from_pretrained(
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B", torch_dtype=torch.float16, device_map="auto"
         )
-        
-        tl_model = HookedTransformer.from_pretrained_no_processing(
-            model_base_name,
-            hf_model=hf_model,
-            device=device,
-            dtype=torch.float16
-        )
-        
-        print(f"✓ TransformerLens initialized with {model_base_name}")
-        print(f"  Number of layers: {len(tl_model.blocks)}")
-        print(f"  Model d_model (hidden_size): {tl_model.cfg.d_model}")
-        print(f"  Model vocab_size: {tl_model.cfg.d_vocab}")
-        
-        strongest_regime = max(np.unique(best_states), 
-                              key=lambda x: np.sum(best_states == x))
-        centroid = X_torch[best_states == strongest_regime].mean(0)
-        print(f"✓ Using centroid from Regime {strongest_regime} ({np.sum(best_states == strongest_regime)} samples)")
-        print(f"  Centroid shape: {centroid.shape}")
-        
-        test_prompts = [
-            "To solve this problem, let me first",
-            "Wait, I need to",
-            "The answer is"
-        ]
-        
-        # === CROSS-REGIME CAUSAL VERIFICATION ===
-        print("\n" + "="*60)
-        print("CROSS-REGIME CAUSAL MAPPING (Proving ALL states are functional)")
-        print("="*60)
-        
-        unique_regimes = np.unique(best_states)
-        neutral_prompt = "The next step is"
-        causal_map = {}
-        
-        print(f"\nTesting {len(unique_regimes)} unique regimes with neutral prompt:")
-        print(f"  '{neutral_prompt}'")
-        print("\n" + "-"*60)
-        
-        for regime_id in sorted(unique_regimes):
-            regime_centroid = X_torch[best_states == regime_id].mean(0)
-            regime_size = np.sum(best_states == regime_id)
-            
-            if regime_id == unique_regimes[0]:
-                with torch.no_grad():
-                    baseline_logits = tl_model(tokenizer.encode(neutral_prompt, return_tensors='pt').to(device))
-                    baseline_top_idx = baseline_logits[0, -1, :].argmax()
-                    baseline_top_token = tokenizer.decode([baseline_top_idx.item()])
-                    baseline_prob = F.softmax(baseline_logits[0, -1, :], dim=-1)[baseline_top_idx].item()
-                print(f"Baseline (No injection): '{baseline_top_token.strip()}' ({baseline_prob:.2%})\n")
-            
-            result = perform_causal_intervention(tl_model, tokenizer, regime_centroid, neutral_prompt, 
-                                                intervention_type='injection', mode='hard')
-            
-            causal_map[regime_id] = {
-                'size': regime_size,
-                'top_token': result['intervention_top'],
-                'logit_boost': result['max_logit_diff'],
-                'prob_shift': result['prob_shift'],
-                'full_output': result['intervention_full']
-            }
-            
-            print(f"Regime {regime_id} ({regime_size} samples):")
-            print(f"  Steers to: '{result['intervention_top'].strip()}'")
-            print(f"  Logit boost: {result['max_logit_diff']:+.2f}")
-            print(f"  Probability shift: {result['prob_shift']:+.2f}%")
-            print()
-        
-        # === CAUSAL VERIFICATION TABLE ===
-        print("="*60)
-        print("CROSS-REGIME CAUSAL TABLE (Proof of Functional RPC Diversity)")
-        print("="*60)
-        print(f"\n{'Regime':<8} {'Samples':<10} {'Steered Token':<20} {'Logit Boost':<15} {'Proof':<30}")
-        print("-" * 85)
-        
-        for regime_id in sorted(causal_map.keys()):
-            data = causal_map[regime_id]
-            proof = "✓ Functional RPC" if data['logit_boost'] > 5.0 else "⚠ Weak steering"
-            print(f"{regime_id:<8} {data['size']:<10} {data['top_token'][:18]:<20} {data['logit_boost']:+.2f}{'':>10} {proof:<30}")
-        
-        print("\n" + "="*60)
-        print("INTERPRETATION")
-        print("="*60)
-        
-        strong_regimes = sum(1 for d in causal_map.values() if d['logit_boost'] > 5.0)
-        print(f"\n✓ Found {strong_regimes}/{len(causal_map)} regimes with strong causal control (logit boost > 5.0)")
-        
-        if strong_regimes == len(causal_map):
-            print("✓ CAUSAL COMPLETENESS VERIFIED: All discovered regimes function as control mechanisms")
-            print("  This proves the RPC is not a single 'number neuron' but a diverse policy space.")
-        else:
-            print(f"⚠ Partial causal coverage: {strong_regimes} of {len(causal_map)} regimes show strong effects")
-        
-        # === DETAILED ANALYSIS: Strongest Regime ===
-        print("\n" + "="*60)
-        print(f"DETAILED ANALYSIS: Regime {strongest_regime} (Strongest Regime by Sample Count)")
-        print("="*60)
-        
-        centroid = X_torch[best_states == strongest_regime].mean(0)
-        
-        print("\n--- MODE 1: Hard Replacement (Hijacking) ---")
-        injection_hard = []
-        for prompt in test_prompts:
-            result = perform_causal_intervention(tl_model, tokenizer, centroid, prompt, 
-                                                intervention_type='injection', mode='hard', max_new_tokens=20)
-            injection_hard.append(result)
-        
-        print("\n--- MODE 2: Soft Steering (α=0.5) ---")
-        injection_soft = []
-        for prompt in test_prompts:
-            result = perform_causal_intervention(tl_model, tokenizer, centroid, prompt, 
-                                                intervention_type='injection', mode='soft', alpha=0.5, max_new_tokens=20)
-            injection_soft.append(result)
-        
-        print("\n" + "-"*60)
-        print("ABLATION (Necessity Test)")
-        print("-"*60)
-        
-        print("\n--- MODE 1: Hard Replacement (Hijacking) ---")
-        ablation_hard = []
-        for prompt in test_prompts:
-            result = perform_causal_intervention(tl_model, tokenizer, centroid, prompt, 
-                                                intervention_type='ablation', mode='hard', max_new_tokens=20)
-            ablation_hard.append(result)
-        
-        print("\n--- MODE 2: Soft Steering (α=0.5) ---")
-        ablation_soft = []
-        for prompt in test_prompts:
-            result = perform_causal_intervention(tl_model, tokenizer, centroid, prompt, 
-                                                intervention_type='ablation', mode='soft', alpha=0.5, max_new_tokens=20)
-            ablation_soft.append(result)
-        
-        # Summary
-        print("\n" + "="*60)
-        print("CAUSAL INTERVENTION SUMMARY")
-        print("="*60)
-        
-        avg_injection_hard_logit = np.mean([r['max_logit_diff'] for r in injection_hard])
-        avg_injection_hard_prob = np.mean([r['prob_shift'] for r in injection_hard])
-        avg_injection_soft_logit = np.mean([r['max_logit_diff'] for r in injection_soft])
-        avg_injection_soft_prob = np.mean([r['prob_shift'] for r in injection_soft])
-        avg_ablation_hard_logit = np.mean([r['max_logit_diff'] for r in ablation_hard])
-        avg_ablation_hard_prob = np.mean([r['prob_shift'] for r in ablation_hard])
-        avg_ablation_soft_logit = np.mean([r['max_logit_diff'] for r in ablation_soft])
-        avg_ablation_soft_prob = np.mean([r['prob_shift'] for r in ablation_soft])
-        
-        print("\n=== SUFFICIENCY (Injection) ===")
-        print(f"Hard Replacement: Logit {avg_injection_hard_logit:+.4f}, Prob {avg_injection_hard_prob:+.2f}%")
-        print(f"Soft Steering (α=0.5): Logit {avg_injection_soft_logit:+.4f}, Prob {avg_injection_soft_prob:+.2f}%")
-        
-        print("\n=== NECESSITY (Ablation) ===")
-        print(f"Hard Replacement: Logit {avg_ablation_hard_logit:+.4f}, Prob {avg_ablation_hard_prob:+.2f}%")
-        print(f"Soft Steering (α=0.5): Logit {avg_ablation_soft_logit:+.4f}, Prob {avg_ablation_soft_prob:+.2f}%")
-        
-        print("\n" + "="*60)
-        print("INTERPRETATION FOR PAPER")
-        print("="*60)
-        print(f"\n1. SUFFICIENCY (Causal Mechanism Works):")
-        print(f"   - Hard replacement causes {avg_injection_hard_logit:+.4f} logit shift")
-        print(f"   - Soft steering (50%) causes {avg_injection_soft_logit:+.4f} logit shift")
-        if avg_injection_hard_logit > 0.01:
-            print(f"   ✓ Vector is sufficient: Injecting it reliably triggers behavior")
-        
-        print(f"\n2. NECESSITY (Causal Control Requires This State):")
-        print(f"   - Hard replacement causes {avg_ablation_hard_logit:+.4f} logit shift")
-        print(f"   - Soft steering (50%) causes {avg_ablation_soft_logit:+.4f} logit shift")
-        if abs(avg_ablation_hard_logit) > 0.01:
-            print(f"   ✓ Vector is necessary: Removing it disrupts behavior")
-        
-        print(f"\n3. SCALING BEHAVIOR:")
-        injection_ratio = avg_injection_soft_logit / (avg_injection_hard_logit + 1e-6)
-        print(f"   - Soft steering shows {injection_ratio:.1%} of hard replacement effect")
-        if 0.3 < injection_ratio < 0.7:
-            print(f"   ✓ Linear scaling: Effect increases gradually with α (natural steering)")
-        else:
-            print(f"   ⚠ Non-linear scaling: Effect may saturate or be highly non-linear")
-        
-        print(f"\n✓ Causal completeness verified: RPC states have both sufficiency and necessity")
-        
-        print("\n✓ Causal interventions complete")
+        W_U = ds_model.lm_head.weight.data.detach().clone()
+        print(f"  ✓ Loaded unembedding: {W_U.shape}")
     except Exception as e:
-        print(f"✗ TransformerLens setup failed: {e}")
-        import traceback
-        traceback.print_exc()
-else:
-    print("Skipping causal interventions (TransformerLens not available)")
+        print(f"  ✗ Failed: {e}")
+        W_U = None
+        tokenizer = None
+    
+    analyze_regime_semantics(best_model, X_torch, best_states, W_U=W_U, tokenizer=tokenizer)
+    
+    if ds_model is not None:
+        del ds_model
+        torch.cuda.empty_cache()
+    
+    if all_features and hasattr(all_features[0], '__getitem__'):
+        possible_stage_keys = ['stage', 'reasoning_stage', 'phase', 'step_type']
+        stage_key = None
+        for key in possible_stage_keys:
+            if key in all_features[0]:
+                stage_key = key
+                break
+    
+        if stage_key:
+            alignment_df, alignment_norm = build_semantic_alignment_matrix(all_features, best_states, stage_key)
+    
+            alignment_json = {
+                'raw_counts': alignment_df.iloc[:-1, :-1].to_dict(),
+                'normalized': alignment_norm.to_dict(),
+                'analysis': {
+                    f'Regime_{i}': {
+                        'most_specialized_stage': str(alignment_norm.iloc[i].idxmax()),
+                        'specialization_score': float(alignment_norm.iloc[i].max()),
+                        'top_3_stages': {str(k): float(v) for k, v in alignment_norm.iloc[i].nlargest(3).items()}
+                    }
+                    for i in range(len(alignment_norm))
+                }
+            }
+            with open(f"{checkpoint_save}/alignment_matrix_summary.json", 'w') as f:
+                json.dump(alignment_json, f, indent=2)
+            print(f"\n✓ Alignment matrix saved to alignment_matrix_summary.json")
+        else:
+            print("\nWarning: No reasoning stage labels found in features. Skipping alignment matrix.")
+    
+    print("\n" + "-"*60)
+    print("Cleaning GPU memory for TransformerLens...")
+    print("-"*60)
+    del X_raw, all_features, triplets, results, k_list, p_list, m_list
+    del best_model, best_dyn
+    import gc
 
-print(f"\n{'='*60}")
-print(f"Pipeline complete. Results saved to: {checkpoint_save}")
-print(f"{'='*60}")
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        try:
+            torch.cuda.reset_peak_memory_stats()
+        except Exception:
+            pass
+    gc.collect()
+    print("✓ GPU memory cleaned and reset")
+
+    # --- CAUSAL INTERVENTION (TransformerLens) ---
+    print("\n" + "="*60)
+    print("CAUSAL INTERVENTION EXPERIMENTS")
+    print("="*60)
+    
+    if not skip_transformer_lens and tokenizer is not None and HookedTransformer is not None:
+        try:
+            print("Setting up TransformerLens model...")
+            model_base_name = "Qwen/Qwen2.5-14B"
+            model_ft_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+    
+            print("Loading fine-tuned model for TransformerLens...")
+            hf_model = AutoModelForCausalLM.from_pretrained(
+                model_ft_name, torch_dtype=torch.float16, device_map="cuda"
+            )
+    
+            tl_model = HookedTransformer.from_pretrained_no_processing(
+                model_base_name,
+                hf_model=hf_model,
+                device=device,
+                dtype=torch.float16
+            )
+    
+            print(f"✓ TransformerLens initialized with {model_base_name}")
+            print(f"  Number of layers: {len(tl_model.blocks)}")
+            print(f"  Model d_model (hidden_size): {tl_model.cfg.d_model}")
+            print(f"  Model vocab_size: {tl_model.cfg.d_vocab}")
+    
+            strongest_regime = max(np.unique(best_states), 
+                                  key=lambda x: np.sum(best_states == x))
+            centroid = X_torch[best_states == strongest_regime].mean(0)
+            print(f"✓ Using centroid from Regime {strongest_regime} ({np.sum(best_states == strongest_regime)} samples)")
+            print(f"  Centroid shape: {centroid.shape}")
+    
+            test_prompts = [
+                "To solve this problem, let me first",
+                "Wait, I need to",
+                "The answer is"
+            ]
+    
+            # === CROSS-REGIME CAUSAL VERIFICATION ===
+            print("\n" + "="*60)
+            print("CROSS-REGIME CAUSAL MAPPING (Proving ALL states are functional)")
+            print("="*60)
+    
+            unique_regimes = np.unique(best_states)
+            neutral_prompt = "The next step is"
+            causal_map = {}
+    
+            print(f"\nTesting {len(unique_regimes)} unique regimes with neutral prompt:")
+            print(f"  '{neutral_prompt}'")
+            print("\n" + "-"*60)
+    
+            for regime_id in sorted(unique_regimes):
+                regime_centroid = X_torch[best_states == regime_id].mean(0)
+                regime_size = np.sum(best_states == regime_id)
+    
+                if regime_id == unique_regimes[0]:
+                    with torch.no_grad():
+                        baseline_logits = tl_model(tokenizer.encode(neutral_prompt, return_tensors='pt').to(device))
+                        baseline_top_idx = baseline_logits[0, -1, :].argmax()
+                        baseline_top_token = tokenizer.decode([baseline_top_idx.item()])
+                        baseline_prob = F.softmax(baseline_logits[0, -1, :], dim=-1)[baseline_top_idx].item()
+                    print(f"Baseline (No injection): '{baseline_top_token.strip()}' ({baseline_prob:.2%})\n")
+    
+                result = perform_causal_intervention(tl_model, tokenizer, regime_centroid, neutral_prompt, 
+                                                    intervention_type='injection', mode='hard')
+    
+                causal_map[regime_id] = {
+                    'size': regime_size,
+                    'top_token': result['intervention_top'],
+                    'logit_boost': result['max_logit_diff'],
+                    'prob_shift': result['prob_shift'],
+                    'full_output': result['intervention_full']
+                }
+    
+                print(f"Regime {regime_id} ({regime_size} samples):")
+                print(f"  Steers to: '{result['intervention_top'].strip()}'")
+                print(f"  Logit boost: {result['max_logit_diff']:+.2f}")
+                print(f"  Probability shift: {result['prob_shift']:+.2f}%")
+                print()
+    
+            # === CAUSAL VERIFICATION TABLE ===
+            print("="*60)
+            print("CROSS-REGIME CAUSAL TABLE (Proof of Functional RPC Diversity)")
+            print("="*60)
+            print(f"\n{'Regime':<8} {'Samples':<10} {'Steered Token':<20} {'Logit Boost':<15} {'Proof':<30}")
+            print("-" * 85)
+    
+            for regime_id in sorted(causal_map.keys()):
+                data = causal_map[regime_id]
+                proof = "✓ Functional RPC" if data['logit_boost'] > 5.0 else "⚠ Weak steering"
+                print(f"{regime_id:<8} {data['size']:<10} {data['top_token'][:18]:<20} {data['logit_boost']:+.2f}{'':>10} {proof:<30}")
+    
+            print("\n" + "="*60)
+            print("INTERPRETATION")
+            print("="*60)
+    
+            strong_regimes = sum(1 for d in causal_map.values() if d['logit_boost'] > 5.0)
+            print(f"\n✓ Found {strong_regimes}/{len(causal_map)} regimes with strong causal control (logit boost > 5.0)")
+    
+            if strong_regimes == len(causal_map):
+                print("✓ CAUSAL COMPLETENESS VERIFIED: All discovered regimes function as control mechanisms")
+                print("  This proves the RPC is not a single 'number neuron' but a diverse policy space.")
+            else:
+                print(f"⚠ Partial causal coverage: {strong_regimes} of {len(causal_map)} regimes show strong effects")
+    
+            # === DETAILED ANALYSIS: Strongest Regime ===
+            print("\n" + "="*60)
+            print(f"DETAILED ANALYSIS: Regime {strongest_regime} (Strongest Regime by Sample Count)")
+            print("="*60)
+    
+            centroid = X_torch[best_states == strongest_regime].mean(0)
+    
+            print("\n--- MODE 1: Hard Replacement (Hijacking) ---")
+            injection_hard = []
+            for prompt in test_prompts:
+                result = perform_causal_intervention(tl_model, tokenizer, centroid, prompt, 
+                                                    intervention_type='injection', mode='hard', max_new_tokens=20)
+                injection_hard.append(result)
+    
+            print("\n--- MODE 2: Soft Steering (α=0.5) ---")
+            injection_soft = []
+            for prompt in test_prompts:
+                result = perform_causal_intervention(tl_model, tokenizer, centroid, prompt, 
+                                                    intervention_type='injection', mode='soft', alpha=0.5, max_new_tokens=20)
+                injection_soft.append(result)
+    
+            print("\n" + "-"*60)
+            print("ABLATION (Necessity Test)")
+            print("-"*60)
+    
+            print("\n--- MODE 1: Hard Replacement (Hijacking) ---")
+            ablation_hard = []
+            for prompt in test_prompts:
+                result = perform_causal_intervention(tl_model, tokenizer, centroid, prompt, 
+                                                    intervention_type='ablation', mode='hard', max_new_tokens=20)
+                ablation_hard.append(result)
+    
+            print("\n--- MODE 2: Soft Steering (α=0.5) ---")
+            ablation_soft = []
+            for prompt in test_prompts:
+                result = perform_causal_intervention(tl_model, tokenizer, centroid, prompt, 
+                                                    intervention_type='ablation', mode='soft', alpha=0.5, max_new_tokens=20)
+                ablation_soft.append(result)
+    
+            # Summary
+            print("\n" + "="*60)
+            print("CAUSAL INTERVENTION SUMMARY")
+            print("="*60)
+    
+            avg_injection_hard_logit = np.mean([r['max_logit_diff'] for r in injection_hard])
+            avg_injection_hard_prob = np.mean([r['prob_shift'] for r in injection_hard])
+            avg_injection_soft_logit = np.mean([r['max_logit_diff'] for r in injection_soft])
+            avg_injection_soft_prob = np.mean([r['prob_shift'] for r in injection_soft])
+            avg_ablation_hard_logit = np.mean([r['max_logit_diff'] for r in ablation_hard])
+            avg_ablation_hard_prob = np.mean([r['prob_shift'] for r in ablation_hard])
+            avg_ablation_soft_logit = np.mean([r['max_logit_diff'] for r in ablation_soft])
+            avg_ablation_soft_prob = np.mean([r['prob_shift'] for r in ablation_soft])
+    
+            print("\n=== SUFFICIENCY (Injection) ===")
+            print(f"Hard Replacement: Logit {avg_injection_hard_logit:+.4f}, Prob {avg_injection_hard_prob:+.2f}%")
+            print(f"Soft Steering (α=0.5): Logit {avg_injection_soft_logit:+.4f}, Prob {avg_injection_soft_prob:+.2f}%")
+    
+            print("\n=== NECESSITY (Ablation) ===")
+            print(f"Hard Replacement: Logit {avg_ablation_hard_logit:+.4f}, Prob {avg_ablation_hard_prob:+.2f}%")
+            print(f"Soft Steering (α=0.5): Logit {avg_ablation_soft_logit:+.4f}, Prob {avg_ablation_soft_prob:+.2f}%")
+    
+            print("\n" + "="*60)
+            print("INTERPRETATION FOR PAPER")
+            print("="*60)
+            print(f"\n1. SUFFICIENCY (Causal Mechanism Works):")
+            print(f"   - Hard replacement causes {avg_injection_hard_logit:+.4f} logit shift")
+            print(f"   - Soft steering (50%) causes {avg_injection_soft_logit:+.4f} logit shift")
+            if avg_injection_hard_logit > 0.01:
+                print(f"   ✓ Vector is sufficient: Injecting it reliably triggers behavior")
+    
+            print(f"\n2. NECESSITY (Causal Control Requires This State):")
+            print(f"   - Hard replacement causes {avg_ablation_hard_logit:+.4f} logit shift")
+            print(f"   - Soft steering (50%) causes {avg_ablation_soft_logit:+.4f} logit shift")
+            if abs(avg_ablation_hard_logit) > 0.01:
+                print(f"   ✓ Vector is necessary: Removing it disrupts behavior")
+    
+            print(f"\n3. SCALING BEHAVIOR:")
+            injection_ratio = avg_injection_soft_logit / (avg_injection_hard_logit + 1e-6)
+            print(f"   - Soft steering shows {injection_ratio:.1%} of hard replacement effect")
+            if 0.3 < injection_ratio < 0.7:
+                print(f"   ✓ Linear scaling: Effect increases gradually with α (natural steering)")
+            else:
+                print(f"   ⚠ Non-linear scaling: Effect may saturate or be highly non-linear")
+    
+            print(f"\n✓ Causal completeness verified: RPC states have both sufficiency and necessity")
+    
+            print("\n✓ Causal interventions complete")
+        except Exception as e:
+            print(f"✗ TransformerLens setup failed: {e}")
+            import traceback
+            traceback.print_exc()
+    else:
+        if skip_transformer_lens:
+            print("Skipping causal interventions (--skip-transformer-lens).")
+        else:
+            print("Skipping causal interventions (tokenizer unavailable or TransformerLens not installed).")
+    
+    print(f"\n{'='*60}")
+    print(f"Pipeline complete. Results saved to: {checkpoint_save}")
+    print(f"{'='*60}")
+
+if __name__ == "__main__":
+    import argparse
+    import os
+    from dataclasses import dataclass, replace
+    from sds_train_gsm8k_hf import SDS_TRAIN_GSM8K_REPO_ID, default_hub_features_relpath
+    from hf_steering_data_io import resolve_hf_subset_data_path, add_hf_dataset_cli_args, apply_hf_dataset_cli_config
+
+    @dataclass
+    class _Cfg:
+        data_path: str
+        limit_problems: int
+        save_dir: str
+        hf_auto_download_if_missing: bool = True
+        hf_dataset_repo: str = SDS_TRAIN_GSM8K_REPO_ID
+        hf_dataset_filename: str = default_hub_features_relpath("qwen_14b", "reasoning")
+        hf_fallback_num_samples: int = 500
+        hf_fallback_cache_name: str = "sds_hf500_cebra_causal_repro.pkl"
+
+    p = argparse.ArgumentParser(description="CEBRA causal SDS pipeline (GSM8K Hub default: 500 rows).")
+    p.add_argument("--save-dir", type=str, default="rpc_final_pipeline_gsm8k500")
+    p.add_argument("--skip-transformer-lens", action="store_true", help="Skip TransformerLens block (no GPU).")
+    p.add_argument("--train-epochs", type=int, default=50, help="MoE training epochs per K (default 50).")
+    p.add_argument(
+        "--k-values",
+        type=str,
+        default="2,3,4,5,6,8",
+        help="Comma-separated K sweep (default matches early PDF).",
+    )
+    p.add_argument(
+        "--analysis-k",
+        type=int,
+        default=4,
+        help="Refit MoE with this K for logit-lens + alignment (early PDF uses 4).",
+    )
+    add_hf_dataset_cli_args(p)
+    args = p.parse_args()
+
+    cfg = _Cfg(
+        data_path="/workspace/mi-cot/analysis/rpc_dataset/all_sentences_features.pkl",
+        limit_problems=500,
+        save_dir=args.save_dir,
+    )
+    cfg = apply_hf_dataset_cli_config(cfg, args)
+    data_path, limit_problems = resolve_hf_subset_data_path(cfg)
+    k_tup = tuple(int(x.strip()) for x in args.k_values.split(",") if x.strip())
+    run_causal_pipeline(
+        data_path=data_path,
+        limit_problems=limit_problems,
+        output_dir=os.path.abspath(args.save_dir),
+        skip_transformer_lens=args.skip_transformer_lens,
+        train_epochs=int(args.train_epochs),
+        k_values=k_tup,
+        analysis_k=int(args.analysis_k),
+    )

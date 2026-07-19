@@ -72,6 +72,110 @@ def hard_transition_matrix(state_seqs, K):
     row_sums = T.sum(1, keepdims=True)
     return T / np.where(row_sums == 0, 1, row_sums)
 
+
+def fit_regime_linear_dynamics(cebra_seqs, state_seqs, K, D):
+    """
+    Per source regime $k$, least-squares fit $z_{t+1} \\approx d_m[k] @ z_t + d_b[k]$.
+    Matches the tensor layout expected by ``compute_steering_delta`` in the steering scripts
+    (same as ``cebra_EM.m_step`` dynamics, up to finite-sample noise).
+    """
+    d_m = np.zeros((K, D, D), dtype=np.float64)
+    d_b = np.zeros((K, D), dtype=np.float64)
+    d_cov = np.stack([np.eye(D, dtype=np.float64) * 1e-3 for _ in range(K)])
+    for k in range(K):
+        X_in, X_out = [], []
+        for z_seq, s_seq in zip(cebra_seqs, state_seqs):
+            for t in range(len(z_seq) - 1):
+                if int(s_seq[t]) == k:
+                    X_in.append(z_seq[t])
+                    X_out.append(z_seq[t + 1])
+        if len(X_in) < D + 2:
+            d_m[k] = 0.1 * np.eye(D)
+            d_b[k] = 0.0
+            continue
+        X_in = np.asarray(X_in, dtype=np.float64)
+        X_out = np.asarray(X_out, dtype=np.float64)
+        X_aug = np.hstack([X_in, np.ones((len(X_in), 1))])
+        W, *_ = np.linalg.lstsq(X_aug, X_out, rcond=None)
+        # z_out = z_in @ W[:D, :] + W[D, :]  ->  z_out = W[:D,:].T @ z_in + W[D,:]
+        d_m[k] = W[:D, :].T
+        d_b[k] = W[D, :]
+    return d_m.astype(np.float32), d_b.astype(np.float32), d_cov.astype(np.float32)
+
+
+def train_moe_projection(
+    all_features,
+    triplets,
+    K: int,
+    d_out: int = 40,
+    epochs: int = 75,
+    seed: int = 42,
+):
+    """
+    Train CEBRA-MoE encoder + mixture dynamics (same objective as ``train_and_eval``),
+    then emit latent sequences with the **same** ``pids_sorted`` convention as
+    ``cebra_EM.train_cebra_projection`` (problems with at least three sentences).
+
+    Returns
+    -------
+    cebra_seqs, pca_seqs, labels, Z, gate_argmax
+    """
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+
+    X_raw = np.array([f["hidden_state_last"] for f in all_features], dtype=np.float32)
+    scaler = StandardScaler()
+    X_scaled_np = scaler.fit_transform(X_raw)
+    pca = PCA(n_components=PCA_DIM, random_state=seed)
+    X_pca = pca.fit_transform(X_scaled_np)
+    X_torch = torch.tensor(X_scaled_np, dtype=torch.float32).to(device)
+
+    model = CEBRA_MoE_Encoder(X_torch.shape[1], d_out, K).to(device)
+    dyn = DynamicsMoE(K, d_out).to(device)
+    opt = optim.AdamW(list(model.parameters()) + list(dyn.parameters()), lr=1e-3)
+
+    for epoch in range(epochs):
+        tau = max(0.2, 1.5 * (0.92 ** epoch))
+        w_div = min(30.0, (epoch / 15.0) * 30.0)
+        indices = np.random.permutation(len(triplets))
+        for b in range(0, len(triplets), 128):
+            idx = indices[b : b + 128]
+            i_t = torch.tensor([triplets[x][0] for x in idx], device=device)
+            p_t = torch.tensor([triplets[x][1] for x in idx], device=device)
+            n_t = torch.tensor([triplets[x][2] for x in idx], device=device)
+            h_i, s_i = model(X_torch[i_t], temp=tau)
+            h_p, s_p = model(X_torch[p_t], temp=tau)
+            h_n, _ = model(X_torch[n_t], temp=tau)
+            h_pred = dyn(h_i, s_i)
+            loss = (
+                nce_loss(h_pred, h_p, h_n)
+                + 10.0 * F.mse_loss(h_pred, h_p)
+                + w_div * (s_i.mean(0) * torch.log(s_i.mean(0) + 1e-8)).sum()
+                + 1.0 * torch.abs(s_i - s_p).mean()
+            )
+            opt.zero_grad()
+            loss.backward()
+            opt.step()
+
+    model.eval()
+    with torch.no_grad():
+        H, s_soft = model(X_torch, temp=0.01)
+        Z = H.cpu().numpy().astype(np.float32)
+        gate_argmax = s_soft.argmax(1).cpu().numpy().astype(np.int64)
+
+    p_map_z, p_map_p, p_map_l = defaultdict(list), defaultdict(list), defaultdict(list)
+    for i, f in enumerate(all_features):
+        pid = f["problem_id"]
+        p_map_z[pid].append(Z[i])
+        p_map_p[pid].append(X_pca[i])
+        p_map_l[pid].append(f.get("stage", "NEUTRAL"))
+    pids_sorted = sorted(p for p in p_map_z if len(p_map_z[p]) >= 3)
+    cebra_seqs = [np.array(p_map_z[p], dtype=np.float32) for p in pids_sorted]
+    pca_seqs = [np.array(p_map_p[p]) for p in pids_sorted]
+    labels = [p_map_l[p] for p in pids_sorted]
+    return cebra_seqs, pca_seqs, labels, Z, gate_argmax
+
+
 def print_transition_matrix(T, K):
     header = "      " + " ".join(f"  →{j}" for j in range(K))
     print(f"  {header}", flush=True)
