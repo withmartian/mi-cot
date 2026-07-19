@@ -2,21 +2,20 @@
 
 ![Figure 1: Transplanting reasoning policy onto a base model](figure_page2_combined.png)
 
-This repository supports the COLM 2026 paper "Reasoning Fine-Tuning Induces Persistent Latent Policy States" by providing code for: expressive reasoning model comparisons, discrete latent policy discovery, and controlled policy transplantation.
+This repository implements the methods behind the COLM 2026 paper *"Reasoning Fine-Tuning Induces Persistent Latent Policy States"*.
 
-## Key ideas
-- Fine-tuning for reasoning can change not only output quality but also the internal policy dynamics.
-- We model chain-of-thought activations as a Switching Dynamical System (SDS).
-- The framework recovers discrete latent policy states, measures persistence and transition structure, and tests causal relevance by transplanting the policy onto a base model.
+TL;DR: given a reasoning model and its sentence-level hidden-state trajectories, this code discovers discrete latent policy states, measures how persistent they are, and tests whether those states can be transplanted onto a base model to steer reasoning behavior.
 
-## Repository structure
-- `contrastive_gen/`: core CEBRA contrastive training code and API helpers
-- `analysis/`: reasoning analysis scripts for causal tracing, policy extraction, and steering
-- `generate_data/`: dataset creation and generation utilities
-- `huggingface_scripts/`: HF repo management utilities
-- `Locating_Reasoning_Policies.pdf`: paper PDF
+## Contents
+- `contrastive_gen/` — reusable CEBRA-based encoder, dynamics model, training, and API helpers
+- `analysis/` — scripts for dataset extraction, regime discovery, causal steering, and transplantation analysis
+- `experiments/` — structured paper experiments, ablations, and evaluation utilities
+- `generate_data/` — dataset creation and feature extraction helpers
+- `scripts/` — Hugging Face utilities and repository management helpers
 
-## Installation
+## 🔧 Dependencies and Installation
+All commands in this README are run from the repository root.
+
 ```bash
 git clone https://github.com/withmartian/mi-cot.git
 cd mi-cot
@@ -26,64 +25,91 @@ python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt
 ```
 
-## Quickstart API
-Use the package API for the cleanest workflow.
+Minimum recommended Python version: `>= 3.10`.
 
+## 🧠 How this repo works
+1. `contrastive_gen.load_features()` loads hidden-state trajectories and builds training triplets.
+2. `contrastive_gen.standardize_hidden_states()` scales activations into a model-ready tensor.
+3. `contrastive_gen.train_k_regime_model()` trains a discrete latent regime encoder plus dynamics model.
+4. The learned regime assignments are evaluated for persistence, transition structure, and causal transplant effects.
+
+This is a paper repository, not a model hub: it provides the code and analysis pipeline used to reproduce the reasoning policy controller experiments.
+
+## 📦 Released artifacts
+This repo releases code only.
+
+The main runnable components are:
+- `contrastive_gen/` — API for training and saving regime models
+- `analysis/` — dataset assembly, feature extraction, steering, and evaluation scripts
+- `experiments/` — paper experiments and ablations
+- `scripts/` — utility scripts for repository management and Hugging Face interaction
+
+## 📥 Loading the API
+```python
+from contrastive_gen import (
+    load_features,
+    standardize_hidden_states,
+    train_k_regime_model,
+    save_model_artifacts,
+)
+```
+
+## 🚀 Quickstart
 ```python
 from contrastive_gen import load_features, standardize_hidden_states, train_k_regime_model, save_model_artifacts
 
 features, triplets = load_features("rpc_dataset/all_sentences_features.pkl")
 X_torch, scaler = standardize_hidden_states(features)
 result = train_k_regime_model(K=4, features=features, triplets=triplets, epochs=50)
+
 print("Persistence:", result["persistence"])
-print("State sequences for problem 0:", result["sequences"][0])
-save_model_artifacts("rpc_results", result)
+print("Sequence count:", len(result["sequences"]))
+
+save_model_artifacts("out/cebra_model", result)
 ```
 
-## Usage patterns
-### 1. Load hidden-state features
-The canonical dataset is expected at `rpc_dataset/all_sentences_features.pkl`.
+## 📊 Reproducing the paper workflow
+### 1. Prepare data
+Use `analysis/gen_rpc_base.py` to extract hidden-state features from a base model.
 
+### 2. Train a regime model
+Use `contrastive_gen.train_k_regime_model()` to learn discrete latent states from sentence activations.
+
+### 3. Analyze policy structure
+Recover state sequences and persistence scores with:
 ```python
-from contrastive_gen import load_features
-features, triplets = load_features("rpc_dataset/all_sentences_features.pkl")
+from contrastive_gen import build_state_sequences, compute_persistence
+
+sequences = build_state_sequences(features, result["states"])
+persistence = compute_persistence(sequences)
+print(persistence)
 ```
 
-### 2. Standardize and train
-```python
-from contrastive_gen import standardize_hidden_states, train_k_regime_model
-X_torch, scaler = standardize_hidden_states(features)
-result = train_k_regime_model(K=4, features=features, triplets=triplets, epochs=60)
-```
+### 4. Run causal and steering experiments
+Use scripts in `analysis/` to run transplant and steering studies, including:
+- `analysis/cebra_EM.py`
+- `analysis/rpc.py`
+- `analysis/cebra_em_steering_inputDep.py`
 
-### 3. Inspect latent states
-```python
-sequences = result["sequences"]
-persistence = result["persistence"]
-print(f"Recovered {len(sequences)} problem traces with persistence {persistence:.3f}")
-```
+## Optional workflows
+- `experiments/` contains structured paper experiments and ablations
+- `generate_data/` contains dataset creation utilities
+- `analysis/` contains example pipelines for feature extraction and steering
 
-## Model loading and activation extraction
-If you want to extract activations from a reasoning model and build your own dataset, use the scripts under `analysis/` and `generate_data/`.
+## 🎯 High-level API
+The core API is exposed through `contrastive_gen`:
+- `load_features(path, ...)`
+- `standardize_hidden_states(features)`
+- `train_k_regime_model(K, features, triplets, ...)`
+- `build_state_sequences(features, states)`
+- `compute_persistence(sequences)`
+- `save_model_artifacts(path, artifacts)`
 
-Example:
-- `analysis/gen_rpc_base.py` — generate causal matrices and sentence-level activation traces for base models
-- `analysis/rpc.py` — extract reasoning anchors and label sentence types
-- `analysis/cebra_rpc.py` — perform regime discovery with CEBRA and dynamics analysis
+## 🤗 Notes
+- `Locating_Reasoning_Policies.pdf` is a local paper artifact and is not part of the published code release.
+- The repository is organized for reproducibility: core training code in `contrastive_gen/`, analysis scripts in `analysis/`, and experiments in `experiments/`.
 
-## Appendix: Practical workflow
-1. Generate or locate sentence-level hidden-state data.
-2. Standardize hidden-state vectors with `contrastive_gen.standardize_hidden_states()`.
-3. Build triplets from adjacent same-problem points and random negatives using `load_features()`.
-4. Train a discrete policy encoder via `train_k_regime_model()`.
-5. Recover latent state sequences and analyze persistence, mixing, and transition structure.
+## 📜 Citation
+If you use this code, please cite:
 
-## Good practices for COLM-style repos
-- Prefer reusable APIs over one-off scripts.
-- Keep dataset and model paths explicit.
-- Document expected inputs, outputs, and the high-level analysis pipeline.
-- Avoid verbose inline print debugging in production modules.
-
-## Notes
-- The main figure is extracted from `Locating_Reasoning_Policies.pdf`.
-- This repo is organized to support reproducible reasoning policy discovery and analysis.
+> Harrasse, A., et al. (2026). *Reasoning Fine-Tuning Induces Persistent Latent Policy States*.
