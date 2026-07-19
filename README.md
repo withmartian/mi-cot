@@ -19,6 +19,7 @@ TL;DR: given a reasoning model and its sentence-level hidden-state trajectories,
 - `experiments/` — structured paper experiments, ablations, and evaluation utilities
 - `generate_data/` — dataset creation and feature extraction helpers
 - `scripts/` — Hugging Face utilities and repository management helpers
+- `prefixguard/` — SDS/CEBRA prefix-time verifier, early-warning analysis, and compact result summaries
 
 ## 🔧 Dependencies and Installation
 All commands in this README are run from the repository root.
@@ -103,6 +104,20 @@ Use scripts in `analysis/` to run transplant and steering studies, including:
 - `experiments/` contains structured paper experiments and ablations
 - `generate_data/` contains dataset creation utilities
 - `analysis/` contains example pipelines for feature extraction and steering
+
+## PrefixGuard: early reasoning-trace verification
+
+`prefixguard/` uses the discovered SDS/CEBRA policy states as an online-style
+verifier for partial reasoning traces. It learns which latent states and state
+transitions are associated with successful trajectories, ranks multiple sampled
+continuations, and measures performance when only 25%, 50%, 75%, or 100% of a
+trace is visible.
+
+The released implementation includes trace reranking, prefix rescoring,
+robustness and residual analyses, answer-aware evaluation, and compact aggregate
+results. Large activation pickles, model checkpoints, raw generations, and
+cluster logs are intentionally excluded. See [`prefixguard/README.md`](prefixguard/README.md)
+for inputs, commands, and representative metrics.
 
 ## 🎯 High-level API
 The core API is exposed through `contrastive_gen`:
