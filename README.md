@@ -127,6 +127,6 @@ The core API is exposed through `contrastive_gen`:
 - `save_model_artifacts(path, artifacts)`
 
 ## 📜 Citation
-If you use this code, please cite:
+If you find this code useful, please cite:
 
 > Harrasse, A., et al. (2026). *Reasoning Fine-Tuning Induces Persistent Latent Policy States*.
