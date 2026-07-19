@@ -1,6 +1,11 @@
 # Reasoning Policy Controllers in Fine-Tuned Models
 
-![Python 3.11](https://img.shields.io/badge/python-3.11-blue?style=flat-square&logo=python) ![Framework PyTorch](https://img.shields.io/badge/framework-PyTorch-E31B0C?style=flat-square&logo=pytorch) ![Packaging Poetry](https://img.shields.io/badge/packaging-Poetry-3F80EE?style=flat-square&logo=poetry) ![License MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.11-blue?style=flat-square&logo=python" alt="Python 3.11" />
+  <img src="https://img.shields.io/badge/framework-PyTorch-E31B0C?style=flat-square&logo=pytorch" alt="Framework PyTorch" />
+  <img src="https://img.shields.io/badge/packaging-Poetry-3F80EE?style=flat-square&logo=poetry" alt="Packaging Poetry" />
+  <img src="https://img.shields.io/badge/license-MIT-yellow?style=flat-square" alt="License MIT" />
+</p>
 
 ![Figure 1: Transplanting reasoning policy onto a base model](figure_page2_combined.png)
 
