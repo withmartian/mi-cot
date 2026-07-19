@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mi-cot"
+version = "0.1.0"
+description = "Repository code for COLM 2026 reasoning policy controller experiments."
+readme = "README.md"
+authors = [{name = "Abir Harrasse"}]
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0.0",
+    "numpy",
+    "tqdm",
+    "transformers>=4.30.0",
+    "datasets",
+    "filelock>=3.12.0",
+    "huggingface_hub>=0.20.0",
+    "transformer_lens",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "pandas",
+]
+
+[project.urls]
+"Source" = "https://github.com/withmartian/mi-cot"

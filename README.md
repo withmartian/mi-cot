@@ -14,7 +14,7 @@ This repository implements the methods behind the COLM 2026 paper *"Reasoning Fi
 TL;DR: given a reasoning model and its sentence-level hidden-state trajectories, this code discovers discrete latent policy states, measures how persistent they are, and tests whether those states can be transplanted onto a base model to steer reasoning behavior.
 
 ## Contents
-- `contrastive_gen/` — reusable CEBRA-based encoder, dynamics model, training, and API helpers
+- `src/contrastive_gen/` — reusable CEBRA-based encoder, dynamics model, training, and API helpers
 - `analysis/` — scripts for dataset extraction, regime discovery, causal steering, and transplantation analysis
 - `experiments/` — structured paper experiments, ablations, and evaluation utilities
 - `generate_data/` — dataset creation and feature extraction helpers
@@ -30,6 +30,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt
+python3 -m pip install -e .
 ```
 
 Minimum recommended Python version: `>= 3.10`.

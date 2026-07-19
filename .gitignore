@@ -19,3 +19,4 @@ entropy_neuron_dashboard_out/
 
 # Local paper PDF
 Locating_Reasoning_Policies.pdf
+__pycache__/
