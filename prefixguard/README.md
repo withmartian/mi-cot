@@ -1,31 +1,32 @@
-# PrefixGuard: prefix-time reasoning monitoring
+# PrefixGuard
 
-This directory contains the paper implementation for using SDS/CEBRA policy
-states as a verifier over reasoning-model traces. It fits latent policy states
-from labeled sentence activations, scores sampled reasoning traces by their
-state trajectories, and tests how early those scores can distinguish useful
-continuations.
+PrefixGuard checks a reasoning trace while it is still being generated. It
+uses SDS/CEBRA states learned from labeled sentence activations, then scores new
+traces according to the states they visit and the transitions between them.
 
 ## Contents
 
-- `scripts/reasoning_sds_rerank.py` samples candidate traces and compares
-  state-, CEBRA-, transition-, log-probability-, length-, majority-, and random
-  selection rules.
-- `scripts/analyze_prefixes.py` produces grouped robustness metrics,
-  candidate AUCs, interpretable state summaries, and prefix-time evaluations at
-  configurable generation fractions.
-- `scripts/baselines.py` contains shared SDS fitting, answer checking, and
-  prompt utilities.
-- `results/` contains compact aggregate summaries. Raw generations, activation
-  caches, checkpoints, and cluster logs are omitted.
+- `scripts/reasoning_sds_rerank.py` generates several answers for each problem
+  and ranks them with the learned state scores. It also reports simpler
+  baselines such as log-probability, answer majority, and length.
+- `scripts/analyze_prefixes.py` reruns the scoring at different points in each
+  saved trace and writes the tables and plots used in the analysis.
+- `scripts/baselines.py` holds the SDS fitting, prompt formatting, and answer
+  checking shared by both scripts.
+- `results/` has the small summary files kept with this release. The large raw
+  outputs and activation files are not included.
 
 ## Inputs
 
-The reranker expects a Hugging Face causal language model, a pickle of sentence
-records containing `problem_id`, `sentence_idx`, and `hidden_state_last`, a JSON
-mapping problem IDs to terminal correctness labels, and a JSON problem set with
-`problem`, `problem_id`, and an `answer` or `ground_truth` field. Evaluation IDs
-are excluded from the state-utility labels by default.
+You need a Hugging Face causal language model and three data files:
+
+- a pickle of sentence records with `problem_id`, `sentence_idx`, and
+  `hidden_state_last`;
+- a JSON file mapping problem IDs to correctness labels; and
+- a JSON problem set with `problem`, `problem_id`, and either `answer` or
+  `ground_truth`.
+
+By default, evaluation problems are left out when the state scores are fitted.
 
 ## Run the verifier
 
@@ -46,8 +47,8 @@ python -m prefixguard.scripts.reasoning_sds_rerank \
 
 ## Analyze prefixes
 
-Analysis can run without loading a language model when prefix rescoring is
-skipped:
+If you only want the aggregate analysis, use `--skip-early-exit`. This does not
+load the language model:
 
 ```bash
 python -m prefixguard.scripts.analyze_prefixes \
@@ -56,19 +57,7 @@ python -m prefixguard.scripts.analyze_prefixes \
   --skip-early-exit
 ```
 
-For prefix-time scoring, omit `--skip-early-exit` and supply the same model,
-activation pickle, correctness cache, and layer settings used for generation.
-The defaults evaluate 25%, 50%, 75%, and 100% of each saved generation without
-regenerating traces.
-
-## Released result snapshot
-
-On the representative 60-problem Qwen 1.5B MATH-500 run, the CEBRA verifier
-reached candidate AUC 0.748, versus 0.593 for average log-probability. Selection
-accuracy was 0.167 at 25% of the trace and 0.250 on the full trace, versus 0.133
-and 0.217 for average log-probability. See
-`results/qwen1_5b_math500_summary.md` for the full slice table and
-`results/early_continue_policy_summary.json` for compact multi-seed results.
-
-These are experimental selection results, not calibrated deployment-risk
-guarantees.
+To score prefixes, leave out `--skip-early-exit` and pass the model, activation
+pickle, correctness labels, and layer used for the original run. The default
+checkpoints are 25%, 50%, 75%, and 100% of the trace. The script works from the
+saved generations; it does not sample them again.

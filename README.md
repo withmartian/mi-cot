@@ -19,7 +19,7 @@ TL;DR: given a reasoning model and its sentence-level hidden-state trajectories,
 - `experiments/` — structured paper experiments, ablations, and evaluation utilities
 - `generate_data/` — dataset creation and feature extraction helpers
 - `scripts/` — Hugging Face utilities and repository management helpers
-- `prefixguard/` — SDS/CEBRA prefix-time verifier, early-warning analysis, and compact result summaries
+- `prefixguard/` — scores partial reasoning traces with the learned SDS/CEBRA states
 
 ## 🔧 Dependencies and Installation
 All commands in this README are run from the repository root.
@@ -105,19 +105,17 @@ Use scripts in `analysis/` to run transplant and steering studies, including:
 - `generate_data/` contains dataset creation utilities
 - `analysis/` contains example pipelines for feature extraction and steering
 
-## PrefixGuard: early reasoning-trace verification
+## PrefixGuard
 
-`prefixguard/` uses the discovered SDS/CEBRA policy states as an online-style
-verifier for partial reasoning traces. It learns which latent states and state
-transitions are associated with successful trajectories, ranks multiple sampled
-continuations, and measures performance when only 25%, 50%, 75%, or 100% of a
-trace is visible.
+The code in `prefixguard/` asks a simple question: can the policy states tell us
+that a reasoning trace is going wrong before the model finishes? It fits state
+scores from labeled traces, uses them to rank several candidate answers, and
+repeats the evaluation after seeing 25%, 50%, 75%, and 100% of each trace.
 
-The released implementation includes trace reranking, prefix rescoring,
-robustness and residual analyses, answer-aware evaluation, and compact aggregate
-results. Large activation pickles, model checkpoints, raw generations, and
-cluster logs are intentionally excluded. See [`prefixguard/README.md`](prefixguard/README.md)
-for inputs, commands, and representative metrics.
+The folder contains the reranking and analysis scripts along with small result
+summaries. Model weights, activation pickles, and raw generations are left out
+because they are too large for the repository. Setup and usage are in the
+[`prefixguard` README](prefixguard/README.md).
 
 ## 🎯 High-level API
 The core API is exposed through `contrastive_gen`:
