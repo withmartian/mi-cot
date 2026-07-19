@@ -1,5 +1,7 @@
 # Reasoning Policy Controllers in Fine-Tuned Models
 
+![Python 3.11](https://img.shields.io/badge/python-3.11-blue?style=flat-square&logo=python) ![Framework PyTorch](https://img.shields.io/badge/framework-PyTorch-E31B0C?style=flat-square&logo=pytorch) ![Packaging Poetry](https://img.shields.io/badge/packaging-Poetry-3F80EE?style=flat-square&logo=poetry) ![License MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)
+
 ![Figure 1: Transplanting reasoning policy onto a base model](figure_page2_combined.png)
 
 This repository implements the methods behind the COLM 2026 paper *"Reasoning Fine-Tuning Induces Persistent Latent Policy States"*.
@@ -104,10 +106,6 @@ The core API is exposed through `contrastive_gen`:
 - `build_state_sequences(features, states)`
 - `compute_persistence(sequences)`
 - `save_model_artifacts(path, artifacts)`
-
-## 🤗 Notes
-- `Locating_Reasoning_Policies.pdf` is a local paper artifact and is not part of the published code release.
-- The repository is organized for reproducibility: core training code in `contrastive_gen/`, analysis scripts in `analysis/`, and experiments in `experiments/`.
 
 ## 📜 Citation
 If you use this code, please cite:
