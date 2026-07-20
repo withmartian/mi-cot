@@ -1,0 +1,750 @@
+{
+  "qwen1_5b_math500": {
+    "early_pick_avg_lp_prefix": [
+      0.13333333333333333,
+      0.15,
+      0.1
+    ],
+    "early_pick_cebra_score_prefix": [
+      0.16666666666666666,
+      0.15,
+      0.15
+    ],
+    "early_pick_state_score_prefix": [
+      0.16666666666666666,
+      0.11666666666666667,
+      0.15
+    ],
+    "full_avg_lp": [
+      0.21666666666666667,
+      0.15,
+      0.16666666666666666
+    ],
+    "full_cebra_score": [
+      0.25,
+      0.18333333333333332,
+      0.16666666666666666
+    ],
+    "full_joint_cebra": [
+      0.25,
+      0.13333333333333333,
+      0.18333333333333332
+    ],
+    "full_state_score": [
+      0.13333333333333333,
+      0.2,
+      0.16666666666666666
+    ],
+    "top1_avg_lp_prefix_then_avg_lp": [
+      0.13333333333333333,
+      0.15,
+      0.1
+    ],
+    "top1_avg_lp_prefix_then_cebra_score": [
+      0.13333333333333333,
+      0.15,
+      0.1
+    ],
+    "top1_avg_lp_prefix_then_joint_cebra": [
+      0.13333333333333333,
+      0.15,
+      0.1
+    ],
+    "top1_cebra_score_prefix_then_avg_lp": [
+      0.16666666666666666,
+      0.15,
+      0.15
+    ],
+    "top1_cebra_score_prefix_then_cebra_score": [
+      0.16666666666666666,
+      0.15,
+      0.15
+    ],
+    "top1_cebra_score_prefix_then_joint_cebra": [
+      0.16666666666666666,
+      0.15,
+      0.15
+    ],
+    "top1_compute_frac": [
+      0.34375,
+      0.34375,
+      0.34375
+    ],
+    "top1_state_score_prefix_then_avg_lp": [
+      0.16666666666666666,
+      0.11666666666666667,
+      0.15
+    ],
+    "top1_state_score_prefix_then_cebra_score": [
+      0.16666666666666666,
+      0.11666666666666667,
+      0.15
+    ],
+    "top1_state_score_prefix_then_joint_cebra": [
+      0.16666666666666666,
+      0.11666666666666667,
+      0.15
+    ],
+    "top2_avg_lp_prefix_then_avg_lp": [
+      0.16666666666666666,
+      0.16666666666666666,
+      0.13333333333333333
+    ],
+    "top2_avg_lp_prefix_then_cebra_score": [
+      0.16666666666666666,
+      0.15,
+      0.13333333333333333
+    ],
+    "top2_avg_lp_prefix_then_joint_cebra": [
+      0.16666666666666666,
+      0.16666666666666666,
+      0.13333333333333333
+    ],
+    "top2_cebra_score_prefix_then_avg_lp": [
+      0.16666666666666666,
+      0.08333333333333333,
+      0.13333333333333333
+    ],
+    "top2_cebra_score_prefix_then_cebra_score": [
+      0.16666666666666666,
+      0.13333333333333333,
+      0.11666666666666667
+    ],
+    "top2_cebra_score_prefix_then_joint_cebra": [
+      0.16666666666666666,
+      0.13333333333333333,
+      0.13333333333333333
+    ],
+    "top2_compute_frac": [
+      0.4375,
+      0.4375,
+      0.4375
+    ],
+    "top2_state_score_prefix_then_avg_lp": [
+      0.15,
+      0.18333333333333332,
+      0.13333333333333333
+    ],
+    "top2_state_score_prefix_then_cebra_score": [
+      0.2,
+      0.15,
+      0.11666666666666667
+    ],
+    "top2_state_score_prefix_then_joint_cebra": [
+      0.2,
+      0.18333333333333332,
+      0.11666666666666667
+    ],
+    "top4_avg_lp_prefix_then_avg_lp": [
+      0.18333333333333332,
+      0.15,
+      0.16666666666666666
+    ],
+    "top4_avg_lp_prefix_then_cebra_score": [
+      0.16666666666666666,
+      0.15,
+      0.13333333333333333
+    ],
+    "top4_avg_lp_prefix_then_joint_cebra": [
+      0.18333333333333332,
+      0.16666666666666666,
+      0.15
+    ],
+    "top4_cebra_score_prefix_then_avg_lp": [
+      0.16666666666666666,
+      0.13333333333333333,
+      0.13333333333333333
+    ],
+    "top4_cebra_score_prefix_then_cebra_score": [
+      0.21666666666666667,
+      0.16666666666666666,
+      0.13333333333333333
+    ],
+    "top4_cebra_score_prefix_then_joint_cebra": [
+      0.21666666666666667,
+      0.16666666666666666,
+      0.15
+    ],
+    "top4_compute_frac": [
+      0.625,
+      0.625,
+      0.625
+    ],
+    "top4_state_score_prefix_then_avg_lp": [
+      0.16666666666666666,
+      0.13333333333333333,
+      0.13333333333333333
+    ],
+    "top4_state_score_prefix_then_cebra_score": [
+      0.21666666666666667,
+      0.18333333333333332,
+      0.13333333333333333
+    ],
+    "top4_state_score_prefix_then_joint_cebra": [
+      0.21666666666666667,
+      0.16666666666666666,
+      0.15
+    ]
+  },
+  "llama8b_math500": {
+    "early_pick_avg_lp_prefix": [
+      0.14035087719298245,
+      0.2807017543859649,
+      0.15789473684210525
+    ],
+    "early_pick_cebra_score_prefix": [
+      0.19298245614035087,
+      0.19298245614035087,
+      0.2631578947368421
+    ],
+    "early_pick_state_score_prefix": [
+      0.2982456140350877,
+      0.22807017543859648,
+      0.12280701754385964
+    ],
+    "full_avg_lp": [
+      0.2631578947368421,
+      0.2631578947368421,
+      0.2631578947368421
+    ],
+    "full_cebra_score": [
+      0.22807017543859648,
+      0.21052631578947367,
+      0.19298245614035087
+    ],
+    "full_joint_cebra": [
+      0.24561403508771928,
+      0.21052631578947367,
+      0.17543859649122806
+    ],
+    "full_state_score": [
+      0.2982456140350877,
+      0.21052631578947367,
+      0.10526315789473684
+    ],
+    "top1_avg_lp_prefix_then_avg_lp": [
+      0.14035087719298245,
+      0.2807017543859649,
+      0.15789473684210525
+    ],
+    "top1_avg_lp_prefix_then_cebra_score": [
+      0.14035087719298245,
+      0.2807017543859649,
+      0.15789473684210525
+    ],
+    "top1_avg_lp_prefix_then_joint_cebra": [
+      0.14035087719298245,
+      0.2807017543859649,
+      0.15789473684210525
+    ],
+    "top1_cebra_score_prefix_then_avg_lp": [
+      0.19298245614035087,
+      0.19298245614035087,
+      0.2631578947368421
+    ],
+    "top1_cebra_score_prefix_then_cebra_score": [
+      0.19298245614035087,
+      0.19298245614035087,
+      0.2631578947368421
+    ],
+    "top1_cebra_score_prefix_then_joint_cebra": [
+      0.19298245614035087,
+      0.19298245614035087,
+      0.2631578947368421
+    ],
+    "top1_compute_frac": [
+      0.34375,
+      0.34375,
+      0.34375
+    ],
+    "top1_state_score_prefix_then_avg_lp": [
+      0.2982456140350877,
+      0.22807017543859648,
+      0.12280701754385964
+    ],
+    "top1_state_score_prefix_then_cebra_score": [
+      0.2982456140350877,
+      0.22807017543859648,
+      0.12280701754385964
+    ],
+    "top1_state_score_prefix_then_joint_cebra": [
+      0.2982456140350877,
+      0.22807017543859648,
+      0.12280701754385964
+    ],
+    "top2_avg_lp_prefix_then_avg_lp": [
+      0.19298245614035087,
+      0.2631578947368421,
+      0.21052631578947367
+    ],
+    "top2_avg_lp_prefix_then_cebra_score": [
+      0.19298245614035087,
+      0.22807017543859648,
+      0.17543859649122806
+    ],
+    "top2_avg_lp_prefix_then_joint_cebra": [
+      0.19298245614035087,
+      0.22807017543859648,
+      0.17543859649122806
+    ],
+    "top2_cebra_score_prefix_then_avg_lp": [
+      0.19298245614035087,
+      0.19298245614035087,
+      0.3157894736842105
+    ],
+    "top2_cebra_score_prefix_then_cebra_score": [
+      0.14035087719298245,
+      0.21052631578947367,
+      0.22807017543859648
+    ],
+    "top2_cebra_score_prefix_then_joint_cebra": [
+      0.14035087719298245,
+      0.21052631578947367,
+      0.24561403508771928
+    ],
+    "top2_compute_frac": [
+      0.4375,
+      0.4375,
+      0.4375
+    ],
+    "top2_state_score_prefix_then_avg_lp": [
+      0.2631578947368421,
+      0.24561403508771928,
+      0.17543859649122806
+    ],
+    "top2_state_score_prefix_then_cebra_score": [
+      0.2807017543859649,
+      0.21052631578947367,
+      0.15789473684210525
+    ],
+    "top2_state_score_prefix_then_joint_cebra": [
+      0.2807017543859649,
+      0.21052631578947367,
+      0.14035087719298245
+    ],
+    "top4_avg_lp_prefix_then_avg_lp": [
+      0.24561403508771928,
+      0.2631578947368421,
+      0.21052631578947367
+    ],
+    "top4_avg_lp_prefix_then_cebra_score": [
+      0.22807017543859648,
+      0.24561403508771928,
+      0.12280701754385964
+    ],
+    "top4_avg_lp_prefix_then_joint_cebra": [
+      0.22807017543859648,
+      0.24561403508771928,
+      0.12280701754385964
+    ],
+    "top4_cebra_score_prefix_then_avg_lp": [
+      0.19298245614035087,
+      0.21052631578947367,
+      0.2631578947368421
+    ],
+    "top4_cebra_score_prefix_then_cebra_score": [
+      0.19298245614035087,
+      0.22807017543859648,
+      0.21052631578947367
+    ],
+    "top4_cebra_score_prefix_then_joint_cebra": [
+      0.21052631578947367,
+      0.22807017543859648,
+      0.21052631578947367
+    ],
+    "top4_compute_frac": [
+      0.625,
+      0.625,
+      0.625
+    ],
+    "top4_state_score_prefix_then_avg_lp": [
+      0.24561403508771928,
+      0.2807017543859649,
+      0.24561403508771928
+    ],
+    "top4_state_score_prefix_then_cebra_score": [
+      0.2807017543859649,
+      0.22807017543859648,
+      0.17543859649122806
+    ],
+    "top4_state_score_prefix_then_joint_cebra": [
+      0.2807017543859649,
+      0.22807017543859648,
+      0.17543859649122806
+    ]
+  },
+  "qwen14b_mmlu_pro": {
+    "early_pick_avg_lp_prefix": [
+      0.25,
+      0.3,
+      0.31666666666666665
+    ],
+    "early_pick_cebra_score_prefix": [
+      0.15,
+      0.25,
+      0.18333333333333332
+    ],
+    "early_pick_state_score_prefix": [
+      0.15,
+      0.25,
+      0.35
+    ],
+    "full_avg_lp": [
+      0.2,
+      0.31666666666666665,
+      0.23333333333333334
+    ],
+    "full_cebra_score": [
+      0.18333333333333332,
+      0.21666666666666667,
+      0.2833333333333333
+    ],
+    "full_joint_cebra": [
+      0.2,
+      0.21666666666666667,
+      0.2833333333333333
+    ],
+    "full_state_score": [
+      0.2,
+      0.2833333333333333,
+      0.25
+    ],
+    "top1_avg_lp_prefix_then_avg_lp": [
+      0.25,
+      0.3,
+      0.31666666666666665
+    ],
+    "top1_avg_lp_prefix_then_cebra_score": [
+      0.25,
+      0.3,
+      0.31666666666666665
+    ],
+    "top1_avg_lp_prefix_then_joint_cebra": [
+      0.25,
+      0.3,
+      0.31666666666666665
+    ],
+    "top1_cebra_score_prefix_then_avg_lp": [
+      0.15,
+      0.25,
+      0.18333333333333332
+    ],
+    "top1_cebra_score_prefix_then_cebra_score": [
+      0.15,
+      0.25,
+      0.18333333333333332
+    ],
+    "top1_cebra_score_prefix_then_joint_cebra": [
+      0.15,
+      0.25,
+      0.18333333333333332
+    ],
+    "top1_compute_frac": [
+      0.34375,
+      0.34375,
+      0.34375
+    ],
+    "top1_state_score_prefix_then_avg_lp": [
+      0.15,
+      0.25,
+      0.35
+    ],
+    "top1_state_score_prefix_then_cebra_score": [
+      0.15,
+      0.25,
+      0.35
+    ],
+    "top1_state_score_prefix_then_joint_cebra": [
+      0.15,
+      0.25,
+      0.35
+    ],
+    "top2_avg_lp_prefix_then_avg_lp": [
+      0.25,
+      0.31666666666666665,
+      0.26666666666666666
+    ],
+    "top2_avg_lp_prefix_then_cebra_score": [
+      0.25,
+      0.31666666666666665,
+      0.3
+    ],
+    "top2_avg_lp_prefix_then_joint_cebra": [
+      0.23333333333333334,
+      0.31666666666666665,
+      0.2833333333333333
+    ],
+    "top2_cebra_score_prefix_then_avg_lp": [
+      0.16666666666666666,
+      0.26666666666666666,
+      0.23333333333333334
+    ],
+    "top2_cebra_score_prefix_then_cebra_score": [
+      0.15,
+      0.25,
+      0.23333333333333334
+    ],
+    "top2_cebra_score_prefix_then_joint_cebra": [
+      0.16666666666666666,
+      0.23333333333333334,
+      0.23333333333333334
+    ],
+    "top2_compute_frac": [
+      0.4375,
+      0.4375,
+      0.4375
+    ],
+    "top2_state_score_prefix_then_avg_lp": [
+      0.18333333333333332,
+      0.2833333333333333,
+      0.3333333333333333
+    ],
+    "top2_state_score_prefix_then_cebra_score": [
+      0.18333333333333332,
+      0.2833333333333333,
+      0.2833333333333333
+    ],
+    "top2_state_score_prefix_then_joint_cebra": [
+      0.18333333333333332,
+      0.25,
+      0.2833333333333333
+    ],
+    "top4_avg_lp_prefix_then_avg_lp": [
+      0.25,
+      0.3,
+      0.21666666666666667
+    ],
+    "top4_avg_lp_prefix_then_cebra_score": [
+      0.25,
+      0.25,
+      0.25
+    ],
+    "top4_avg_lp_prefix_then_joint_cebra": [
+      0.2,
+      0.25,
+      0.25
+    ],
+    "top4_cebra_score_prefix_then_avg_lp": [
+      0.21666666666666667,
+      0.31666666666666665,
+      0.3
+    ],
+    "top4_cebra_score_prefix_then_cebra_score": [
+      0.2,
+      0.25,
+      0.26666666666666666
+    ],
+    "top4_cebra_score_prefix_then_joint_cebra": [
+      0.25,
+      0.23333333333333334,
+      0.2833333333333333
+    ],
+    "top4_compute_frac": [
+      0.625,
+      0.625,
+      0.625
+    ],
+    "top4_state_score_prefix_then_avg_lp": [
+      0.21666666666666667,
+      0.2833333333333333,
+      0.3
+    ],
+    "top4_state_score_prefix_then_cebra_score": [
+      0.2,
+      0.21666666666666667,
+      0.2833333333333333
+    ],
+    "top4_state_score_prefix_then_joint_cebra": [
+      0.18333333333333332,
+      0.25,
+      0.3
+    ]
+  },
+  "llama8b_gsm8k": {
+    "early_pick_avg_lp_prefix": [
+      0.5333333333333333,
+      0.55,
+      0.5
+    ],
+    "early_pick_cebra_score_prefix": [
+      0.5666666666666667,
+      0.5666666666666667,
+      0.6166666666666667
+    ],
+    "early_pick_state_score_prefix": [
+      0.5666666666666667,
+      0.5333333333333333,
+      0.5833333333333334
+    ],
+    "full_avg_lp": [
+      0.65,
+      0.6,
+      0.5666666666666667
+    ],
+    "full_cebra_score": [
+      0.5,
+      0.4166666666666667,
+      0.55
+    ],
+    "full_joint_cebra": [
+      0.4666666666666667,
+      0.55,
+      0.5166666666666667
+    ],
+    "full_state_score": [
+      0.5333333333333333,
+      0.5,
+      0.5833333333333334
+    ],
+    "top1_avg_lp_prefix_then_avg_lp": [
+      0.5333333333333333,
+      0.55,
+      0.5
+    ],
+    "top1_avg_lp_prefix_then_cebra_score": [
+      0.5333333333333333,
+      0.55,
+      0.5
+    ],
+    "top1_avg_lp_prefix_then_joint_cebra": [
+      0.5333333333333333,
+      0.55,
+      0.5
+    ],
+    "top1_cebra_score_prefix_then_avg_lp": [
+      0.5666666666666667,
+      0.5666666666666667,
+      0.6166666666666667
+    ],
+    "top1_cebra_score_prefix_then_cebra_score": [
+      0.5666666666666667,
+      0.5666666666666667,
+      0.6166666666666667
+    ],
+    "top1_cebra_score_prefix_then_joint_cebra": [
+      0.5666666666666667,
+      0.5666666666666667,
+      0.6166666666666667
+    ],
+    "top1_compute_frac": [
+      0.34375,
+      0.34375,
+      0.34375
+    ],
+    "top1_state_score_prefix_then_avg_lp": [
+      0.5666666666666667,
+      0.5333333333333333,
+      0.5833333333333334
+    ],
+    "top1_state_score_prefix_then_cebra_score": [
+      0.5666666666666667,
+      0.5333333333333333,
+      0.5833333333333334
+    ],
+    "top1_state_score_prefix_then_joint_cebra": [
+      0.5666666666666667,
+      0.5333333333333333,
+      0.5833333333333334
+    ],
+    "top2_avg_lp_prefix_then_avg_lp": [
+      0.6166666666666667,
+      0.5666666666666667,
+      0.55
+    ],
+    "top2_avg_lp_prefix_then_cebra_score": [
+      0.6166666666666667,
+      0.48333333333333334,
+      0.5166666666666667
+    ],
+    "top2_avg_lp_prefix_then_joint_cebra": [
+      0.6,
+      0.5666666666666667,
+      0.55
+    ],
+    "top2_cebra_score_prefix_then_avg_lp": [
+      0.6166666666666667,
+      0.6,
+      0.6
+    ],
+    "top2_cebra_score_prefix_then_cebra_score": [
+      0.6,
+      0.5166666666666667,
+      0.5666666666666667
+    ],
+    "top2_cebra_score_prefix_then_joint_cebra": [
+      0.5666666666666667,
+      0.5166666666666667,
+      0.5666666666666667
+    ],
+    "top2_compute_frac": [
+      0.4375,
+      0.4375,
+      0.4375
+    ],
+    "top2_state_score_prefix_then_avg_lp": [
+      0.6,
+      0.5333333333333333,
+      0.6666666666666666
+    ],
+    "top2_state_score_prefix_then_cebra_score": [
+      0.6,
+      0.5,
+      0.6
+    ],
+    "top2_state_score_prefix_then_joint_cebra": [
+      0.55,
+      0.55,
+      0.6166666666666667
+    ],
+    "top4_avg_lp_prefix_then_avg_lp": [
+      0.6333333333333333,
+      0.6166666666666667,
+      0.55
+    ],
+    "top4_avg_lp_prefix_then_cebra_score": [
+      0.55,
+      0.5166666666666667,
+      0.6166666666666667
+    ],
+    "top4_avg_lp_prefix_then_joint_cebra": [
+      0.55,
+      0.5833333333333334,
+      0.5333333333333333
+    ],
+    "top4_cebra_score_prefix_then_avg_lp": [
+      0.6333333333333333,
+      0.6166666666666667,
+      0.5833333333333334
+    ],
+    "top4_cebra_score_prefix_then_cebra_score": [
+      0.55,
+      0.45,
+      0.55
+    ],
+    "top4_cebra_score_prefix_then_joint_cebra": [
+      0.5,
+      0.55,
+      0.5333333333333333
+    ],
+    "top4_compute_frac": [
+      0.625,
+      0.625,
+      0.625
+    ],
+    "top4_state_score_prefix_then_avg_lp": [
+      0.65,
+      0.5166666666666667,
+      0.6333333333333333
+    ],
+    "top4_state_score_prefix_then_cebra_score": [
+      0.5666666666666667,
+      0.5,
+      0.5666666666666667
+    ],
+    "top4_state_score_prefix_then_joint_cebra": [
+      0.5,
+      0.55,
+      0.5666666666666667
+    ]
+  }
+}

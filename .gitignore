@@ -1,0 +1,22 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Generated data
+*.pkl
+*.npz
+*.pt
+
+# Results and dashboard outputs
+results/**/*.npz
+results/**/*.pt
+entropy_neuron_dashboard_out/
+
+# Misc
+.DS_Store
+
+# Local paper PDF
+Locating_Reasoning_Policies.pdf
+__pycache__/
